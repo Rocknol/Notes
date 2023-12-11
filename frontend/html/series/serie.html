@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css"
+        href="http://yui.yahooapis.com/3.11.0/build/cssnormalize/cssnormalize-min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="../../css/series/serie.css">
+    <title id="onglet-titre">Série</title>
+
+</head>
+
+<header>
+    <div class="navbar">
+        <ul>
+            <li><a href="../index.html">Page d'accueil</a></li>
+            <li><a href="../series/series.html">Séries</a></li>
+        </ul>
+    </div>
+    <div id="logo-serie">
+        <img class="logo-serie">
+    </div>
+    <div id="carousel">
+        <div class="container-carousel">
+            <!-- <img class="container-carousel-image"> -->
+            <div class="arrow-left"><i class="fa-solid fa-arrow-left"></i></div>
+            <div class="arrow-right"><i class="fa-solid fa-arrow-right"></i></div>
+            <span class="fanart-number"></span>
+        </div>
+    </div>
+    <div id="nombre-saisons-header">
+    </div>
+    <div id="boutons">
+        <div class="display-ajout"><i class="fa-solid fa-plus"></i></div>
+        <div class="display-fanart"><i class="fa-solid fa-image"></i></div>
+    </div>
+</header>
+
+<body>
+
+    <main>
+
+        <div class="serie">
+            <div class="fiche-serie">
+                <img class="poster-serie">
+                <div class="texte-serie">
+                    <span class="titre-serie"></span>
+                    <div class="genre-plus">
+                        <span class="genre-serie"></span>
+                        <div class="add-genre"><i class="fa-solid fa-plus"></i></div>
+                    </div>
+                    <span class="nombre-saisons"></span>
+                    <div class="note-serie"></div>
+                    <span class="decimale-serie"></span>
+
+                </div>
+                <div class="options-serie">
+                    <div class="modifier-serie">
+                        <a href="./modif-serie.html" class="modif-serie-lien">Modifier cette série</a>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="forms">
+            <div class="form-et-bouton-saison">
+                <form id="form-ajout-saison" name="form-ajout-saison">
+                    <div class="titre-saison">
+                        <label for="titre">Titre de la saison:</label>
+                        <input type="text" name="title" id="titre">
+                    </div>
+                    <div class="poster-saison">
+                        <label for="poster">Poster:</label>
+                        <input type="file" name="image" id="poster">
+                    </div>
+
+                </form>
+                <div class="bouton-ajouter">
+                    <button type="submit" class="bouton-ajouter-saison">Ajouter cette saison</button>
+                </div>
+            </div>
+            <div class="form-bouton-fanart">
+                <form id="form-ajout-fanart" name="form-ajout-fanart">
+                    <div class="fanart-serie">
+                        <label for="fanart">Fanart:</label>
+                        <input type="file" name="image" id="fanart">
+                    </div>
+                </form>
+                <div class="bouton-ajout-fanart">
+                    <button type="submit" class="bouton-ajouter-fanart">Ajouter ce fanart</button>
+                </div>
+                <form id="form-ajout-logo" name="form-ajout-logo">
+                    <div class="logo-serie">
+                        <label for="logo">Logo:</label>
+                        <input type="file" name="image" id="logo">
+                    </div>
+                </form>
+                <div class="bouton-ajout-logo">
+                    <button type="submit" class="bouton-ajouter-logo">Ajouter ce logo</button>
+                </div>
+            </div>
+        </div>
+
+        </div>
+
+        <div id="saisons">
+
+        </div>
+
+
+    </main>
+    <script src="../../javascript/series/serie.js"></script>
+
+</body>

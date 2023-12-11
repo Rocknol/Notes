@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css"
+        href="http://yui.yahooapis.com/3.11.0/build/cssnormalize/cssnormalize-min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="../../css/musique/artistes.css">
+    <title>Artistes</title>
+
+</head>
+
+<body>
+
+    <header>
+        <div class="navbar">
+            <ul>
+                <li><a href="../../html/index.html">Page d'accueil </a></li>
+                <li><a href="./albums.html">Albums</a></li>
+            </ul>
+        </div>
+
+        <div id="nombre-artistes"></div>
+        <div id="boutons">
+            <div class="display-filter"><i class="fa-solid fa-magnifying-glass"></i></div>
+            <div class="reset-filter"><i class="fa-solid fa-rotate"></i></div>
+            <div class="display-ajout"><i class="fa-solid fa-plus"></i></div>
+        </div>
+
+    </header>
+
+    <div class="filtre-et-ajout">
+        <div class="form-filtre">
+            <div class="form">
+                <div class="filtre-artiste">
+                    <label for="artiste">Artiste:</label>
+                    <input type="text" name="artist" id="artist">
+                </div>
+                <div class="filtre-nationalite">
+                    <label for="nationalite">Nationalité:</label>
+                    <select name="nationalite" id="nationalite">
+                        <option value=""></option>
+                    </select>
+                </div>
+                <div class="filtre-note">
+                    <label for="note">Note:</label>
+                    <select name="note" id="note">
+                        <option value=""></option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                </div>
+            </div>
+            <div class="bouton-filtre"><button type="submit" class="bouton-filtrer-artiste">Filtrer</button></div>
+        </div>
+
+        <div class="form-ajout-artiste">
+            <form id="ajout-artiste" name="ajout-artiste">
+                <div class="name-artist">
+                    <label for="name">Nom de l'artiste:</label>
+                    <input type="text" name="name" id="name">
+                </div>
+                <div class="nationality-artist">
+                    <label for="nationality">Nationalité:</label>
+                    <input type="text" name="nationalite" id="nationalite">
+                </div>
+                <div class="picture-artist">
+                    <label for="photo">Photo:</label>
+                    <input type="file" name="image" id="photo">
+                </div>
+            </form>
+            <div class="bouton-ajouter"><button type="submit" class="bouton-ajouter-artiste">Ajouter cet
+                    artiste</button></div>
+        </div>
+
+    </div>
+
+    <div id="artistes"></div>
+
+    <script src="../../javascript/musique/artistes.js"></script>
+</body>

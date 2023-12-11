@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css"
+        href="http://yui.yahooapis.com/3.11.0/build/cssnormalize/cssnormalize-min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="../../css/series/series.css">
+    <title>Séries</title>
+
+</head>
+
+<body>
+
+    <header>
+
+        <div class="navbar">
+            <ul>
+                <li><a href="../../html/index.html">Page d'accueil </a></li>
+            </ul>
+        </div>
+
+        <div id="nombre-series">
+        </div>
+        <div id="boutons">
+            <div class="display-filter"><i class="fa-solid fa-magnifying-glass"></i></div>
+            <div class="reset-filter"><i class="fa-solid fa-rotate"></i></div>
+            <div class="display-ajout"><i class="fa-solid fa-plus"></i></div>
+        </div>
+
+
+    </header>
+
+    <main>
+
+        <div class="filtre-et-ajout">
+
+            <div class="form-filter">
+
+                <div class="chercher-serie">
+                    <label for="titre">Série:</label>
+                    <input type="text" name="titre" id="titre">
+                </div>
+                <div class="filtre-note">
+                    <label for="note">Note:</label>
+                    <select name="note" id="note">
+                        <option value=""></option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                </div>
+                <div class="filtre-genre">
+                    <label for="genre">Genre:</label>
+                    <select name="genre" id="genre">
+                        <option value=""></option>
+                        <option value="Drama">Drama</option>
+                        <option value="Aventure">Aventure</option>
+                        <option value="Romance">Romance</option>
+                        <option value="Adult">Adult</option>
+                        <option value="Western">Western</option>
+                        <option value="Comedie">Comedie</option>
+                        <option value="Thriller">Thriller</option>
+                        <option value="Horreur">Horreur</option>
+                        <option value="Sci-Fi">Sci-Fi</option>
+                        <option value="Fantasy">Fantasy</option>
+                        <option value="Documentaire">Documentaire</option>
+                        <option value="Animation">Animation</option>
+                    </select>
+                </div>
+                <div class="bouton-filtre"><button type="submit" class="bouton-filtrer-serie">Filtrer</button></div>
+            </div>
+
+            <div class="form-et-bouton-serie">
+                <form id="form-ajout-serie" name="ajout-serie">
+                    <div class="titre-serie-ajout">
+                        <label for="titre">Titre de la série:</label>
+                        <input type="text" name="title" id="titreAjout">
+                    </div>
+                    <div class="genre-serie-ajout">
+                        <label for="genre">Genre:</label>
+                        <select name="genre" id="genreAjout">
+                            <option value=""></option>
+                            <option value="Drama">Drama</option>
+                            <option value="Aventure">Aventure</option>
+                            <option value="Romance">Romance</option>
+                            <option value="Adult">Adult</option>
+                            <option value="Western">Western</option>
+                            <option value="Comedie">Comédie</option>
+                            <option value="Thriller">Thriller</option>
+                            <option value="Horreur">Horreur</option>
+                            <option value="Sci-Fi">Sci-Fi</option>
+                            <option value="Fantasy">Fantasy</option>
+                            <option value="Documentaire">Documentaire</option>
+                            <option value="Animation">Animation</option>
+                        </select>
+                    </div>
+                    <div class="poster-serie">
+                        <label for="poster">Poster:</label>
+                        <input type="file" name="image" id="poster">
+                    </div>
+
+                </form>
+                <div class="bouton-ajouter">
+                    <button type="submit" class="bouton-ajouter-serie">Ajouter cette série</button>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div id="series">
+
+        </div>
+
+
+    </main>
+
+    <script src="../../javascript/series/series.js"></script>
+</body>

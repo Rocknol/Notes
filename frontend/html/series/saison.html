@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css"
+        href="http://yui.yahooapis.com/3.11.0/build/cssnormalize/cssnormalize-min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="../../css/series/saison.css">
+    <title id="onglet-titre">Saison</title>
+
+</head>
+
+<body>
+
+    <div class="navbar">
+        <ul>
+            <li><a href="../index.html">Page d'accueil</a></li>
+            <li><a href="../series/series.html">Séries</a></li>
+            <li><a class="retour-serie"></a></li>
+        </ul>
+
+    </div>
+
+    <main>
+
+        <div class="saison-et-ajout">
+            <div class="fiche-saison">
+                <img class="poster-saison">
+                <div class="texte-saison">
+                    <span class="titre-serie"></span>
+                    <span class="titre-saison"></span>
+                    <span class="nombre-episodes"></span>
+                    <div class="note-saison"></div>
+                    <span class="decimale-saison"></span>
+
+                </div>
+            </div>
+
+            <div class="display-ajout"><i class="fa-solid fa-plus"></i></div>
+            <div class="form-et-bouton-episode">
+                <form id="form-ajout-episode" name="form-ajout-episode">
+                    <div class="numero-episode">
+                        <label for="numero">Numéro d'épisode:</label>
+                        <input type="text" name="numero" id="numero">
+                    </div>
+                    <div class="titre-episode">
+                        <label for="titre">Titre de l'épisode:</label>
+                        <input type="text" name="title" id="titre">
+                    </div>
+                    <div class="note-episode">
+                        <label for="note">Note:</label>
+                        <select name="note" id="note">
+                            <option value=""></option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                        </select>
+
+                    </div>
+                    <div class="thumbnail">
+                        <label for="thumbnail">Thumbnail:</label>
+                        <input type="file" name="image" id="thumbnail">
+                    </div>
+                </form>
+                <div class="bouton-ajouter">
+                    <button type="submit" class="bouton-ajouter-episode">Ajouter cet épisode</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="episodes">
+
+
+        </div>
+
+
+    </main>
+    <script src="../../javascript/series/saison.js"></script>
+
+
+</body>

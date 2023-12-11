@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css"
+        href="http://yui.yahooapis.com/3.11.0/build/cssnormalize/cssnormalize-min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="../../css/realisateurs/realisateurs.css">
+    <title>Réalisateurs</title>
+
+</head>
+
+<body>
+
+    <main>
+
+        <header>
+            <div class="navbar">
+                <ul>
+                    <li><a href="../../html/index.html">Page d'accueil </a></li>
+                    <li><a href="../films/films.html">Films</a></li>
+                    <li><a href="../film-sagas/film-sagas.html">Sagas</a></li>
+                </ul>
+            </div>
+            <div id="nombre-realisateurs"></div>
+            <div id="boutons">
+                <div class="display-filter"><i class="fa-solid fa-magnifying-glass"></i></div>
+                <div class="reset-filter"><i class="fa-solid fa-rotate"></i></div>
+                <div class="display-ajout"><i class="fa-solid fa-plus"></i></div>
+            </div>
+        </header>
+
+        <div class="filtreetajout">
+
+            <div class="form-filtre">
+                <div class="form">
+                    <div class="chercher-realisateur">
+                        <label for="realisateur">Réalisateur:</label>
+                        <input type="text" name="realisateur" id="realisateur">
+                    </div>
+                    <div class="filtre-nationalite">
+                        <label for="nationalite">Nationalité:</label>
+                        <select name="nationalite" id="nationalite">
+                            <option value=""></option>
+                        </select>
+                    </div>
+                    <div class="filtre-note">
+                        <label for="note">Note:</label>
+                        <select name="note" id="note">
+                            <option value=""></option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="bouton-filtre"><button type="submit" class="bouton-filtrer-realisateur">Filtrer</button>
+                </div>
+            </div>
+
+            <div class="form-et-bouton-real">
+                <form id="form-ajout-realisateur" name="ajout-realisateur">
+                    <div class="name-realisateur">
+                        <label for="name">Nom du réalisateur:</label>
+                        <input type="text" name="name" id="name">
+                    </div>
+                    <div class="nationality-realisateur">
+                        <label for="nationalite">Nationalité:</label>
+                        <input type="text" name="nationalite" id="nationalite">
+                    </div>
+                    <div class="picture-realisateur">
+                        <label for="photo">Photo:</label>
+                        <input type="file" name="image" id="photo">
+                    </div>
+                </form>
+                <div class="bouton-ajouter">
+                    <button type="submit" class="bouton-ajouter-realisateur">Ajouter ce réalisateur</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="realisateurs">
+
+
+        </div>
+
+    </main>
+    <script src="../../javascript/realisateurs/realisateurs.js"></script>
+</body>

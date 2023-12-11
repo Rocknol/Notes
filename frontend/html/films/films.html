@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css"
+        href="http://yui.yahooapis.com/3.11.0/build/cssnormalize/cssnormalize-min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="../../css/films/films.css">
+    <title>Films</title>
+
+</head>
+
+<body>
+
+    <header>
+        <div class="navbar">
+            <ul>
+                <li><a href="../../html/index.html">Page d'accueil </a></li>
+                <li><a href="../realisateurs/realisateurs.html">Réalisateurs</a></li>
+                <li><a href="../film-sagas/film-sagas.html">Sagas</a></li>
+            </ul>
+        </div>
+
+        <div id="nombre-films">
+
+        </div>
+        <div id="boutons">
+            <div class="display-filter"><i class="fa-solid fa-magnifying-glass"></i></div>
+            <div class="reset-filter"><i class="fa-solid fa-rotate"></i></div>
+        </div>
+
+    </header>
+
+    <main>
+
+        <div class="container-principal">
+
+            <div class="filtre">
+
+                <div class="form">
+                    <div class="chercher-film">
+                        <label for="film">Film:</label>
+                        <input type="text" name="film" id="film">
+                    </div>
+                    <div class="chercher-réalisateur">
+                        <label for="réalisateur">Réalisateur:</label>
+                        <input type="text" name="realisateur" id="realisateur">
+                    </div>
+                    <div class="filtre-note">
+                        <label for="note">Note:</label>
+                        <select name="note" id="note">
+                            <option value=""></option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <select>
+                    </div>
+                    <div class="filtre-genre">
+                        <label for="genre">Genre:</label>
+                        <select name="genre" id="genre">
+                            <option value=""></option>
+                            <option value="Drama">Drama</option>
+                            <option value="Aventure">Aventure</option>
+                            <option value="Romance">Romance</option>
+                            <option value="Adult">Adult</option>
+                            <option value="Western">Western</option>
+                            <option value="Comedie">Comédie</option>
+                            <option value="Thriller">Thriller</option>
+                            <option value="Horreur">Horreur</option>
+                            <option value="Sci-Fi">Sci-Fi</option>
+                            <option value="Fantasy">Fantasy</option>
+                            <option value="Documentaire">Documentaire</option>
+                            <option value="Animation">Animation</option>
+                        </select>
+                    </div>
+                    <div class="filtre-année">
+                        <label for="annee">Année:</label>
+                        <input type="text" name="annee" id="annee" />
+
+                    </div>
+                </div>
+                <div class="bouton-filtre"><button type="submit" class="bouton-filtre-film">Filtrer</button></div>
+
+            </div>
+
+
+            <div id="films">
+
+            </div>
+        </div>
+
+    </main>
+
+    <script src="../../javascript/films/films.js"></script>
+</body>

@@ -1,0 +1,63 @@
+body {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    background-color: rgb(148, 155, 169);
+}
+
+
+.titre-principal {
+    display: flex;
+    justify-content: center;
+
+}
+
+.image-principale {
+    display: flex;
+    justify-content: center;
+    height: 250px;
+}
+
+.card-image-principale {
+    box-shadow: 0px 0px 6px 6px;
+    border-radius: 50px;
+    background-color: rgb(54, 91, 133);
+}
+
+.card-image-principale img {
+    object-fit: cover;
+    height: 80%;
+    border-radius: 50px 50px 0px 0px;
+}
+
+.texte-image-principale {
+    text-align: center;
+}
+
+.cards-image {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 10%;
+}
+
+.card-image {
+    box-shadow: 0px 0px 6px 6px;
+    border-radius: 50px;
+    width: 14%;
+    text-decoration: none;
+    color: black;
+    background-color: rgb(54, 91, 133);
+}
+
+.card-image:hover {
+    transform: scale(1.3);
+}
+
+.card-image img {
+    object-fit: cover;
+    border-radius: 50px 50px 0px 0px;
+    width: 100%;
+    height: 70%;
+}
+
+.texte-image {
+    text-align: center;
+}

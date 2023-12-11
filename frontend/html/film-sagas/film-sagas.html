@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css"
+        href="http://yui.yahooapis.com/3.11.0/build/cssnormalize/cssnormalize-min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="../../css/film-sagas/film-sagas.css">
+    <title>Sagas</title>
+
+</head>
+
+<body>
+
+    <header>
+        <div class="navbar">
+            <ul>
+                <li><a href="../../html/index.html">Page d'accueil </a></li>
+                <li><a href="../films/films.html">Films</a></li>
+                <li><a href="../realisateurs/realisateurs.html">Réalisateurs</a></li>
+            </ul>
+        </div>
+
+        <div id="nombre-sagas"></div>
+
+    </header>
+
+
+    <main>
+        <div class="ajout-et-nombre">
+
+            <div class="display-ajout"><i class="fa-solid fa-plus"></i></div>
+
+            <div class="form-et-bouton-saga">
+                <form id="form-ajout-saga" name="ajout-saga">
+                    <legend>Ajout de saga</legend>
+                    <div class="name-saga">
+                        <label for="name">Nom de la saga:</label>
+                        <input type="text" name="name" id="name">
+                    </div>
+                    <div class="image-saga">
+                        <label for="poster">Choisir un poster:</label>
+                        <input type="file" name="image" id="poster">
+                    </div>
+                </form>
+                <div class="bouton-ajouter">
+                    <button type="submit" class="bouton-ajouter-saga">Ajouter cette saga</button>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div id="sagas">
+
+        </div>
+    </main>
+    <script src="../../javascript/film-sagas/film-sagas.js"></script>
+</body>
