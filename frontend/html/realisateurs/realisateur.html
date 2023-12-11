@@ -27,98 +27,96 @@
     <div id="nombre-films">
 
     </div>
+    <div id="boutons">
+        <div class="display-ajout"><i class="fa-solid fa-plus"></i></div>
+    </div>
 
     <main>
 
-        <div class="container-principal">
 
-            <div class="realisateur-et-ajouts">
 
-                <div class="fiche-realisateur">
-                    <img class="photo-realisateur">
-                    <div class="texte-realisateur">
-                        <p class="nom-realisateur"></p>
-                        <p class="nationalite-realisateur">
-                        </p>
-                        <div class="note-realisateur"></div>
-                        <span class="note-decimale"></span>
-                    </div>
-                    <div class="options-realisateur">
+        <div class="fiche-realisateur">
+            <img class="photo-realisateur">
+            <div class="texte-realisateur">
+                <p class="nom-realisateur"></p>
+                <p class="nationalite-realisateur">
+                </p>
+                <div class="note-realisateur"></div>
+                <span class="note-decimale"></span>
+            </div>
+            <div class="options-realisateur">
 
-                        <div class="modifier-realisateur">
-                            <a href="../realisateurs/modif-realisateur.html" class="modif-realisateur-lien">Modifier
-                                ce
-                                réalisateur</a>
-                        </div>
-                    </div>
-
+                <div class="modifier-realisateur">
+                    <a href="../realisateurs/modif-realisateur.html" class="modif-realisateur-lien">Modifier
+                        ce
+                        réalisateur</a>
                 </div>
-
-                <div class="display-ajout"><i class="fa-solid fa-plus"></i></div>
-                <div class="form-et-bouton-film">
-                    <form id="form-ajout-film" name="form-ajout-film">
-                        <div class="titre-film">
-                            <label for="titre">Titre du film:</label>
-                            <input type="text" name="title" id="titre">
-                        </div>
-                        <div class="note-film">
-                            <label for="note">Note:</label>
-                            <input type="range" name="note" id="noteFilm" min="0" max="10" step="1" list="markers" />
-                            <datalist id="markers">
-                                <option value="0"></option>
-                                <option value="1"></option>
-                                <option value="2"></option>
-                                <option value="3"></option>
-                                <option value="4"></option>
-                                <option value="5"></option>
-                                <option value="6"></option>
-                                <option value="7"></option>
-                                <option value="8"></option>
-                                <option value="9"></option>
-                                <option value="10"></option>
-                            </datalist>
-                            <p>
-                                <ouput id="value"></ouput>
-                            </p>
-                        </div>
-                        <div class="genre-film">
-                            <label for="genre">Genre:</label>
-                            <select name="genre" id="genre">
-                                <option value=""></option>
-                                <option value="Drama">Drama</option>
-                                <option value="Aventure">Aventure</option>
-                                <option value="Romance">Romance</option>
-                                <option value="Adult">Adult</option>
-                                <option value="Western">Western</option>
-                                <option value="Comedie">Comédie</option>
-                                <option value="Thriller">Thriller</option>
-                                <option value="Horreur">Horreur</option>
-                                <option value="Sci-Fi">Sci-Fi</option>
-                                <option value="Fantasy">Fantasy</option>
-                                <option value="Documentaire">Documentaire</option>
-                                <option value="Animation">Animation</option>
-                            </select>
-                        </div>
-                        <div class="annee-film">
-                            <label for="annee">Année:</label>
-                            <input type="text" name="annee" id="annee">
-                        </div>
-                        <div class="image-film">
-                            <label for="poster">Poster:</label>
-                            <input type="file" name="image" id="poster">
-                        </div>
-
-                    </form>
-                    <div class="bouton-ajouter">
-                        <button type="submit" class="bouton-ajouter-film">Ajouter ce film</button>
-                    </div>
-                </div>
-
             </div>
 
-            <div id="films-realisateur"></div>
-
         </div>
+
+        <div class="form-et-bouton-film">
+            <form id="form-ajout-film" name="form-ajout-film">
+                <div class="titre-film">
+                    <label for="titre">Titre du film:</label>
+                    <input type="text" name="title" id="titre">
+                </div>
+                <div class="note-film">
+                    <label for="note">Note:</label>
+                    <input type="range" name="note" id="noteFilm" min="0" max="10" step="1" list="markers" />
+                    <datalist id="markers">
+                        <option value="0"></option>
+                        <option value="1"></option>
+                        <option value="2"></option>
+                        <option value="3"></option>
+                        <option value="4"></option>
+                        <option value="5"></option>
+                        <option value="6"></option>
+                        <option value="7"></option>
+                        <option value="8"></option>
+                        <option value="9"></option>
+                        <option value="10"></option>
+                    </datalist>
+                    <p>
+                        <ouput id="value"></ouput>
+                    </p>
+                </div>
+                <div class="genre-film">
+                    <label for="genre">Genre:</label>
+                    <select name="genre" id="genre">
+                        <option value=""></option>
+                        <option value="Drama">Drama</option>
+                        <option value="Aventure">Aventure</option>
+                        <option value="Romance">Romance</option>
+                        <option value="Adult">Adult</option>
+                        <option value="Western">Western</option>
+                        <option value="Comedie">Comédie</option>
+                        <option value="Thriller">Thriller</option>
+                        <option value="Horreur">Horreur</option>
+                        <option value="Sci-Fi">Sci-Fi</option>
+                        <option value="Fantasy">Fantasy</option>
+                        <option value="Documentaire">Documentaire</option>
+                        <option value="Animation">Animation</option>
+                    </select>
+                </div>
+                <div class="annee-film">
+                    <label for="annee">Année:</label>
+                    <input type="text" name="annee" id="annee">
+                </div>
+                <div class="image-film">
+                    <label for="poster">Poster:</label>
+                    <input type="file" name="image" id="poster">
+                </div>
+
+            </form>
+            <div class="bouton-ajouter">
+                <button type="submit" class="bouton-ajouter-film">Ajouter ce film</button>
+            </div>
+        </div>
+
+
+        <div id="films-realisateur"></div>
+
 
     </main>
     <script src="../../javascript/realisateurs/realisateur.js"></script>

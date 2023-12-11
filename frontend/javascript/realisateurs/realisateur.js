@@ -95,13 +95,18 @@ fetch(`http://localhost:3000/api/realisateurs/${findId}`)
                         texteFilm.setAttribute("class", "texte-film")
                         blocFilm.appendChild(texteFilm)
 
-                        const titleFilm = document.createElement("h3");
+                        const titleFilm = document.createElement("span");
                         titleFilm.innerText = data[i].title;
+                        titleFilm.setAttribute("class", "titre-film");
                         texteFilm.appendChild(titleFilm);
+
+                        const additionalInfo = document.createElement("div");
+                        additionalInfo.setAttribute("class", "ad-info");
+                        texteFilm.appendChild(additionalInfo);
 
                         const noteFilm = document.createElement("div");
                         noteFilm.setAttribute("class", "star-container");
-                        texteFilm.appendChild(noteFilm);
+                        additionalInfo.appendChild(noteFilm);
 
                         let note = data[i].note;
 
@@ -119,11 +124,11 @@ fetch(`http://localhost:3000/api/realisateurs/${findId}`)
 
                         const genreFilm = document.createElement("p");
                         genreFilm.innerText = data[i].genres;
-                        texteFilm.appendChild(genreFilm);
+                        additionalInfo.appendChild(genreFilm);
 
                         const anneeFilm = document.createElement("p");
                         anneeFilm.innerText = data[i].annee;
-                        texteFilm.appendChild(anneeFilm);
+                        additionalInfo.appendChild(anneeFilm);
 
                     }
                 }
