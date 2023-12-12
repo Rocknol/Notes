@@ -257,6 +257,7 @@ legend {
     background-color: black;
     width: 20px;
     text-align: center;
+    display: none;
 }
 
 .bouton-filtre {
@@ -357,6 +358,7 @@ legend {
 .division-note {
     display: flex;
     gap: 20px;
+    position: relative;
 }
 
 .division-note-hide {
@@ -376,4 +378,13 @@ legend {
     display: flex;
     align-items: center;
     font-size: 60px;
+    position: absolute;
+    z-index: 1;
+    color: gold;
+    background-color: black;
+    border-radius: 50%;
+    padding: 10px;
+    width: 40px;
+    justify-content: center;
+    font-weight: bold;
 }
