@@ -9,7 +9,7 @@
         href="http://yui.yahooapis.com/3.11.0/build/cssnormalize/cssnormalize-min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="../../css/musique/artiste.css">
-    <title>Artiste</title>
+    <title id="onglet-titre">Artiste</title>
 
 </head>
 
@@ -26,6 +26,105 @@
     </div>
 
     <div id="nombre-albums">
+
+    </div>
+
+    <div id="boutons">
+        <div class="display-ajout"><i class="fa-solid fa-plus"></i></div>
+    </div>
+
+    <main>
+
+
+    </main>
+
+    <div class="fiche-artiste">
+        <img class="photo-artiste">
+        <div class="texte-artiste">
+            <p class="nom-artiste"></p>
+            <p class="nationalite-artiste"></p>
+            <div class="note-artiste"> </div>
+            <span class="note-decimale"></span>
+        </div>
+        <div class="options-artiste">
+            <div class="modifier-artiste">
+                <a href="./modif-artiste.html" class="modif-artiste-lien">Modifier cet artiste</a>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="form-et-bouton-album">
+        <form id="form-ajout-album" name="form-ajout-album">
+            <div class="titre-album">
+                <label for="titre">Titre:</label>
+                <input type="text" name="title" id="titre">
+            </div>
+            <div class="note-album">
+                <label for="note">Note:</label>
+                <input type="range" name="note" id="albumNote" min="0" max="10" step="1" list="markers">
+                <datalist id="markers">
+                    <option value="0"></option>
+                    <option value="1"></option>
+                    <option value="2"></option>
+                    <option value="3"></option>
+                    <option value="4"></option>
+                    <option value="5"></option>
+                    <option value="6"></option>
+                    <option value="7"></option>
+                    <option value="8"></option>
+                    <option value="9"></option>
+                    <option value="10"></option>
+                </datalist>
+                <p>
+                    <ouput id="value"></ouput>
+                </p>
+            </div>
+            <div class="genre-album">
+                <label for="genre">Genre:</label>
+                <select name="genre" id="genre">
+                    <option value=""></option>
+                    <option value="Rock">Rock</option>
+                    <option value="Jazz">Jazz</option>
+                    <option value="Classical">Classical</option>
+                    <option value="Metal">Metal</option>
+                    <option value="Rap">Rap</option>
+                    <option value="Electronic">Electronic</option>
+                    <option value="Folk">Folk</option>
+                    <option value="Country">Country</option>
+                    <option value="Pop">Pop</option>
+                </select>
+            </div>
+            <div class="annee-album">
+                <label for="annee">Année:</label>
+                <input type="text" name="annee" id="annee">
+            </div>
+
+            <div class="type-album">
+                <legend>Type:</legend>
+                <div>
+                    <label for="LP">LP</label>
+                    <input type="radio" name="type" id="LP" value="LP">
+
+                    <label for="EP">EP</label>
+                    <input type="radio" name="type" id="EP" value="EP">
+
+                    <label for="Live Album">Live Album</label>
+                    <input type="radio" name="type" id="Live Album" value="Live Album">
+                </div>
+            </div>
+            <div class="image-album">
+                <label for="pochette">Pochette:</label>
+                <input type="file" name="image" id="pochette">
+            </div>
+        </form>
+
+        <div class="bouton-ajouter">
+            <button type="submit" class="bouton-ajouter-album">Ajouter cet album</button>
+        </div>
+    </div>
+
+    <div id="albums-artiste">
 
     </div>
 

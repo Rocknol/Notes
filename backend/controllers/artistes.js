@@ -18,3 +18,15 @@ exports.getAllArtists = (req, res, next) => {
         .then((artistes) => res.status(201).json(artistes))
         .catch((error) => res.status(401).json(error))
 }
+
+exports.getOneArtist = (req, res, next) => {
+    Artiste.findOne({ _id: req.params.id })
+        .then((artiste) => res.status(201).json(artiste))
+        .catch((error) => res.status(401).json(error))
+}
+
+exports.majNoteArtiste = (req, res, next) => {
+    Artiste.updateOne({ _id: req.params.id }, { $set: { note: req.body.note, decimale: req.body.decimale, nombreAlbums: req.body.nombreAlbums } })
+        .then((artiste) => res.status(201).json(artiste))
+        .catch((error) => res.status(401).json(error))
+}

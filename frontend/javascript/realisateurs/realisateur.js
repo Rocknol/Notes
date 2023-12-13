@@ -18,14 +18,9 @@ let idReal;
 let note;
 
 function calculNombre() {
-    qteFilms += 1;
-    if (qteFilms === 1) {
-        nombreFilms.innerHTML = `${qteFilms}` + " film";
-    }
-
-    else if (qteFilms > 1) {
-        nombreFilms.innerHTML = `${qteFilms}` + " films";
-    }
+    let calcul = document.querySelectorAll(".bloc-film");
+    let qteFilms = calcul.length;
+    nombreFilms.innerHTML = `${qteFilms}` + " film(s)";
 }
 
 displayAjout.addEventListener("click", () => {
@@ -76,65 +71,59 @@ fetch(`http://localhost:3000/api/realisateurs/${findId}`)
             .then((response) => { return response.json() })
             .then((data) => {
                 console.log(data);
-                if (data.length >= 1) {
+                for (let i = 0; i < data.length; i++) {
+                    const blocFilm = document.createElement("a");
+                    blocFilm.href = `../films/film.html?id=${data[i]._id}`;
+                    blocFilm.setAttribute("class", "bloc-film");
+                    filmsRealisateur.appendChild(blocFilm);
 
-                    for (let i = 0; i < data.length; i++) {
-                        calculNombre();
-                        const blocFilm = document.createElement("a");
-                        blocFilm.href = `../films/film.html?id=${data[i]._id}`;
-                        blocFilm.setAttribute("class", "bloc-film");
-                        filmsRealisateur.appendChild(blocFilm);
+                    const imageFilm = document.createElement("img");
+                    imageFilm.src = data[i].imageUrl;
+                    imageFilm.setAttribute("class", "image-film")
+                    blocFilm.appendChild(imageFilm);
 
-                        const imageFilm = document.createElement("img");
-                        imageFilm.src = data[i].imageUrl;
-                        imageFilm.setAttribute("class", "image-film")
-                        blocFilm.appendChild(imageFilm);
+                    const texteFilm = document.createElement("div");
+                    texteFilm.innerText = "";
+                    texteFilm.setAttribute("class", "texte-film")
+                    blocFilm.appendChild(texteFilm)
 
-                        const texteFilm = document.createElement("div");
-                        texteFilm.innerText = "";
-                        texteFilm.setAttribute("class", "texte-film")
-                        blocFilm.appendChild(texteFilm)
+                    const titleFilm = document.createElement("span");
+                    titleFilm.innerText = data[i].title;
+                    titleFilm.setAttribute("class", "titre-film");
+                    texteFilm.appendChild(titleFilm);
 
-                        const titleFilm = document.createElement("span");
-                        titleFilm.innerText = data[i].title;
-                        titleFilm.setAttribute("class", "titre-film");
-                        texteFilm.appendChild(titleFilm);
+                    const additionalInfo = document.createElement("div");
+                    additionalInfo.setAttribute("class", "ad-info");
+                    texteFilm.appendChild(additionalInfo);
 
-                        const additionalInfo = document.createElement("div");
-                        additionalInfo.setAttribute("class", "ad-info");
-                        texteFilm.appendChild(additionalInfo);
+                    const noteFilm = document.createElement("div");
+                    noteFilm.setAttribute("class", "star-container");
+                    additionalInfo.appendChild(noteFilm);
 
-                        const noteFilm = document.createElement("div");
-                        noteFilm.setAttribute("class", "star-container");
-                        additionalInfo.appendChild(noteFilm);
+                    let note = data[i].note;
 
-                        let note = data[i].note;
-
-                        for (let i = 0; i < starRating.length; i++) {
-                            const star = document.createElement("span");
-                            if (note >= starRating[i]) {
-                                star.innerHTML = `<i class="fa-solid fa-star"></i>`
-                            }
-                            else {
-                                star.innerHTML = `<i class="fa-regular fa-star"></i>`
-                            }
-                            noteFilm.appendChild(star)
-
+                    for (let i = 0; i < starRating.length; i++) {
+                        const star = document.createElement("span");
+                        if (note >= starRating[i]) {
+                            star.innerHTML = `<i class="fa-solid fa-star"></i>`
                         }
-
-                        const genreFilm = document.createElement("p");
-                        genreFilm.innerText = data[i].genres;
-                        additionalInfo.appendChild(genreFilm);
-
-                        const anneeFilm = document.createElement("p");
-                        anneeFilm.innerText = data[i].annee;
-                        additionalInfo.appendChild(anneeFilm);
+                        else {
+                            star.innerHTML = `<i class="fa-regular fa-star"></i>`
+                        }
+                        noteFilm.appendChild(star)
 
                     }
+
+                    const genreFilm = document.createElement("p");
+                    genreFilm.innerText = data[i].genres;
+                    additionalInfo.appendChild(genreFilm);
+
+                    const anneeFilm = document.createElement("p");
+                    anneeFilm.innerText = data[i].annee;
+                    additionalInfo.appendChild(anneeFilm);
+
                 }
-                else {
-                    nombreFilms.innerHTML = "0 film"
-                }
+                calculNombre();
 
             })
 
