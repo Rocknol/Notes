@@ -26,9 +26,159 @@
         <div id="nombre-albums">
 
         </div>
-
+        <div id="boutons">
+            <div class="display-filter"><i class="fa-solid fa-magnifying-glass"></i></div>
+            <div class="reset-filter"><i class="fa-solid fa-rotate"></i></div>
+            <div class="display-ajout"><i class="fa-solid fa-plus"></i></div>
+        </div>
 
     </header>
+
+    <main>
+
+        <div class="filtre-et-ajout">
+            <div class="filtre">
+                <div class="form">
+                    <div class="filtre-album">
+                        <label for="album">Album:</label>
+                        <input type="text" name="album" id="album">
+                    </div>
+
+                    <div class="filtre-artiste">
+                        <label for="artiste">Artiste:</label>
+                        <input type="text" name="artiste" id="artiste">
+
+                        <div class="filtre-note">
+                            <label for="note">Note:</label>
+                            <select name="note" id="note">
+                                <option value=""></option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                            </select>
+                        </div>
+
+                        <div class="filtre-genre">
+                            <label for="genre">Genre:</label>
+                            <select name="genre" id="genre">
+                                <option value=""></option>
+                                <option value="Rock">Rock</option>
+                                <option value="Jazz">Jazz</option>
+                                <option value="Classical">Classical</option>
+                                <option value="Metal">Metal</option>
+                                <option value="Rap">Rap</option>
+                                <option value="Electronic">Electronic</option>
+                                <option value="Folk">Folk</option>
+                                <option value="Country">Country</option>
+                                <option value="Pop">Pop</option>
+                            </select>
+                        </div>
+
+                        <div class="filtre-annee">
+                            <label for="annee">Année:</label>
+                            <input type="text" name="annee" id="annee">
+                        </div>
+
+                        <div class="filtre-type">
+                            <legend>Type:</legend>
+                            <div>
+                                <label for="LP">LP</label>
+                                <input type="radio" name="type" id="LP" value="LP">
+
+                                <label for="EP">EP</label>
+                                <input type="radio" name="type" id="EP" value="EP">
+
+                                <label for="Live Album">Live Album</label>
+                                <input type="radio" name="type" id="Live Album" value="Live Album">
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="bouton-filtre">
+                    <button type="submit" class="bouton-filtre-album"></button>
+                </div>
+
+            </div>
+
+            <div class="form-ajout-album">
+                <form id="ajout-album" name="ajout-album">
+                    <div class="titre-album">
+                        <label for="titre">Titre:</label>
+                        <input type="text" name="title" id="titre">
+                    </div>
+
+                    <div class="note-album">
+                        <label for="note">Note:</label>
+                        <input type="range" name="note" id="albumNote" min="0" max="10" step="1" list="markers">
+                        <datalist id="markers">
+                            <option value="0"></option>
+                            <option value="1"></option>
+                            <option value="2"></option>
+                            <option value="3"></option>
+                            <option value="4"></option>
+                            <option value="5"></option>
+                            <option value="6"></option>
+                            <option value="7"></option>
+                            <option value="8"></option>
+                            <option value="9"></option>
+                            <option value="10"></option>
+                        </datalist>
+                        <p>
+                            <ouput id="value"></ouput>
+                        </p>
+                    </div>
+
+                    <div class="genre-album">
+                        <label for="genre">Genre:</label>
+                        <select name="genre" id="genre">
+                            <option value=""></option>
+                            <option value="Rock">Rock</option>
+                            <option value="Jazz">Jazz</option>
+                            <option value="Classical">Classical</option>
+                            <option value="Metal">Metal</option>
+                            <option value="Rap">Rap</option>
+                            <option value="Electronic">Electronic</option>
+                            <option value="Folk">Folk</option>
+                            <option value="Country">Country</option>
+                            <option value="Pop">Pop</option>
+                        </select>
+                    </div>
+
+                    <div class="annee-album">
+                        <label for="annee">Année:</label>
+                        <input type="text" id="annee" name="annee">
+                    </div>
+
+
+                    <div class="image-album">
+                        <label for="pochette">Pochette:</label>
+                        <input type="file" name="image" id="pochette">
+                    </div>
+                </form>
+
+                <div class="bouton-ajouter">
+                    <button type="submit" class="bouton-ajout-album">Ajouter cet album</button>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div id="albums">
+
+        </div>
+
+
+    </main>
 
     <script src="../../javascript/musique/albums.js"></script>
 </body>

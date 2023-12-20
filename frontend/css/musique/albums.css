@@ -56,3 +56,179 @@ li a:hover {
     align-items: center;
     z-index: 1;
 }
+
+#boutons {
+    position: fixed;
+    right: 160px;
+    font-size: larger;
+    font-weight: bold;
+    color: white;
+    border: 1px solid black;
+    background-color: rgb(54, 91, 133);
+    width: 160px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    z-index: 1;
+}
+
+.display-filter {
+    display: flex;
+    color: white;
+    width: fit-content;
+    justify-content: center;
+    width: 30px;
+}
+
+.display-filter:hover {
+    cursor: pointer;
+}
+
+.fa-magnifying-glass {
+    font-size: 30px;
+    transition: font-size 0.5s;
+}
+
+.fa-magnifying-glass:hover {
+    font-size: 50px;
+}
+
+.reset-filter {
+    display: flex;
+    color: white;
+    width: fit-content;
+    justify-content: center;
+    width: 30px;
+}
+
+.reset-filter:hover {
+    cursor: pointer;
+}
+
+.fa-rotate {
+    font-size: 30px;
+}
+
+.fa-rotate:hover {
+    animation: rotate 2s linear infinite;
+}
+
+@keyframes rotate {
+    0% {}
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.display-ajout {
+    display: flex;
+    justify-content: center;
+    color: white;
+    width: fit-content;
+    width: 30px;
+}
+
+.display-ajout:hover {
+    cursor: pointer;
+}
+
+.fa-plus {
+    font-size: 30px;
+    transition: font-size 0.5s;
+}
+
+.fa-plus:hover {
+    font-size: 50px;
+}
+
+.filtre-et-ajout {
+    display: flex;
+    gap: 20px;
+    position: fixed;
+    right: 400px;
+    top: 5px;
+}
+
+.filtre {
+    opacity: 0;
+    display: none;
+}
+
+.filtre-show {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    position: fixed;
+    right: 400px;
+    top: 5px;
+    border: 3px dashed rgb(54, 91, 133);
+    padding: 5px;
+    opacity: 1;
+    animation: fadeInCase 1s;
+}
+
+@keyframes fadeInCase {
+    0% {
+        opacity: 0;
+    }
+
+    25% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    color: white;
+    gap: 5px;
+}
+
+.bouton-filtre {
+    display: flex;
+    justify-content: center;
+}
+
+.bouton-filtre-album {
+    background-color: rgb(54, 91, 133);
+    color: white;
+    border: none;
+    height: 30px;
+    width: 100px;
+    transition: border-radius 0.5s, width 0.5s;
+}
+
+.bouton-filtre-album:hover {
+    border-radius: 30px;
+    width: 150px;
+}
+
+.form-ajout-album {
+    opacity: 0;
+    display: none;
+}
+
+.form-ajout-album-show {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    color: white;
+    padding: 5px;
+    opacity: 1;
+    animation: fadeIn 1s;
+    border: 3px dashed rgb(54, 91, 133);
+}
+
+#ajout-album {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    color: white;
+}
