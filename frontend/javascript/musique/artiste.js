@@ -124,18 +124,22 @@ fetch(`http://localhost:3000/api/artistes/${findId}`)
 
         boutonAjoutAlbum.addEventListener("click", () => {
 
+            let value = document.getElementById("LP").value;
+            console.log(value);
+
             let myForm = document.getElementById("form-ajout-album");
             formData = new FormData(myForm);
             formData.append('artisteId', `${findId}`);
             formData.append('artiste', `${data.name}`);
             formData.append('format', 'album');
 
-            console.log(envoiAlbum);
             let envoiAlbum = {
 
                 method: 'POST',
                 body: formData
             }
+
+            console.log(envoiAlbum);
 
             fetch("http://localhost:3000/api/albums", envoiAlbum)
                 .then((data) => {
@@ -143,7 +147,7 @@ fetch(`http://localhost:3000/api/artistes/${findId}`)
                     let title = titreInput.value;
                     window.alert(`${title} a été ajouté.`)
 
-                    fetch(`http://localhost:3000/api/albums/artisteId${findId}`)
+                    fetch(`http://localhost:3000/api/albums/artisteId/${findId}`)
                         .then((response) => { return response.json() })
                         .then((data) => {
                             for (let i = 0; i < data.length; i++) {

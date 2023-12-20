@@ -11,6 +11,7 @@ const routeSeries = require('./routes/series');
 const routeSaisons = require('./routes/saisons');
 const routeEpisodes = require('./routes/episodes');
 const routeArtistes = require('./routes/artistes');
+const routeAlbums = require('./routes/albums');
 
 
 mongoose.connect(process.env.MONGOOSE_PASS,
@@ -33,5 +34,6 @@ app.use("/api/series", routeSeries)
 app.use("/api/saisons", routeSaisons)
 app.use("/api/episodes", routeEpisodes)
 app.use("/api/artistes", routeArtistes)
+app.use("/api/albums", routeAlbums)
 
 module.exports = app;

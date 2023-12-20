@@ -7,7 +7,7 @@ const albumSchema = mongoose.Schema({
     note: { type: String, required: true },
     genre: { type: String, required: true },
     annee: { type: String, required: true },
-    type: { Type: String },
+    type: { type: String },
     format: { type: String, required: true },
     imageUrl: { type: String, required: true }
 })

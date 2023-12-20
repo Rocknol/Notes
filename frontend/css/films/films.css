@@ -377,7 +377,7 @@ legend {
 .numero-note {
     display: flex;
     align-items: center;
-    font-size: 60px;
+    font-size: 30px;
     position: absolute;
     z-index: 1;
     color: gold;
