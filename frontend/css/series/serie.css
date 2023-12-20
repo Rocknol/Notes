@@ -512,8 +512,11 @@ li a:hover {
     color: white;
     font-size: xx-large;
     bottom: 10px;
-    left: 48%;
+    left: 45%;
     z-index: 1;
+    background-color: black;
+    border-radius: 50%;
+    padding: 5px;
 }
 
 #logo-serie {

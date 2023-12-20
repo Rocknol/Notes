@@ -5,6 +5,7 @@ const boutonFiltre = document.querySelector(".bouton-filtre");
 const displayFilter = document.querySelector(".display-filter");
 let qteFilms = 0;
 let starRating = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+let zonesNotes = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
 let note;
 let colors = []
 
@@ -33,15 +34,15 @@ displayFilter.addEventListener("click", () => {
     showFormFilter.setAttribute("class", "filtre-show");
 })
 
-for (let i = 0; i < starRating.length; i++) {
+for (let i = 0; i < zonesNotes.length; i++) {
     let divisionNote = document.createElement("div");
     divisionNote.setAttribute("class", "division-note");
     let numeroNote = document.createElement("span");
     numeroNote.setAttribute("class", "numero-note");
-    numeroNote.innerText = starRating[i];
+    numeroNote.innerText = zonesNotes[i];
     divisionNote.appendChild(numeroNote);
     let zoneFilms = document.createElement("div");
-    zoneFilms.setAttribute("class", `zoneFilm${starRating[i]}`);
+    zoneFilms.setAttribute("class", `zoneFilm${zonesNotes[i]}`);
     zoneFilms.setAttribute("id", "zone-films")
     divisionNote.appendChild(zoneFilms);
     emplacementFilms.appendChild(divisionNote);
