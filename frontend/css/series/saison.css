@@ -183,7 +183,7 @@ li a:hover {
     color: white;
     height: 160px;
     width: 500px;
-    border-radius: 50px;
+    border-radius: 0px 20px 20px 0px;
     background-color: rgb(54, 91, 133);
     text-align: center;
     gap: 5px;
@@ -192,12 +192,9 @@ li a:hover {
 
 .note-basic {
     position: absolute;
-    top: 10px;
-    left: 20px;
     color: gold;
     background-color: black;
     width: 30px;
-    border-radius: 50px;
     font-size: larger;
     font-weight: bold;
 }
@@ -205,7 +202,6 @@ li a:hover {
 .thumbnail {
     height: 100%;
     width: 50%;
-    border-radius: 50px 0px 0px 50px;
 }
 
 .fa-star {
