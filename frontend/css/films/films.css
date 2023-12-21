@@ -195,7 +195,6 @@ h1 {
     justify-content: center;
 }
 
-
 .form {
     display: flex;
     flex-direction: column;
@@ -359,10 +358,6 @@ legend {
     display: flex;
     gap: 20px;
     position: relative;
-}
-
-.division-note-hide {
-    display: none;
 }
 
 #zone-films {

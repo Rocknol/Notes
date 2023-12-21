@@ -93,7 +93,7 @@ fetch(`http://localhost:3000/api/artistes/${findId}`)
 
                     const additionalInfo = document.createElement("div");
                     additionalInfo.setAttribute("class", "ad-info");
-                    texteFilm.appendChild(additionalInfo);
+                    texteAlbum.appendChild(additionalInfo);
 
                     const noteAlbum = document.createElement("div");
                     noteAlbum.setAttribute("class", "star-container");
@@ -110,6 +110,12 @@ fetch(`http://localhost:3000/api/artistes/${findId}`)
                         }
                         noteAlbum.appendChild(star);
                     }
+
+                    const noteAlbumSticker = document.createElement("span");
+                    noteAlbumSticker.setAttribute("class", "sticker");
+                    noteAlbumSticker.innerHTML = data[i].note;
+                    blocAlbum.appendChild(noteAlbumSticker);
+
                     const genreAlbum = document.createElement("span");
                     genreAlbum.innerText = data[i].genre;
                     additionalInfo.appendChild(genreAlbum);
@@ -117,6 +123,12 @@ fetch(`http://localhost:3000/api/artistes/${findId}`)
                     const anneeAlbum = document.createElement("span");
                     anneeAlbum.innerText = data[i].annee;
                     additionalInfo.appendChild(anneeAlbum);
+
+                    if (data[i].type) {
+                        const typeAlbum = document.createElement("span");
+                        typeAlbum.innerText = data[i].type;
+                        additionalInfo.appendChild(typeAlbum);
+                    }
                 }
 
                 calculNombre();
@@ -131,7 +143,7 @@ fetch(`http://localhost:3000/api/artistes/${findId}`)
             formData = new FormData(myForm);
             formData.append('artisteId', `${findId}`);
             formData.append('artiste', `${data.name}`);
-            formData.append('format', 'album');
+            formData.append('format', 'Album');
 
             let envoiAlbum = {
 

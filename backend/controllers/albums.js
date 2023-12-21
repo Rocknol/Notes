@@ -18,8 +18,20 @@ exports.createAlbum = (req, res, next) => {
         .catch((error) => { res.status(401).json({ error }) })
 }
 
+exports.getAllAlbums = (req, res, next) => {
+    Album.find()
+        .then((albums) => res.status(201).json(albums))
+        .catch((error) => res.status(401).json(error))
+}
+
 exports.getAlbumByArtisteId = (req, res, next) => {
     Album.find({ artisteId: req.params.artisteId })
+        .then((albums) => res.status(201).json(albums))
+        .catch((error) => res.status(401).json(error))
+}
+
+exports.getAlbumByArtiste = (req, res, next) => {
+    Album.find({ artiste: req.params.artiste }).sort({ note: -1 }).collation({ locale: "en_US", numericOrdering: true })
         .then((albums) => res.status(201).json(albums))
         .catch((error) => res.status(401).json(error))
 }

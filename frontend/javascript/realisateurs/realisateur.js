@@ -114,11 +114,16 @@ fetch(`http://localhost:3000/api/realisateurs/${findId}`)
 
                     }
 
-                    const genreFilm = document.createElement("p");
+                    const noteFilmSticker = document.createElement("span");
+                    noteFilmSticker.setAttribute("class", "sticker");
+                    noteFilmSticker.innerHTML = data[i].note;
+                    blocFilm.appendChild(noteFilmSticker);
+
+                    const genreFilm = document.createElement("span");
                     genreFilm.innerText = data[i].genres;
                     additionalInfo.appendChild(genreFilm);
 
-                    const anneeFilm = document.createElement("p");
+                    const anneeFilm = document.createElement("span");
                     anneeFilm.innerText = data[i].annee;
                     additionalInfo.appendChild(anneeFilm);
 

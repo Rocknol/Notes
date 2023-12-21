@@ -204,12 +204,17 @@ input[type="range"] {
 }
 
 .bouton-ajouter-album {
-    height: 50px;
-    width: 200px;
+    height: 30px;
+    width: 100px;
     background-color: rgb(54, 91, 133);
-    border-radius: 30px;
     color: white;
     border: none;
+    transition: border-radius 0.5s, width 0.5s;
+}
+
+.bouton-ajouter-album:hover {
+    border-radius: 30px;
+    width: 150px;
 }
 
 #albums-artiste {
@@ -219,7 +224,7 @@ input[type="range"] {
     width: 65%;
     position: absolute;
     right: 20px;
-    top: 300px;
+    top: 320px;
 }
 
 .fa-star {
@@ -237,11 +242,12 @@ input[type="range"] {
 .bloc-album {
     text-decoration: none;
     color: black;
-    height: 350px;
-    width: 200px;
+    height: 300px;
+    width: 250px;
     border-radius: 0px 0px 10px 10px;
     background-color: rgb(54, 91, 133);
     box-shadow: 0px 0px 6px 6px;
+    position: relative;
 }
 
 .image-album {
@@ -313,4 +319,17 @@ input[type="range"] {
     height: 40px;
     align-items: center;
     justify-content: center;
+}
+
+.sticker {
+    font-weight: bold;
+    color: gold;
+    position: absolute;
+    top: 10px;
+    left: 5px;
+    border-radius: 50%;
+    padding: 3px;
+    background-color: black;
+    width: 20px;
+    text-align: center;
 }

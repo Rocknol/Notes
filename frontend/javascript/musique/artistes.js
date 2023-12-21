@@ -107,7 +107,7 @@ fetch("http://localhost:3000/api/artistes")
             if (data[i].nombreAlbums) {
                 const nombreDalbums = document.createElement("span");
                 additionalInfo.appendChild(nombreDalbums);
-                nombreDalbums.innerText = data[i].nombreAlbums;
+                nombreDalbums.innerText = data[i].nombreAlbums + " album(s)";
             }
 
             tableauNationalites.push(data[i].nationalite);
