@@ -397,6 +397,16 @@ li a:hover {
     display: none;
 }
 
+.format-album {
+    font-weight: bold;
+    color: gold;
+    position: absolute;
+    top: 10px;
+    right: 5px;
+    padding: 5px;
+    background-color: black;
+}
+
 input[type="range"] {
     width: 400px;
     margin-left: 5px;

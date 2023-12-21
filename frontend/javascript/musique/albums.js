@@ -127,7 +127,7 @@ fetch("http://localhost:3000/api/albums")
             const formatAlbum = document.createElement("span");
             formatAlbum.innerText = data[i].format;
             formatAlbum.setAttribute("class", "format-album");
-            additionalInfo.appendChild(formatAlbum);
+            caseAlbum.appendChild(formatAlbum);
 
             if (data[i].type) {
                 const typeAlbum = document.createElement("span");
