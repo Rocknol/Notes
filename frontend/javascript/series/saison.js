@@ -17,6 +17,17 @@ let moyenneSerie = 0;
 let moyenneArrondieSerie;
 let moyenneArrondieDecimaleSerie;
 let sommeEpisodes = 0;
+let color1 = "#fc0303";
+let color2 = "#fc3d03";
+let color3 = "#fc7703";
+let color4 = "#fcad03";
+let color5 = "#fcd703";
+let color6 = "#f8fc03";
+let color7 = "#dffc03";
+let color8 = "#c2fc03";
+let color9 = "#9dfc03";
+let color10 = "#4afc03";
+
 
 displayAjout.addEventListener("click", () => {
     let showForm = document.querySelector(".form-et-bouton-episode");
@@ -184,6 +195,18 @@ fetch(`http://localhost:3000/api/saisons/${findId}`)
 
                     const noteBasic = document.createElement("span");
                     noteBasic.setAttribute("class", "note-basic");
+                    // if (data[i].note < 5) {
+                    //     noteBasic.style.backgroundColor = color1;
+                    // }
+                    // else if (data[i].note >= 5 && data[i].note < 8) {
+                    //     noteBasic.style.backgroundColor = color2
+                    // }
+
+                    // else if (data[i].note >= 8) {
+                    //     noteBasic.style.backgroundColor = color3;
+                    // }
+                    console.log(eval("color" + data[i].note));
+                    noteBasic.style.backgroundColor = eval("color" + data[i].note);
                     noteBasic.innerText = data[i].note;
                     blocEpisode.appendChild(noteBasic);
 

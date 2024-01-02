@@ -192,11 +192,11 @@ li a:hover {
 
 .note-basic {
     position: absolute;
-    color: gold;
-    background-color: black;
+    color: black;
     width: 30px;
-    font-size: larger;
+    font-size: x-large;
     font-weight: bold;
+    border-radius: 0% 0% 60% 0%;
 }
 
 .thumbnail {

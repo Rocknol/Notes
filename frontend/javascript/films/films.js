@@ -128,8 +128,17 @@ fetch("http://localhost:3000/api/films")
                 zonesFilm[i].closest(".division-note").style.display = "none";
             }
         }
-    })
 
+        let titres = document.querySelectorAll(".titre-film");
+        console.log(titres);
+        let titresArray = Array.from(titres);
+        console.log(titresArray);
+        let toHide = titresArray.find((element) => element.innerText === "Summer Camp Girls");
+        console.log(toHide)
+        toHide.closest("a").style.display = "none"
+
+
+    })
 
 boutonFiltre.addEventListener("click", () => {
     restore();
@@ -140,7 +149,7 @@ boutonFiltre.addEventListener("click", () => {
     let realisateurInput = document.querySelector("#realisateur").value;
     let anneeInput = document.querySelector("#annee").value;
 
-    let titres = document.querySelectorAll("h3");
+    let titres = document.querySelectorAll(".titre-film");
     let notes = document.querySelectorAll(".score-film");
     let genres = document.querySelectorAll(".genre-film");
     let realisateurs = document.querySelectorAll(".realisateur-film");
@@ -210,6 +219,7 @@ boutonFiltre.addEventListener("click", () => {
         }
     }
 })
+
 
 
 resetFilter.addEventListener("click", () => {
