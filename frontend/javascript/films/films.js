@@ -128,16 +128,6 @@ fetch("http://localhost:3000/api/films")
                 zonesFilm[i].closest(".division-note").style.display = "none";
             }
         }
-
-        let titres = document.querySelectorAll(".titre-film");
-        console.log(titres);
-        let titresArray = Array.from(titres);
-        console.log(titresArray);
-        let toHide = titresArray.find((element) => element.innerText === "Summer Camp Girls");
-        console.log(toHide)
-        toHide.closest("a").style.display = "none"
-
-
     })
 
 boutonFiltre.addEventListener("click", () => {
