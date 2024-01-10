@@ -165,7 +165,7 @@ legend {
     height: 350px;
     border-radius: 0px 0px 10px 10px;
     background-color: rgb(54, 91, 133);
-    box-shadow: 0px 0px 6px 6px;
+    box-shadow: 0px 0px 3px 3px;
     position: relative;
 }
 
@@ -240,9 +240,7 @@ legend {
     font-weight: bold;
     color: gold;
     position: absolute;
-    top: 10px;
-    left: 5px;
-    border-radius: 50%;
+    top: 0px;
     padding: 3px;
     background-color: black;
     width: 20px;
@@ -253,9 +251,8 @@ legend {
     font-weight: bold;
     color: gold;
     position: absolute;
-    top: 10px;
-    right: 5px;
-    border-radius: 50%;
+    top: 0px;
+    right: 0px;
     padding: 3px;
     background-color: black;
     width: 20%;

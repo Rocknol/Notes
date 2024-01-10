@@ -222,9 +222,7 @@ legend {
     font-weight: bold;
     color: gold;
     position: absolute;
-    top: 10px;
-    left: 5px;
-    border-radius: 50%;
+    top: 0px;
     padding: 3px;
     background-color: black;
     width: 20px;
