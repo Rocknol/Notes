@@ -14,6 +14,12 @@ exports.createEpisode = (req, res, next) => {
         .catch((error) => { res.status(401).json({ error }) })
 }
 
+exports.getAllEpisodes = (req, res, next) => {
+    Episode.find()
+        .then((episodes) => res.status(201).json(episodes))
+        .catch((error) => res.status(401).json(error))
+}
+
 exports.getEpisodeBySaisonId = (req, res, next) => {
     Episode.find({ saisonId: req.params.id })
         .then((episode) => res.status(201).json(episode))

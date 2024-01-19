@@ -4,6 +4,7 @@ const multer = require('../middleware/multer-config');
 const episodeController = require('../controllers/episodes')
 
 router.post('/', multer, episodeController.createEpisode)
+router.get('/', episodeController.getAllEpisodes)
 router.get('/saisonId/:id', episodeController.getEpisodeBySaisonId)
 router.put('/majNote/:id', episodeController.majNote)
 

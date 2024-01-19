@@ -186,3 +186,43 @@ boutonAjouterSerie.addEventListener("click", () => {
 resetFilter.addEventListener("click", () => {
     location.reload();
 })
+
+fetch('http://localhost:3000/api/episodes')
+    .then((response) => { return response.json() })
+    .then((data) => {
+        let latestEpisode1 = data.at(-1)
+        let latestEpisode2 = data.at(-2)
+        let latestEpisode3 = data.at(-3)
+
+        let latestEpisodes = []
+        latestEpisodes.push(latestEpisode1, latestEpisode2, latestEpisode3)
+        console.log(latestEpisodes);
+
+        let latestEpisodesContainer = document.getElementById("latest-episodes");
+        for (let i = 0; i < latestEpisodes.length; i++) {
+            let latestEpisode = document.createElement("a");
+            latestEpisode.setAttribute("class", "latest-episode");
+            latestEpisode.href = `./saison.html?id=${latestEpisodes[i].saisonId}`
+            latestEpisodesContainer.appendChild(latestEpisode);
+
+            let latestEpImage = document.createElement("img");
+            latestEpImage.src = latestEpisodes[i].imageUrl;
+            latestEpisode.appendChild(latestEpImage);
+
+            let latestEpNote = document.createElement("span");
+            latestEpNote.innerText = latestEpisodes[i].note;
+            latestEpNote.setAttribute("class", "latest-ep-note");
+            latestEpisode.appendChild(latestEpNote);
+
+            fetch(`http://localhost:3000/api/saisons/${latestEpisodes[i].saisonId}`)
+                .then((response) => { return response.json() })
+                .then((data) => {
+                    console.log(data)
+
+                    let latestEpTitle = document.createElement("span");
+                    latestEpTitle.innerText = data.serieTitle;
+                    latestEpTitle.setAttribute("class", "latest-episode-title");
+                    latestEpisode.appendChild(latestEpTitle);
+                })
+        }
+    })

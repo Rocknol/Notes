@@ -271,10 +271,11 @@ legend {
 #series {
     display: flex;
     flex-wrap: wrap;
-    gap: 60px;
+    gap: 20px;
     position: absolute;
     left: 20px;
-    top: 150px;
+    top: 250px;
+    width: 90%;
 }
 
 .titre-serie {
@@ -366,4 +367,54 @@ input[type=text] {
     color: white;
     border: none;
     height: 30px;
+}
+
+#latest-episodes {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    z-index: 1;
+    right: 0px;
+    top: 300px;
+    background-color: rgb(54, 91, 133);
+    width: 250px;
+    height: 150px;
+}
+
+.latest-episode {
+    border: 2px solid black;
+    position: relative;
+    transition: filter 1s;
+}
+
+.latest-episode:hover {
+    filter: brightness(150%);
+}
+
+.latest-episode img {
+    width: 100%;
+    height: 100%;
+}
+
+.latest-ep-note {
+    position: absolute;
+    font-weight: bold;
+    color: gold;
+    top: 0px;
+    left: 0px;
+    padding: 3px;
+    background-color: black;
+    width: 20px;
+    text-align: center;
+}
+
+.latest-episode-title {
+    position: absolute;
+    font-weight: bold;
+    font-size: smaller;
+    color: gold;
+    top: 0px;
+    right: 0px;
+    padding: 3px;
+    background-color: black;
 }
