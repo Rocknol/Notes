@@ -181,7 +181,7 @@ li a:hover {
     flex-direction: row;
     text-decoration: none;
     color: white;
-    height: 160px;
+    height: 200px;
     width: 500px;
     border-radius: 0px 20px 20px 0px;
     background-color: rgb(54, 91, 133);
@@ -201,12 +201,12 @@ li a:hover {
 
 .thumbnail {
     height: 100%;
-    width: 50%;
+    width: 55%;
 }
 
 .fa-star {
     font-size: larger;
-    width: 23px;
+    width: 21px;
     color: gold;
     display: flex;
     justify-content: center;
@@ -255,7 +255,7 @@ li a:hover {
     gap: 5px;
     font-size: medium;
     height: 100%;
-    width: 50%;
+    width: 45%;
     align-items: center;
     justify-content: center;
 }

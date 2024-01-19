@@ -175,6 +175,7 @@ li a:hover {
     padding: 5px;
     opacity: 1;
     animation: fadeIn 1s;
+    border: 3px dashed rgb(54, 91, 133);
 }
 
 .form-bouton-fanart {
@@ -195,6 +196,7 @@ li a:hover {
     padding: 5px;
     opacity: 1;
     animation: fadeIn 1s;
+    border: 3px dashed rgb(54, 91, 133);
 }
 
 @keyframes fadeIn {
@@ -220,12 +222,17 @@ li a:hover {
 }
 
 .bouton-ajouter-saison {
-    height: 50px;
+    height: 30px;
     width: 200px;
     background-color: rgb(54, 91, 133);
-    border-radius: 30px;
     color: white;
     border: none;
+    transition: border-radius 0.5s, width 0.5s;
+}
+
+.bouton-ajouter-saison:hover {
+    width: 250px;
+    border-radius: 30px;
 }
 
 .bouton-ajout-fanart {
@@ -234,12 +241,17 @@ li a:hover {
 }
 
 .bouton-ajouter-fanart {
-    height: 50px;
+    height: 30px;
     width: 200px;
     background-color: rgb(54, 91, 133);
-    border-radius: 30px;
     color: white;
     border: none;
+    transition: border-radius 0.5s, width 0.5s;
+}
+
+.bouton-ajouter-fanart:hover {
+    width: 250px;
+    border-radius: 30px;
 }
 
 #saisons {
@@ -250,6 +262,8 @@ li a:hover {
     position: absolute;
     right: 200px;
     top: 800px;
+    height: 400px;
+    overflow: auto;
 }
 
 .bloc-saison {
@@ -420,11 +434,8 @@ li a:hover {
 }
 
 #carousel {
-    position: fixed;
-    top: 200px;
     width: 960px;
     height: 540px;
-    left: 33%;
 }
 
 .container-carousel {
@@ -517,10 +528,8 @@ li a:hover {
 }
 
 #logo-serie {
-    position: fixed;
     display: flex;
     justify-content: center;
-    left: 37%;
     width: 800px;
     height: 200px;
 }
@@ -534,16 +543,25 @@ li a:hover {
     justify-content: center;
 }
 
-.bouton-ajout-logo img {
-    width: 100%;
-    height: 100%;
-}
-
 .bouton-ajouter-logo {
-    height: 50px;
+    height: 30px;
     width: 200px;
     background-color: rgb(54, 91, 133);
-    border-radius: 30px;
     color: white;
     border: none;
+    transition: border-radius 0.5s, width 0.5s;
+}
+
+.bouton-ajouter-logo:hover {
+    width: 250px;
+    border-radius: 30px;
+}
+
+.art-container {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    left: 800px;
+    gap: 30px;
+    align-items: center;
 }

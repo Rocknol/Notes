@@ -9,7 +9,8 @@ const filmSchema = mongoose.Schema({
     genres: [{ type: String, required: true }],
     annee: { type: String, required: true },
     imageUrl: { type: String, required: true },
-    fanartUrl: [{ type: String }]
+    fanartUrl: [{ type: String }],
+    logo: { type: String }
 })
 
 module.exports = mongoose.model('Film', filmSchema);

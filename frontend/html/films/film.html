@@ -24,6 +24,21 @@
                 <li><a href="../film-sagas/film-sagas.html">Sagas</a></li>
             </ul>
         </div>
+        <div class="art-container">
+            <div id="logo-film">
+                <img class="logo-film">
+            </div>
+            <div id="carousel">
+                <div class="container-carousel">
+                    <div class="arrow-left"><i class="fa-solid fa-arrow-left"></i></div>
+                    <div class="arrow-right"><i class="fa-solid fa-arrow-right"></i></div>
+                    <span class="fanart-number"></span>
+                </div>
+            </div>
+        </div>
+        <div id="boutons">
+            <div class="display-fanart"><i class="fa-solid fa-image"></i></div>
+        </div>
 
 
     </header>
@@ -50,6 +65,29 @@
                     </div>
                     <div class="supprimer-film">
                         <span class="supprimer-texte">Supprimer ce film</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="forms">
+                <div class="form-bouton-fanart">
+                    <form id="form-ajout-fanart" name="form-ajout-fanart">
+                        <div class="fanart-film">
+                            <label for="fanart">Fanart:</label>
+                            <input type="file" name="image" id="fanart">
+                        </div>
+                    </form>
+                    <div class="bouton-ajout-fanart">
+                        <button type="submit" class="bouton-ajouter-fanart">Ajouter ce fanart</button>
+                    </div>
+                    <form id="form-ajout-logo" name="form-ajout-logo">
+                        <div class="logo-film">
+                            <label for="logo">Logo:</label>
+                            <input type="file" name="image" id="logo">
+                        </div>
+                    </form>
+                    <div class="bouton-ajout-logo">
+                        <button type="submit" class="bouton-ajouter-logo">Ajouter ce logo</button>
                     </div>
                 </div>
             </div>

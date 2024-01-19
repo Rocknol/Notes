@@ -18,5 +18,7 @@ router.delete('/delete/:id', filmController.deleteFilm)
 router.put('/majnote/:id', filmController.majNoteFilm)
 router.put('/majfilmsaga/:id', filmController.majSagaFilm)
 router.put('/:id', filmController.majGenre)
+router.put('/fanart/:id', multer, filmController.addFanart)
+router.put('/logo/:id', multer, filmController.addLogo)
 
 module.exports = router

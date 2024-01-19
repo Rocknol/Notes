@@ -12,7 +12,6 @@ const addGenre = document.querySelector(".add-genre");
 const genrePlus = document.querySelector(".genre-plus");
 const nombreSaisonsHeader = document.getElementById("nombre-saisons-header");
 const containerCarousel = document.querySelector(".container-carousel");
-// const containerCarouselImage = document.querySelector(".container-carousel-image");
 let counter = 0;
 const arrowLeft = document.querySelector(".arrow-left");
 const arrowRight = document.querySelector(".arrow-right");
@@ -49,7 +48,6 @@ fetch(`http://localhost:3000/api/series/${findId}`)
         let ongletTitre = document.getElementById("onglet-titre");
         ongletTitre.innerText = data.title;
 
-
         const genreSerie = document.querySelector(".genre-serie");
         genreSerie.innerText = data.genres.join(", ");
 
@@ -84,7 +82,13 @@ fetch(`http://localhost:3000/api/series/${findId}`)
             logoSerie.src = data.logo;
         }
 
-        if (data.fanartUrl) {
+        else {
+            let logoSerieId = document.getElementById("logo-serie");
+            logoSerieId.innerText = "Pas de logo!";
+            logoSerieId.style.fontSize = "x-large"
+        }
+
+        if (data.fanartUrl.length > 0) {
             for (let i = 0; i < data.fanartUrl.length; i++) {
                 if (i === counter) {
                     let containerCarouselImage = document.createElement("img");
@@ -121,6 +125,11 @@ fetch(`http://localhost:3000/api/series/${findId}`)
                 }
 
             }
+        }
+
+        else {
+            containerCarousel.innerText = "Pas de fanart!";
+            containerCarousel.style.fontSize = "x-large"
         }
         // arrowLeft.addEventListener("click", () => {
         //     if (counter === 0) {

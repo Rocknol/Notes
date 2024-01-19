@@ -8,10 +8,27 @@ const genreFilm = document.querySelector(".genre-film");
 const genres = ["Drama", "Aventure", "Romance", "Adulte", "Western", "Comedie", "Thriller", "Horreur", "Sci-Fi", "Fantasy", "Documentaire", "Animation"];
 const addGenre = document.querySelector(".add-genre");
 const genrePlus = document.querySelector(".genre-plus");
+const filmsRelies = document.querySelector(".films-relies");
+const displayFanart = document.querySelector(".display-fanart");
+const boutonAjoutFanart = document.querySelector(".bouton-ajouter-fanart");
+const boutonAjoutLogo = document.querySelector(".bouton-ajouter-logo");
+const containerCarousel = document.querySelector(".container-carousel");
+let counter = 0;
+const arrowLeft = document.querySelector(".arrow-left");
+const arrowRight = document.querySelector(".arrow-right");
+const fanartNumber = document.querySelector(".fanart-number");
+const logoFilm = document.querySelector(".logo-film");
 
 function reset() {
     let resetFilms = document.querySelectorAll(".lien-film")
     resetFilms.forEach(element => element.remove())
+}
+
+function cleanUp() {
+    let fanarts = document.querySelectorAll(".container-carousel-image");
+    if (fanarts) {
+        fanarts.forEach((element) => element.remove());
+    }
 }
 
 let starRating = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -30,6 +47,10 @@ let qteFilmsSaga = 0;
 
 let realisateurId;
 
+displayFanart.addEventListener("click", () => {
+    let showFormFanart = document.querySelector(".form-bouton-fanart");
+    showFormFanart.setAttribute("class", "form-bouton-fanart-show");
+})
 
 fetch(`http://localhost:3000/api/films/${findId}`)
     .then((response) => { return response.json() })
@@ -47,8 +68,61 @@ fetch(`http://localhost:3000/api/films/${findId}`)
         let ongletTitre = document.getElementById("onglet-titre");
         ongletTitre.innerText = data.title;
 
-
         const noteFilm = document.querySelector(".note-film");
+
+        if (data.logo) {
+            logoFilm.src = data.logo
+        }
+
+        else {
+            let logoFilmId = document.querySelector("#logo-film");
+            logoFilmId.innerText = "Pas de logo!";
+            logoFilmId.style.fontSize = "x-large";
+        }
+
+        if (data.fanartUrl.length > 0) {
+            for (let i = 0; i < data.fanartUrl.length; i++) {
+                if (i === counter) {
+                    let containerCarouselImage = document.createElement("img");
+                    containerCarouselImage.setAttribute("class", "container-carousel-image");
+                    containerCarouselImage.src = data.fanartUrl[i];
+                    containerCarousel.appendChild(containerCarouselImage);
+                    fanartNumber.innerText = `${i + 1} / ${data.fanartUrl.length}`;
+                }
+            }
+            if (data.fanartUrl.length > 1) {
+                // arrowLeft.setAttribute("class", "arrow-left-display");
+                // arrowRight.setAttribute("class", "arrow-right-display");
+                fanartNumber.setAttribute("class", "fanart-number-display");
+                setInterval(counterUpdate, 3000);
+
+                function counterUpdate() {
+                    if (counter === data.fanartUrl.length - 1) {
+                        counter = 0
+                    }
+                    else {
+                        counter = counter + 1;
+                    }
+
+                    for (let i = 0; i < data.fanartUrl.length; i++) {
+                        if (i === counter) {
+                            cleanUp();
+                            let containerCarouselImage = document.createElement("img");
+                            containerCarouselImage.setAttribute("class", "container-carousel-image");
+                            containerCarouselImage.src = data.fanartUrl[i];
+                            containerCarousel.appendChild(containerCarouselImage);
+                            fanartNumber.innerText = `${i + 1} / ${data.fanartUrl.length}`;
+                        }
+                    }
+                }
+
+            }
+        }
+
+        else {
+            containerCarousel.innerHTML = "Pas de fanart!";
+            containerCarousel.style.fontSize = "x-large";
+        }
 
         for (let i = 0; i < starRating.length; i++) {
             const star = document.createElement("span");
@@ -156,17 +230,22 @@ fetch(`http://localhost:3000/api/films/${findId}`)
                                     texteFilm.setAttribute("class", "texte-film")
                                     caseFilm.appendChild(texteFilm)
 
-                                    const titleFilm = document.createElement("h3");
+                                    const titleFilm = document.createElement("span");
                                     titleFilm.innerText = data[i].title;
+                                    titleFilm.setAttribute("class", "titre-film");
                                     texteFilm.appendChild(titleFilm);
 
-                                    const realisateurFilm = document.createElement("p");
+                                    const additionalInfo = document.createElement("div");
+                                    additionalInfo.setAttribute("class", "ad-info");
+                                    texteFilm.appendChild(additionalInfo);
+
+                                    const realisateurFilm = document.createElement("span");
                                     realisateurFilm.innerText = data[i].realisateur;
-                                    texteFilm.appendChild(realisateurFilm);
+                                    additionalInfo.appendChild(realisateurFilm);
 
                                     const noteFilm = document.createElement("div");
-                                    noteFilm.setAttribute("class", "rating")
-                                    texteFilm.appendChild(noteFilm);
+                                    noteFilm.setAttribute("class", "star-container")
+                                    additionalInfo.appendChild(noteFilm);
                                     note = data[i].note;
                                     for (let i = 0; i < starRating.length; i++) {
                                         const star = document.createElement("span");
@@ -180,13 +259,13 @@ fetch(`http://localhost:3000/api/films/${findId}`)
 
                                     }
 
-                                    const genreFilm = document.createElement("p");
+                                    const genreFilm = document.createElement("span");
                                     genreFilm.innerText = data[i].genres.join(", ");
-                                    texteFilm.appendChild(genreFilm);
+                                    additionalInfo.appendChild(genreFilm);
 
-                                    const anneeFilm = document.createElement("p");
+                                    const anneeFilm = document.createElement("span");
                                     anneeFilm.innerText = data[i].annee;
-                                    texteFilm.appendChild(anneeFilm);
+                                    additionalInfo.appendChild(anneeFilm);
                                 }
                             }
                         })
@@ -225,17 +304,22 @@ fetch(`http://localhost:3000/api/films/${findId}`)
                             texteFilm.setAttribute("class", "texte-film")
                             caseFilm.appendChild(texteFilm)
 
-                            const titleFilm = document.createElement("h3");
+                            const titleFilm = document.createElement("span");
                             titleFilm.innerText = data[i].title;
+                            titleFilm.setAttribute("class", "titre-film");
                             texteFilm.appendChild(titleFilm);
 
-                            const realisateurFilm = document.createElement("p");
+                            const additionalInfo = document.createElement("div");
+                            additionalInfo.setAttribute("class", "ad-info");
+                            texteFilm.appendChild(additionalInfo);
+
+                            const realisateurFilm = document.createElement("span");
                             realisateurFilm.innerText = data[i].realisateur;
-                            texteFilm.appendChild(realisateurFilm);
+                            additionalInfo.appendChild(realisateurFilm);
 
                             const noteFilm = document.createElement("div");
-                            noteFilm.setAttribute("class", "rating")
-                            texteFilm.appendChild(noteFilm);
+                            noteFilm.setAttribute("class", "star-container")
+                            additionalInfo.appendChild(noteFilm);
                             note = data[i].note;
                             for (let i = 0; i < starRating.length; i++) {
                                 const star = document.createElement("span");
@@ -249,13 +333,13 @@ fetch(`http://localhost:3000/api/films/${findId}`)
 
                             }
 
-                            const genreFilm = document.createElement("p");
+                            const genreFilm = document.createElement("span");
                             genreFilm.innerText = data[i].genres.join(", ");
-                            texteFilm.appendChild(genreFilm);
+                            additionalInfo.appendChild(genreFilm);
 
-                            const anneeFilm = document.createElement("p");
+                            const anneeFilm = document.createElement("span");
                             anneeFilm.innerText = data[i].annee;
-                            texteFilm.appendChild(anneeFilm);
+                            additionalInfo.appendChild(anneeFilm);
                         }
                     }
                 }
@@ -264,7 +348,6 @@ fetch(`http://localhost:3000/api/films/${findId}`)
 
         anneeFilm.innerText = data.annee;
 
-        const filmsRelies = document.querySelector(".films-relies");
         anneeFilm.addEventListener("click", () => {
             reset();
             fetch(`http://localhost:3000/api/films/annee/${data.annee}`)
@@ -289,17 +372,22 @@ fetch(`http://localhost:3000/api/films/${findId}`)
                             texteFilm.setAttribute("class", "texte-film")
                             caseFilm.appendChild(texteFilm)
 
-                            const titleFilm = document.createElement("h3");
+                            const titleFilm = document.createElement("span");
                             titleFilm.innerText = data[i].title;
+                            titleFilm.setAttribute("class", "titre-film");
                             texteFilm.appendChild(titleFilm);
 
-                            const realisateurFilm = document.createElement("p");
+                            const additionalInfo = document.createElement("div");
+                            additionalInfo.setAttribute("class", "ad-info");
+                            texteFilm.appendChild(additionalInfo);
+
+                            const realisateurFilm = document.createElement("span");
                             realisateurFilm.innerText = data[i].realisateur;
-                            texteFilm.appendChild(realisateurFilm);
+                            additionalInfo.appendChild(realisateurFilm);
 
                             const noteFilm = document.createElement("div");
-                            noteFilm.setAttribute("class", "rating")
-                            texteFilm.appendChild(noteFilm);
+                            noteFilm.setAttribute("class", "star-container")
+                            additionalInfo.appendChild(noteFilm);
                             note = data[i].note;
                             for (let i = 0; i < starRating.length; i++) {
                                 const star = document.createElement("span");
@@ -313,13 +401,13 @@ fetch(`http://localhost:3000/api/films/${findId}`)
 
                             }
 
-                            const genreFilm = document.createElement("p");
+                            const genreFilm = document.createElement("span");
                             genreFilm.innerText = data[i].genres.join(", ");
-                            texteFilm.appendChild(genreFilm);
+                            additionalInfo.appendChild(genreFilm);
 
-                            const anneeFilm = document.createElement("p");
+                            const anneeFilm = document.createElement("span");
                             anneeFilm.innerText = data[i].annee;
-                            texteFilm.appendChild(anneeFilm);
+                            additionalInfo.appendChild(anneeFilm);
                         }
                     }
                 }
@@ -619,6 +707,36 @@ fetch(`http://localhost:3000/api/films/${findId}`)
                         location.reload();
                     })
             })
+        })
+
+        boutonAjoutFanart.addEventListener("click", () => {
+            let myForm = document.getElementById("form-ajout-fanart");
+            formData = new FormData(myForm);
+
+            let envoiFanart = {
+                method: 'PUT',
+                body: formData
+            }
+
+            fetch(`http://localhost:3000/api/films/fanart/${findId}`, envoiFanart)
+                .then(() => {
+                    location.reload();
+                })
+        })
+
+        boutonAjoutLogo.addEventListener("click", () => {
+            let myForm = document.getElementById("form-ajout-logo");
+            formData = new FormData(myForm);
+
+            let envoiLogo = {
+                method: 'PUT',
+                body: formData
+            }
+
+            fetch(`http://localhost:3000/api/films/logo/${findId}`, envoiLogo)
+                .then(() => {
+                    location.reload();
+                })
         })
 
     })

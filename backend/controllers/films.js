@@ -106,3 +106,15 @@ exports.majGenre = (req, res, next) => {
         .then((film) => res.status(201).json(film))
         .catch((error) => res.status(401).json(error))
 }
+
+exports.addFanart = (req, res, next) => {
+    Film.updateOne({ _id: req.params.id }, { $push: { fanartUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}` } })
+        .then((film) => res.status(201).json(film))
+        .catch((error) => res.status(401).json(error))
+}
+
+exports.addLogo = (req, res, next) => {
+    Film.updateOne({ _id: req.params.id }, { $set: { logo: `${req.protocol}://${req.get('host')}/images/${req.file.filename}` } })
+        .then((film) => res.status(201).json(film))
+        .catch((error) => res.status(401).json(error))
+}
