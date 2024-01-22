@@ -6,6 +6,7 @@ body {
 .navbar {
     display: flex;
     position: fixed;
+    z-index: 1;
 }
 
 ul {
@@ -193,16 +194,17 @@ li a:hover {
 
 .note-basic {
     position: absolute;
+    right: 0px;
     color: black;
     width: 30px;
     font-size: x-large;
     font-weight: bold;
-    border-radius: 0% 0% 60% 0%;
 }
 
 .thumbnail {
     height: 100%;
     width: 55%;
+    transition: transform 0.5s;
 }
 
 .thumbnail:hover {

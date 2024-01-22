@@ -41,84 +41,80 @@
                 <div class="form">
                     <div class="filtre-album">
                         <label for="album">Album:</label>
-                        <input type="text" name="album" id="album">
+                        <input type="text" name="album" id="album" placeholder="Titre de l'album">
                     </div>
 
                     <div class="filtre-artiste">
                         <label for="artiste">Artiste:</label>
-                        <input type="text" name="artiste" id="artiste">
-
-                        <div class="filtre-note">
-                            <label for="note">Note:</label>
-                            <select name="note" id="note">
-                                <option value=""></option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                                <option value="8">8</option>
-                                <option value="9">9</option>
-                                <option value="10">10</option>
-                            </select>
-                        </div>
-
-                        <div class="filtre-genre">
-                            <label for="genre">Genre:</label>
-                            <select name="genre" id="genre">
-                                <option value=""></option>
-                                <option value="Rock">Rock</option>
-                                <option value="Jazz">Jazz</option>
-                                <option value="Classical">Classical</option>
-                                <option value="Metal">Metal</option>
-                                <option value="Rap">Rap</option>
-                                <option value="Electronic">Electronic</option>
-                                <option value="Folk">Folk</option>
-                                <option value="Country">Country</option>
-                                <option value="Pop">Pop</option>
-                            </select>
-                        </div>
-
-                        <div class="filtre-annee">
-                            <label for="annee">Année:</label>
-                            <input type="text" name="annee" id="annee">
-                        </div>
-
-                        <div class="filtre-type">
-                            <legend>Type:</legend>
-                            <div>
-                                <label for="LP">LP</label>
-                                <input type="radio" name="type" id="LP" value="LP" checked>
-
-                                <label for="EP">EP</label>
-                                <input type="radio" name="type" id="EP" value="EP">
-
-                                <label for="Live Album">Live Album</label>
-                                <input type="radio" name="type" id="Live Album" value="Live Album">
-
-                            </div>
-
-                            <div class="filtre-format">
-                                <legend>Format:</legend>
-                                <div>
-                                    <label for="Album">Album</label>
-                                    <input type="radio" name="format" id="album" value="Album" checked>
-
-                                    <label for="Soundtrack">Soundtrack</label>
-                                    <input type="radio" name="format" id="soundtrack" value="Soundtrack">
-                                </div>
-                            </div>
-
-                        </div>
+                        <input type="text" name="artiste" id="artiste" placeholder="Nom de l'artiste ou groupe">
+                    </div>
+                    <div class="filtre-note">
+                        <label for="note">Note:</label>
+                        <select name="note" id="note">
+                            <option value=""></option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                        </select>
+                    </div>
+                    <div class="filtre-genre">
+                        <label for="genre">Genre:</label>
+                        <select name="genre" id="genre">
+                            <option value=""></option>
+                            <option value="Rock">Rock</option>
+                            <option value="Jazz">Jazz</option>
+                            <option value="Classical">Classical</option>
+                            <option value="Metal">Metal</option>
+                            <option value="Rap">Rap</option>
+                            <option value="Electronic">Electronic</option>
+                            <option value="Folk">Folk</option>
+                            <option value="Country">Country</option>
+                            <option value="Pop">Pop</option>
+                        </select>
                     </div>
 
+                    <div class="filtre-annee">
+                        <label for="annee">Année:</label>
+                        <input type="text" name="annee" id="annee" placeholder="Année de sortie">
+                    </div>
+
+                    <div class="filtre-type">
+                        <legend>Type:</legend>
+                        <div>
+                            <label for="LP">LP</label>
+                            <input type="radio" name="type" id="LP" value="LP" checked>
+
+                            <label for="EP">EP</label>
+                            <input type="radio" name="type" id="EP" value="EP">
+
+                            <label for="Live Album">Live Album</label>
+                            <input type="radio" name="type" id="Live Album" value="Live Album">
+
+                        </div>
+
+                        <div class="filtre-format">
+                            <legend>Format:</legend>
+                            <div>
+                                <label for="Album">Album</label>
+                                <input type="radio" name="format" id="album" value="Album" checked>
+
+                                <label for="Soundtrack">Soundtrack</label>
+                                <input type="radio" name="format" id="soundtrack" value="Soundtrack">
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
                 <div class="bouton-filtre">
                     <button type="submit" class="bouton-filtre-album">Filtrer</button>
                 </div>
-
             </div>
 
             <div class="form-ajout-album">
