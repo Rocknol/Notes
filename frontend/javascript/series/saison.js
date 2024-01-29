@@ -81,6 +81,7 @@ fetch(`http://localhost:3000/api/saisons/${findId}`)
             let myForm = document.getElementById("form-ajout-episode");
             formData = new FormData(myForm);
             formData.append('saisonId', `${findId}`)
+            formData.append('serieId', `${serieId}`)
             let envoiEpisode = {
                 method: 'POST',
                 body: formData
@@ -289,6 +290,7 @@ fetch(`http://localhost:3000/api/saisons/${findId}`)
                             }
                         })
                     }
+
                 }
             })
 

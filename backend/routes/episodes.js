@@ -6,6 +6,7 @@ const episodeController = require('../controllers/episodes')
 router.post('/', multer, episodeController.createEpisode)
 router.get('/', episodeController.getAllEpisodes)
 router.get('/saisonId/:id', episodeController.getEpisodeBySaisonId)
+router.get('/serieId/:id', episodeController.getEpisodeBySerieId)
 router.put('/majNote/:id', episodeController.majNote)
 
 module.exports = router

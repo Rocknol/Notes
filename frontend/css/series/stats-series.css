@@ -1,0 +1,118 @@
+body {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-color: rgb(148, 155, 169);
+}
+
+.navbar {
+    display: flex;
+    position: fixed;
+    z-index: 1;
+}
+
+ul {
+    list-style-type: none;
+    display: flex;
+    height: fit-content;
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    font-size: large;
+    font-weight: bold;
+    background-color: rgb(54, 91, 133);
+    border: 1px solid;
+    display: flex;
+    width: 160px;
+    height: 80px;
+}
+
+li a {
+    text-decoration: none;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+li a:hover {
+    background-color: rgb(34, 190, 239);
+}
+
+#stats {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    top: 200px;
+    gap: 50px;
+    width: 100%;
+    position: absolute;
+}
+
+.graph-show {
+    border: 1px solid black;
+    width: 50%;
+    height: 500px;
+    display: flex;
+    position: relative;
+}
+
+.title-show {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    font-weight: bold;
+    font-size: larger;
+    position: absolute;
+    color: rgb(54, 91, 133);
+    background-color: black;
+
+}
+
+.graph-container {
+    display: flex;
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 10px;
+}
+
+.graph-bar {
+    width: 40px;
+    background-color: rgb(54, 91, 133);
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.graph-bar-number {
+    position: absolute;
+    top: -40px;
+    color: black;
+}
+
+.graph-bar-note {
+    position: absolute;
+    bottom: -20px;
+}
+
+.image-show {
+    width: 25%;
+}
+
+.fanart-show1 {
+    width: 25%;
+    height: 40%;
+    align-self: flex-end;
+    position: absolute;
+    right: 0px;
+}
+
+.fanart-show2 {
+    width: 25%;
+    height: 40%;
+    margin-left: auto;
+}

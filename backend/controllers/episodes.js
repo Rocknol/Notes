@@ -6,6 +6,7 @@ exports.createEpisode = (req, res, next) => {
         numero: "Episode " + req.body.numero,
         title: req.body.title,
         saisonId: req.body.saisonId,
+        serieId: req.body.serieId,
         note: req.body.note,
         imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
     })
@@ -32,3 +33,11 @@ exports.majNote = (req, res, next) => {
         .catch((error) => res.status(401).json(error))
 
 }
+
+exports.getEpisodeBySerieId = (req, res, next) => {
+    Episode.find({ serieId: req.params.id })
+        .then((episode) => res.status(201).json(episode))
+        .catch((error) => res.status(401).json(error))
+}
+
+
