@@ -219,6 +219,7 @@ fetch('http://localhost:3000/api/episodes')
             latestEpisode.appendChild(latestInfoContainer);
 
             let numeroEpisode = latestEpisodes[i].numero;
+            let titleEpisode = latestEpisodes[i].title;
 
             fetch(`http://localhost:3000/api/saisons/${latestEpisodes[i].saisonId}`)
                 .then((response) => { return response.json() })
@@ -228,19 +229,18 @@ fetch('http://localhost:3000/api/episodes')
                     let latestEpShowTitle = document.createElement("span");
                     latestEpShowTitle.innerText = data.serieTitle;
                     latestEpShowTitle.setAttribute("class", "latest-episode-serie-title");
-                    latestInfoContainer.appendChild(latestEpShowTitle);
+                    latestEpisode.appendChild(latestEpShowTitle);
 
                     let latestEpSeasonNumber = document.createElement("span");
-                    latestEpSeasonNumber.innerText = data.title;
+                    latestEpSeasonNumber.innerText = data.title + "  " + numeroEpisode;
                     latestEpSeasonNumber.setAttribute("class", "latest-ep-season-title");
                     latestInfoContainer.appendChild(latestEpSeasonNumber)
 
-                    let latestEpNumber = document.createElement("span");
-                    latestEpNumber.innerText = numeroEpisode;
-                    latestEpNumber.setAttribute("class", "latest-ep-number");
-                    latestInfoContainer.appendChild(latestEpNumber);
+                    let latestEpTitle = document.createElement("span");
+                    latestEpTitle.innerText = titleEpisode;
+                    latestEpTitle.setAttribute("class", "latest-episode-title");
+                    latestInfoContainer.appendChild(latestEpTitle);
                 })
-
 
         }
     })

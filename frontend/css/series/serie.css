@@ -51,7 +51,7 @@ li a:hover {
 
 .fiche-serie {
     border-radius: 50px;
-    height: 600px;
+    height: 800px;
     background-color: rgb(54, 91, 133);
     box-shadow: 0px 0px 6px 6px;
 }
@@ -68,6 +68,7 @@ li a:hover {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    align-items: center;
 }
 
 .star-container {
@@ -434,7 +435,7 @@ li a:hover {
 }
 
 #carousel {
-    width: 960px;
+    width: 1160px;
     height: 540px;
 }
 
@@ -564,4 +565,12 @@ li a:hover {
     left: 800px;
     gap: 30px;
     align-items: center;
+}
+
+.lien-tvdb {
+    width: fit-content;
+    text-decoration: none;
+    color: gold;
+    background-color: black;
+    padding: 5px;
 }

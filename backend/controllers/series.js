@@ -6,7 +6,8 @@ exports.createSerie = (req, res, next) => {
         title: req.body.title,
         genres: req.body.genre,
         imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`,
-        nombreSaisons: 0
+        nombreSaisons: 0,
+        lienTVDB: req.body.lienTVDB
     })
     newSerie.save()
         .then(() => { res.status(201).json({ message: "série enregistrée" }) })

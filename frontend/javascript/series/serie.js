@@ -51,6 +51,9 @@ fetch(`http://localhost:3000/api/series/${findId}`)
         const genreSerie = document.querySelector(".genre-serie");
         genreSerie.innerText = data.genres.join(", ");
 
+        const lienTVDB = document.querySelector(".lien-tvdb");
+        lienTVDB.href = data.lienTVDB;
+
         if (data.nombreSaisons) {
             const nombreSaisons = document.querySelector(".nombre-saisons");
             nombreSaisons.innerHTML = `${data.nombreSaisons}` + " saison(s)";

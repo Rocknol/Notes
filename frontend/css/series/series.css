@@ -416,11 +416,10 @@ input[type=text] {
 
 .latest-container {
     position: absolute;
-    top: 0px;
+    bottom: 0px;
     right: 0px;
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
     font-size: small;
     font-weight: bold;
 }
@@ -428,18 +427,24 @@ input[type=text] {
 .latest-episode-serie-title {
     color: gold;
     background-color: black;
-}
-
-.latest-ep-number {
-    color: gold;
-    background-color: black;
-    width: 60px;
-    text-align: center;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    font-size: larger;
+    font-weight: bold;
+    padding: 2px;
 }
 
 .latest-ep-season-title {
     color: gold;
     background-color: black;
-    width: 60px;
     text-align: center;
+    padding: 2px;
+}
+
+.latest-episode-title {
+    color: gold;
+    background-color: black;
+    text-align: center;
+    padding: 2px;
 }

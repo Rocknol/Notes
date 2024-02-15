@@ -9,7 +9,8 @@ const serieSchema = mongoose.Schema({
     note: { type: String },
     decimale: { type: String },
     nombreSaisons: { type: Number },
-    nombreEpisodes: { type: Number }
+    nombreEpisodes: { type: Number },
+    lienTVDB: { type: String }
 })
 
 module.exports = mongoose.model('Serie', serieSchema)

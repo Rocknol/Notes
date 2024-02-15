@@ -27,6 +27,7 @@ let color7 = "#dffc03";
 let color8 = "#c2fc03";
 let color9 = "#9dfc03";
 let color10 = "#4afc03";
+let numberOfEpisodes = 0;
 
 
 displayAjout.addEventListener("click", () => {
@@ -56,7 +57,14 @@ fetch(`http://localhost:3000/api/saisons/${findId}`)
         if (data.nombreEpisodes) {
             const nombreEpisodes = document.querySelector(".nombre-episodes");
             nombreEpisodes.innerHTML = `${data.nombreEpisodes}` + " épisode(s)"
+            numberOfEpisodes = data.nombreEpisodes + 1;
         }
+
+        else {
+            numberOfEpisodes = 1;
+        }
+
+        console.log(numberOfEpisodes);
 
         if (data.note) {
             const noteSaison = document.querySelector(".note-saison");
@@ -82,6 +90,7 @@ fetch(`http://localhost:3000/api/saisons/${findId}`)
             formData = new FormData(myForm);
             formData.append('saisonId', `${findId}`)
             formData.append('serieId', `${serieId}`)
+            formData.append('numero', `${numberOfEpisodes}`)
             let envoiEpisode = {
                 method: 'POST',
                 body: formData
