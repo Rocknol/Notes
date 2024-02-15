@@ -8,7 +8,8 @@ exports.createEpisode = (req, res, next) => {
         saisonId: req.body.saisonId,
         serieId: req.body.serieId,
         note: req.body.note,
-        imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+        imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`,
+        plot: req.body.plot
     })
     newEpisode.save()
         .then(() => { res.status(201).json({ message: "épisode enregistré" }) })

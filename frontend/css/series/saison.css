@@ -167,6 +167,7 @@ li a:hover {
 #episodes {
     display: flex;
     flex-direction: column;
+    align-content: space-around;
     flex-wrap: wrap;
     height: 90%;
     gap: 30px;
@@ -190,6 +191,29 @@ li a:hover {
     text-align: center;
     gap: 5px;
     position: relative;
+    transition: transform 1s;
+}
+
+.bloc-episode:hover {
+    transform: scale(1.5);
+    z-index: 1;
+}
+
+.bloc-episode:hover .plot-episode {
+    display: flex;
+    font-size: xx-small;
+}
+
+.bloc-episode:hover .texte-episode {
+    font-size: x-small;
+}
+
+.bloc-episode:hover .fa-star {
+    font-size: large;
+}
+
+.plot-episode {
+    display: none;
 }
 
 .note-basic {
@@ -204,12 +228,6 @@ li a:hover {
 .thumbnail {
     height: 100%;
     width: 55%;
-    transition: transform 0.5s;
-}
-
-.thumbnail:hover {
-    transform: scale(1.5);
-    z-index: 1;
 }
 
 .fa-star {
@@ -222,21 +240,9 @@ li a:hover {
 
 .fa-star:hover {
     cursor: pointer;
-    font-size: xx-large;
-    animation: grow 0.2s, rotate 2s infinite;
+    animation: rotate 2s infinite;
 }
 
-
-
-@keyframes grow {
-    0% {
-        font-size: larger;
-    }
-
-    100% {
-        font-size: xx-large;
-    }
-}
 
 @keyframes rotate {
     0% {}
@@ -266,4 +272,8 @@ li a:hover {
     width: 45%;
     align-items: center;
     justify-content: center;
+}
+
+.title-episode {
+    height: 10px;
 }

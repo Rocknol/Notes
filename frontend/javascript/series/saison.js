@@ -181,6 +181,7 @@ fetch(`http://localhost:3000/api/saisons/${findId}`)
         fetch(`http://localhost:3000/api/episodes/saisonId/${findId}`)
             .then((response) => { return response.json() })
             .then((data) => {
+                console.log(data)
                 for (let i = 0; i < data.length; i++) {
                     const blocEpisode = document.createElement("div");
                     blocEpisode.setAttribute("class", "bloc-episode");
@@ -201,7 +202,15 @@ fetch(`http://localhost:3000/api/saisons/${findId}`)
 
                     const titleEpisode = document.createElement("span");
                     titleEpisode.innerText = data[i].title;
+                    titleEpisode.setAttribute("class", "title-episode");
                     texteEpisode.appendChild(titleEpisode);
+
+                    if (data[i].plot) {
+                        const plotEpisode = document.createElement("span");
+                        plotEpisode.innerText = data[i].plot;
+                        plotEpisode.setAttribute("class", "plot-episode");
+                        texteEpisode.appendChild(plotEpisode);
+                    }
 
                     const noteBasic = document.createElement("span");
                     noteBasic.setAttribute("class", "note-basic");

@@ -6,7 +6,8 @@ const episodeSchema = mongoose.Schema({
     saisonId: { type: String, required: true },
     serieId: { type: String, required: true },
     note: { type: String, required: true },
-    imageUrl: { type: String, required: true }
+    imageUrl: { type: String, required: true },
+    plot: { type: String, required: true }
 })
 
 module.exports = mongoose.model('Episode', episodeSchema)
