@@ -25,65 +25,69 @@
     </div>
 
     <main>
+        <div class="saison-container">
+            <div class="saison-et-ajout">
+                <div class="fiche-saison">
+                    <img class="poster-saison">
+                    <div class="texte-saison">
+                        <span class="titre-serie"></span>
+                        <span class="titre-saison"></span>
+                        <span class="nombre-episodes"></span>
+                        <div class="note-saison"></div>
+                        <span class="decimale-saison"></span>
 
-        <div class="saison-et-ajout">
-            <div class="fiche-saison">
-                <img class="poster-saison">
-                <div class="texte-saison">
-                    <span class="titre-serie"></span>
-                    <span class="titre-saison"></span>
-                    <span class="nombre-episodes"></span>
-                    <div class="note-saison"></div>
-                    <span class="decimale-saison"></span>
+                    </div>
+                </div>
 
+                <div class="display-ajout"><i class="fa-solid fa-plus"></i></div>
+                <div class="form-et-bouton-episode">
+                    <form id="form-ajout-episode" name="form-ajout-episode">
+                        <div class="numero-episode">
+                            <label for="numero">Numéro de l'épisode</label>
+                            <input type="text" name="numero" id="numero">
+                        </div>
+                        <div class="titre-episode">
+                            <label for="titre">Titre de l'épisode:</label>
+                            <input type="text" name="title" id="titre">
+                        </div>
+                        <div class="note-episode">
+                            <label for="note">Note:</label>
+                            <select name="note" id="note">
+                                <option value=""></option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                            </select>
+
+                        </div>
+                        <div class="plot-form">
+                            <label for="plot">Plot:</label>
+                            <textarea rows="3" cols="40" input type="text" id="plot" name="plot"></textarea>
+
+                        </div>
+                        <div class="thumbnail-form">
+                            <label for="thumbnail">Thumbnail:</label>
+                            <input type="file" name="image" id="thumbnail">
+                        </div>
+                    </form>
+                    <div class="bouton-ajouter">
+                        <button type="submit" class="bouton-ajouter-episode">Ajouter cet épisode</button>
+                    </div>
                 </div>
             </div>
 
-            <div class="display-ajout"><i class="fa-solid fa-plus"></i></div>
-            <div class="form-et-bouton-episode">
-                <form id="form-ajout-episode" name="form-ajout-episode">
-                    <div class="titre-episode">
-                        <label for="titre">Titre de l'épisode:</label>
-                        <input type="text" name="title" id="titre">
-                    </div>
-                    <div class="note-episode">
-                        <label for="note">Note:</label>
-                        <select name="note" id="note">
-                            <option value=""></option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                            <option value="9">9</option>
-                            <option value="10">10</option>
-                        </select>
+            <div id="episodes">
 
-                    </div>
-                    <div class="plot-form">
-                        <label for="plot">Plot:</label>
-                        <textarea rows="3" cols="40" input type="text" id="plot" name="plot"></textarea>
 
-                    </div>
-                    <div class="thumbnail-form">
-                        <label for="thumbnail">Thumbnail:</label>
-                        <input type="file" name="image" id="thumbnail">
-                    </div>
-                </form>
-                <div class="bouton-ajouter">
-                    <button type="submit" class="bouton-ajouter-episode">Ajouter cet épisode</button>
-                </div>
             </div>
         </div>
-
-        <div id="episodes">
-
-
-        </div>
-
 
     </main>
     <script src="../../javascript/series/saison.js"></script>

@@ -23,7 +23,7 @@ exports.getAllEpisodes = (req, res, next) => {
 }
 
 exports.getEpisodeBySaisonId = (req, res, next) => {
-    Episode.find({ saisonId: req.params.id })
+    Episode.find({ saisonId: req.params.id }).sort({ numero: 1 }).collation({ locale: "en_US", numericOrdering: true })
         .then((episode) => res.status(201).json(episode))
         .catch((error) => res.status(401).json(error))
 }

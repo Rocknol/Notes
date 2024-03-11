@@ -525,7 +525,7 @@ li a:hover {
 .fanart-number-display {
     position: absolute;
     color: white;
-    font-size: xx-large;
+    font-size: x-large;
     bottom: 0px;
     z-index: 1;
     background-color: black;

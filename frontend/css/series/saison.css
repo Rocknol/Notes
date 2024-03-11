@@ -41,16 +41,11 @@ li a:hover {
     background-color: rgb(34, 190, 239);
 }
 
-
-
 .saison-et-ajout {
     display: flex;
     flex-direction: column;
     gap: 40px;
-    width: 15%;
-    margin-left: 20px;
-    position: fixed;
-    top: 150px;
+    width: 12%;
 }
 
 .fiche-saison {
@@ -166,46 +161,61 @@ li a:hover {
 
 #episodes {
     display: flex;
-    flex-direction: column;
     align-content: space-around;
     flex-wrap: wrap;
-    height: 90%;
     gap: 30px;
-    width: 80%;
-    position: absolute;
-    right: 5px;
-    top: 150px;
     overflow: auto;
-    padding: 60px;
+    width: 88%;
 }
 
 .bloc-episode {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     text-decoration: none;
     color: white;
-    height: 150px;
+    height: 400px;
     width: 500px;
-    border-radius: 0px 20px 20px 0px;
     background-color: rgb(54, 91, 133);
+    border-radius: 0px 20px 20px 0px;
     text-align: center;
-    gap: 5px;
     position: relative;
-    transition: transform 1s;
 }
 
-.bloc-episode:hover {
-    transform: scale(1.5);
-    z-index: 1;
+.bloc-episode:hover .thumbnail {
+    height: 50%;
+    animation: shrink 1s;
+}
+
+@keyframes shrink {
+    0% {
+        height: 70%;
+    }
+
+    100% {
+        height: 50%;
+    }
 }
 
 .bloc-episode:hover .plot-episode {
     display: flex;
-    font-size: xx-small;
+    font-size: small;
+    margin-top: 10px;
+    opacity: 1;
+    animation: fadeIn 1s;
 }
 
-.bloc-episode:hover .texte-episode {
-    font-size: x-small;
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    25% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }
 
 .bloc-episode:hover .fa-star {
@@ -214,11 +224,13 @@ li a:hover {
 
 .plot-episode {
     display: none;
+    opacity: 0;
 }
 
 .note-basic {
     position: absolute;
     right: 0px;
+    top: 0px;
     color: black;
     width: 30px;
     font-size: x-large;
@@ -226,8 +238,8 @@ li a:hover {
 }
 
 .thumbnail {
-    height: 100%;
-    width: 55%;
+    height: 70%;
+    width: 100%;
 }
 
 .fa-star {
@@ -268,12 +280,22 @@ li a:hover {
     flex-direction: column;
     gap: 5px;
     font-size: medium;
-    height: 100%;
-    width: 45%;
+    font-weight: bold;
+    width: 100%;
     align-items: center;
     justify-content: center;
+    background-color: rgb(54, 91, 133);
 }
 
 .title-episode {
     height: 10px;
+}
+
+.saison-container {
+    display: flex;
+    position: absolute;
+    top: 150px;
+    left: 20px;
+    width: 100%;
+    gap: 40px;
 }
