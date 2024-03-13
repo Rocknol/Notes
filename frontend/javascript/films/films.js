@@ -107,15 +107,18 @@ fetch("http://localhost:3000/api/films")
             caseFilm.appendChild(scoreFilm);
 
             const genreFilm = document.createElement("span");
-            genreFilm.innerText = data[i].genres.join(", ");
+            genreFilm.innerText = data[i].genres
             genreFilm.setAttribute("class", "genre-film");
             additionalInfo.appendChild(genreFilm);
 
-            const anneeFilm = document.createElement("span");
-            anneeFilm.innerText = data[i].annee;
-            anneeFilm.setAttribute("class", "annee-film")
-            additionalInfo.appendChild(anneeFilm);
+            const releaseDateFilm = document.createElement("span");
+            releaseDateFilm.innerText = data[i].releaseDate;
+            releaseDateFilm.setAttribute("class", "annee-film")
+            additionalInfo.appendChild(releaseDateFilm);
 
+            const runtimeFilm = document.createElement("span");
+            runtimeFilm.innerText = data[i].runtime + " min(s)";
+            additionalInfo.appendChild(runtimeFilm);
 
         }
 

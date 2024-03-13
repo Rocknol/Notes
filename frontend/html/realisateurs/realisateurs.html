@@ -69,18 +69,39 @@
             </div>
 
             <div class="form-et-bouton-real">
+                <div class="tmdb-fetch">
+                    <input type="text" id="fetch">
+                    <button type="submit" class="bouton-fetch-tmdb">Fetch from TMDB</button>
+                </div>
                 <form id="form-ajout-realisateur" name="ajout-realisateur">
                     <div class="name-realisateur">
                         <label for="name">Nom du réalisateur:</label>
                         <input type="text" name="name" id="name">
                     </div>
+                    <div class="place-of-birth">
+                        <label for="place-of-birth">Lieu de naissance</label>
+                        <input type="text" name="birthplace" id="place-of-birth">
+                    </div>
                     <div class="nationality-realisateur">
                         <label for="nationalite">Nationalité:</label>
                         <input type="text" name="nationalite" id="nationalite">
                     </div>
+                    <div class="biography">
+                        <label for="biography">Biographie:</label>
+                        <textarea rows="5" cols="40" input type="text" name="biographie" id="biography"></textarea>
+                    </div>
+                    <div class="birthday">
+                        <label for="birthday">Birthday</label>
+                        <input type="text" name="birthday" id="birthday">
+                    </div>
+                    <div class="deathday">
+                        <label for="deathday">Deathday</label>
+                        <input type="text" name="deathday" id="deathday">
+                    </div>
                     <div class="picture-realisateur">
                         <label for="photo">Photo:</label>
-                        <input type="file" name="image" id="photo">
+                        <!-- <input type="file" name="image" id="photo"> -->
+                        <input type="text" name="photo" id="photo">
                     </div>
                 </form>
                 <div class="bouton-ajouter">

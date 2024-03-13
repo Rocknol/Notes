@@ -6,10 +6,14 @@ exports.createFilm = (req, res, next) => {
         realisateurId: req.body.realisateurId,
         title: req.body.title,
         realisateur: req.body.realisateur,
+        plot: req.body.plot,
+        releaseDate: req.body.releasedate,
         note: req.body.note,
-        genres: req.body.genre,
-        annee: req.body.annee,
-        imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`,
+        genres: req.body.genres,
+        // imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`,
+        imageUrl: req.body.poster,
+        fanartUrl: req.body.fanart,
+        runtime: req.body.runtime
     })
     newFilm.save()
         .then(() => { res.status(201).json({ message: "film enregistré" }) })

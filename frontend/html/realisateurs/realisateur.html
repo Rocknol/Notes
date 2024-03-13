@@ -53,11 +53,26 @@
 
         </div>
 
+        <div class="more-info">
+            <span class="biographie"></span>
+            <span class="birthplace"></span>
+            <span class="birthday"></span>
+            <span class="deathday"></span>
+        </div>
+
         <div class="form-et-bouton-film">
+            <div class="tmdb-fetch">
+                <input type="text" id="fetch">
+                <button type="submit" class="bouton-fetch-tmdb">Fetch from TMDB</button>
+            </div>
             <form id="form-ajout-film" name="form-ajout-film">
                 <div class="titre">
                     <label for="titre">Titre du film:</label>
                     <input type="text" name="title" id="titre">
+                </div>
+                <div class="plot">
+                    <label for="plot">Résumé:</label>
+                    <textarea rows="5" cols="40" input type="text" name="plot" id="plot"></textarea>
                 </div>
                 <div class="note-film">
                     <label for="note">Note:</label>
@@ -80,8 +95,8 @@
                     </p>
                 </div>
                 <div class="genre-film">
-                    <label for="genre">Genre:</label>
-                    <select name="genre" id="genre">
+                    <label for="genre">Genres:</label>
+                    <!-- <select name="genre" id="genre">
                         <option value=""></option>
                         <option value="Drama">Drama</option>
                         <option value="Aventure">Aventure</option>
@@ -95,16 +110,27 @@
                         <option value="Fantasy">Fantasy</option>
                         <option value="Documentaire">Documentaire</option>
                         <option value="Animation">Animation</option>
-                    </select>
+                    </select> -->
+                    <input type="text" name="genres" id="genres">
                 </div>
-                <div class="annee-film">
-                    <label for="annee">Année:</label>
-                    <input type="text" name="annee" id="annee">
+                <div class="release-date-film">
+                    <label for="release-date">Date de sortie:</label>
+                    <input type="text" name="releasedate" id="release-date">
                 </div>
                 <div class="image-film">
                     <label for="poster">Poster:</label>
-                    <input type="file" name="image" id="poster">
+                    <!-- <input type="file" name="image" id="poster"> -->
+                    <input type="text" name="poster" id="poster">
                 </div>
+                <div class="fanart-film">
+                    <label for="fanart">Fanart:</label>
+                    <input type="text" name="fanart" id="fanart">
+                </div>
+                <div class="runtime-film">
+                    <label for="runtime">Runtime:</label>
+                    <input type="text" name="runtime" id="runtime">
+                </div>
+
 
             </form>
             <div class="bouton-ajouter">

@@ -5,6 +5,8 @@ const displayFilter = document.querySelector(".display-filter");
 const resetFilter = document.querySelector(".reset-filter");
 const nombreRealisateurs = document.getElementById("nombre-realisateurs");
 const boutonFiltre = document.querySelector(".bouton-filtre");
+const fetchTMDB = document.querySelector(".bouton-fetch-tmdb");
+const APIDocId = "65f195f9101332610cab8fb6"
 let tableauNationalites = [];
 let starRating = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 let note;
@@ -44,6 +46,59 @@ displayFilter.addEventListener("click", () => {
 resetFilter.addEventListener("click", () => {
     location.reload();
 })
+
+fetchTMDB.addEventListener("click", () => {
+    let idToFetch = document.getElementById("fetch").value;
+
+    fetch(`http://localhost:3000/api/keys/${APIDocId}`)
+        .then((response) => { return response.json() })
+        .then((data) => {
+            console.log(data)
+            fetch(`https://api.themoviedb.org/3/person/${idToFetch}?api_key=${data.TMDB}`)
+                .then((response) => { return response.json() })
+                .then((data) => {
+                    console.log(data);
+                    let nameReal = document.getElementById("name");
+                    nameReal.value = data.name;
+
+                    let birthplace = document.getElementById("place-of-birth");
+                    birthplace.value = data.place_of_birth;
+
+                    let biography = document.getElementById("biography");
+                    biography.value = data.biography;
+
+                    let birthday = document.getElementById("birthday");
+                    birthday.value = data.birthday;
+
+                    let deathday = document.getElementById("deathday");
+                    deathday.value = data.deathday;
+
+                    let photo = document.getElementById("photo");
+                    photo.value = `https://media.themoviedb.org/t/p/w300_and_h450_bestv2/${data.profile_path}`
+                })
+        })
+})
+
+boutonAjoutRealisateur.addEventListener("click", function () {
+
+    let myForm = document.getElementById("form-ajout-realisateur")
+    formData = new FormData(myForm)
+
+    let envoiRealisateur = {
+        method: "POST",
+        body: formData,
+    };
+
+    fetch("http://localhost:3000/api/realisateurs", envoiRealisateur)
+        .then((data) => {
+            const nomInput = document.querySelector("#name");
+            let nom = nomInput.value;
+            window.alert(`${nom} a été ajouté`);
+            location.reload();
+        })
+})
+
+
 
 fetch("http://localhost:3000/api/realisateurs")
     .then((response) => { return response.json() })
@@ -110,7 +165,7 @@ fetch("http://localhost:3000/api/realisateurs")
             if (data[i].nombreFilms) {
                 const nombreDeFilms = document.createElement("span");
                 additionalInfo.appendChild(nombreDeFilms);
-                nombreDeFilms.innerText = data[i].nombreFilms;
+                nombreDeFilms.innerText = data[i].nombreFilms + " film(s)";
             }
 
             tableauNationalites.push(data[i].nationalite);
@@ -122,7 +177,7 @@ fetch("http://localhost:3000/api/realisateurs")
         console.log(unique);
         const filtreNationalite = document.getElementById("nationalite");
         for (let i = 0; i < unique.length; i++) {
-            filtreNationalite.innerHTML += `<option value="${unique[i]}">${unique[i]}</option value>`;
+            filtreNationalite.innerHTML += `< option value = "${unique[i]}" > ${unique[i]}</option value > `;
         }
 
         calculNombre();
@@ -173,23 +228,4 @@ fetch("http://localhost:3000/api/realisateurs")
         })
 
     })
-
-boutonAjoutRealisateur.addEventListener("click", function () {
-
-    let myForm = document.getElementById("form-ajout-realisateur")
-    formData = new FormData(myForm)
-
-    let envoiRealisateur = {
-        method: "POST",
-        body: formData,
-    };
-
-    fetch("http://localhost:3000/api/realisateurs", envoiRealisateur)
-        .then((data) => {
-            const nomInput = document.querySelector("#name");
-            let nom = nomInput.value;
-            window.alert(`${nom} a été ajouté`);
-            location.reload();
-        })
-})
 

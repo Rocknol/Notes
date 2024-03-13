@@ -5,7 +5,13 @@ exports.createRealisateur = (req, res, next) => {
     let newRealisateur = new Realisateur({
         name: req.body.name,
         nationalite: req.body.nationalite,
-        imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+        // imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+        imageUrl: req.body.photo,
+        lieuDeNaissance: req.body.birthplace,
+        biographie: req.body.biographie,
+        birthday: req.body.birthday,
+        deathday: req.body.deathday
+
     })
     newRealisateur.save()
         .then(() => { res.status(201).json({ message: "realisateur enregistré" }) })

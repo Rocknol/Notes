@@ -12,6 +12,7 @@ const routeSaisons = require('./routes/saisons');
 const routeEpisodes = require('./routes/episodes');
 const routeArtistes = require('./routes/artistes');
 const routeAlbums = require('./routes/albums');
+const routeAPIs = require('./routes/APIKeys')
 
 
 mongoose.connect(process.env.MONGOOSE_PASS,
@@ -35,5 +36,6 @@ app.use("/api/saisons", routeSaisons)
 app.use("/api/episodes", routeEpisodes)
 app.use("/api/artistes", routeArtistes)
 app.use("/api/albums", routeAlbums)
+app.use("/api/keys", routeAPIs)
 
 module.exports = app;

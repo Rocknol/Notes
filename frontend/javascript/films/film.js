@@ -6,6 +6,7 @@ const boutonSupprimer = document.querySelector(".supprimer-film")
 const anneeFilm = document.querySelector(".annee-film");
 const genreFilm = document.querySelector(".genre-film");
 const genres = ["Drama", "Aventure", "Romance", "Adulte", "Western", "Comedie", "Thriller", "Horreur", "Sci-Fi", "Fantasy", "Documentaire", "Animation"];
+const plot = document.querySelector(".plot");
 const addGenre = document.querySelector(".add-genre");
 const genrePlus = document.querySelector(".genre-plus");
 const filmsRelies = document.querySelector(".films-relies");
@@ -69,6 +70,8 @@ fetch(`http://localhost:3000/api/films/${findId}`)
         ongletTitre.innerText = data.title;
 
         const noteFilm = document.querySelector(".note-film");
+
+
 
         if (data.logo) {
             logoFilm.src = data.logo
@@ -273,10 +276,12 @@ fetch(`http://localhost:3000/api/films/${findId}`)
             })
         }
 
-        for (let i = 0; i < data.genres.length; i++) {
-            console.log(data.genres[i]);
-            genreFilm.innerHTML += `<span class="genre-trigger">${data.genres[i]}</span>` + " ";
-        }
+        // for (let i = 0; i < data.genres.length; i++) {
+        //     console.log(data.genres[i]);
+        //     genreFilm.innerHTML += `<span class="genre-trigger">${data.genres[i]}</span>` + " ";
+        // }
+
+        genreFilm.innerHTML = data.genres;
 
         let genreTriggerAll = document.querySelectorAll(".genre-trigger");
         genreTriggerAll.forEach((element) => element.addEventListener("click", () => {
@@ -346,7 +351,9 @@ fetch(`http://localhost:3000/api/films/${findId}`)
                 )
         }))
 
-        anneeFilm.innerText = data.annee;
+        anneeFilm.innerText = data.releaseDate;
+
+        plot.innerText = data.plot;
 
         anneeFilm.addEventListener("click", () => {
             reset();
@@ -678,36 +685,36 @@ fetch(`http://localhost:3000/api/films/${findId}`)
 
         }
 
-        addGenre.addEventListener("click", () => {
-            let genreFilter = genres.filter(genre => !data.genres.includes(genre));
-            console.log(genreFilter);
-            let addGenreField = document.createElement("div");
-            addGenreField.setAttribute("class", "add-genre-field");
-            addGenreField.innerHTML = `<select name="genre-select" id="genre-select">
-            <option value=""></option>
-            </select>`
-            genrePlus.appendChild(addGenreField);
+        // addGenre.addEventListener("click", () => {
+        //     let genreFilter = genres.filter(genre => !data.genres.includes(genre));
+        //     console.log(genreFilter);
+        //     let addGenreField = document.createElement("div");
+        //     addGenreField.setAttribute("class", "add-genre-field");
+        //     addGenreField.innerHTML = `<select name="genre-select" id="genre-select">
+        //     <option value=""></option>
+        //     </select>`
+        //     genrePlus.appendChild(addGenreField);
 
-            let addGenreFieldSelect = document.getElementById("genre-select");
-            for (let i = 0; i < genreFilter.length; i++) {
-                addGenreFieldSelect.innerHTML += `<option value="${genreFilter[i]}">${genreFilter[i]}</option>`
-            }
+        //     let addGenreFieldSelect = document.getElementById("genre-select");
+        //     for (let i = 0; i < genreFilter.length; i++) {
+        //         addGenreFieldSelect.innerHTML += `<option value="${genreFilter[i]}">${genreFilter[i]}</option>`
+        //     }
 
-            addGenreFieldSelect.addEventListener("input", () => {
-                let newGenreValue = addGenreFieldSelect.value;
+        //     addGenreFieldSelect.addEventListener("input", () => {
+        //         let newGenreValue = addGenreFieldSelect.value;
 
-                let envoiNewGenre = {
-                    method: 'PUT',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ genre: newGenreValue })
-                }
+        //         let envoiNewGenre = {
+        //             method: 'PUT',
+        //             headers: { 'Content-Type': 'application/json' },
+        //             body: JSON.stringify({ genre: newGenreValue })
+        //         }
 
-                fetch(`http://localhost:3000/api/films/${findId}`, envoiNewGenre)
-                    .then(() => {
-                        location.reload();
-                    })
-            })
-        })
+        //         fetch(`http://localhost:3000/api/films/${findId}`, envoiNewGenre)
+        //             .then(() => {
+        //                 location.reload();
+        //             })
+        //     })
+        // })
 
         boutonAjoutFanart.addEventListener("click", () => {
             let myForm = document.getElementById("form-ajout-fanart");

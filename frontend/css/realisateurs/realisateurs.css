@@ -45,8 +45,8 @@ li a:hover {
     display: flex;
     gap: 20px;
     position: fixed;
-    right: 400px;
-    top: 5px;
+    right: 0px;
+    top: 250px;
 }
 
 
@@ -56,7 +56,8 @@ li a:hover {
     gap: 60px;
     position: absolute;
     left: 20px;
-    top: 150px;
+    top: 250px;
+    width: 80%;
 }
 
 h1 {
