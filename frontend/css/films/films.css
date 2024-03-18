@@ -52,10 +52,10 @@ h1 {
 #films {
     display: flex;
     flex-direction: column;
-    gap: 100px;
+    gap: 50px;
     position: absolute;
-    left: 20px;
     top: 200px;
+    margin: 20px;
 }
 
 .filtre {
@@ -98,6 +98,7 @@ h1 {
     width: 200px;
     background-color: rgb(54, 91, 133);
     position: relative;
+    transition: transform 1s;
 }
 
 .image-film {
@@ -151,6 +152,11 @@ h1 {
 
 .case-film:hover .fa-star {
     width: 18px;
+}
+
+.case-film:hover {
+    transform: scale(1.5);
+    z-index: 1;
 }
 
 .case-film-nodisplay {
@@ -356,8 +362,23 @@ legend {
 
 .division-note {
     display: flex;
-    gap: 20px;
+    margin-bottom: 80px;
     position: relative;
+    width: fit-content;
+}
+
+.division-note:hover .numero-note {
+    display: flex;
+    align-items: center;
+    font-size: 50px;
+    position: absolute;
+    z-index: 1;
+    color: gold;
+    background-color: black;
+    padding: 20px;
+    width: 40px;
+    justify-content: center;
+    font-weight: bold;
 }
 
 #zone-films {
@@ -365,20 +386,10 @@ legend {
     flex-wrap: wrap;
     gap: 60px;
     box-shadow: 0px 0px 6px 0px;
-    padding: 10px;
+    padding: 40px;
     background-color: rgb(115, 136, 156);
 }
 
 .numero-note {
-    display: flex;
-    align-items: center;
-    font-size: 30px;
-    position: absolute;
-    z-index: 1;
-    color: gold;
-    background-color: black;
-    padding: 10px;
-    width: 40px;
-    justify-content: center;
-    font-weight: bold;
+    display: none;
 }

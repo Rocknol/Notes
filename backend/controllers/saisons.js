@@ -4,10 +4,16 @@ const fs = require('fs')
 exports.createSaison = (req, res, next) => {
     let newSaison = new Saison({
         title: req.body.title,
+        seasonNumber: req.body.seasonnumber,
         serieTitle: req.body.serieTitle,
         serieId: req.body.serieId,
-        imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`,
-        nombreEpisodes: 0
+        // imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`,
+        imageUrl: req.body.poster,
+        plot: req.body.plot,
+        noteTMDB: req.body.noteTMDB,
+        nombreEpisodes: 0,
+        TMDBId: req.body.tmdbid,
+        airDate: req.body.airdate
     })
     newSaison.save()
         .then(() => { res.status(201).json({ message: "saison enregistrée" }) })
@@ -32,8 +38,8 @@ exports.majNoteSaison = (req, res, next) => {
         .catch((error) => res.status(401).json(error))
 }
 
-exports.majNbEpisodes = (req, res, next) => {
-    Saison.updateOne({ _id: req.params.id }, { $inc: { nombreEpisodes: 1 } })
+exports.majPoster = (req, res, next) => {
+    Saison.updateOne({ _id: req.params.id }, { $set: { imageUrl: req.body.newPosterPath } })
         .then((saison) => res.status(201).json(saison))
         .catch((error) => res.status(401).json(error))
 }

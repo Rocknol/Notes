@@ -150,7 +150,7 @@ boutonFiltre.addEventListener("click", () => {
 
     if (anneeInput) {
         for (let i = 0; i < annees.length; i++) {
-            if (annees[i].innerText === anneeInput) {
+            if (annees[i].innerText.includes(anneeInput)) {
                 console.log(annees[i])
             }
             else {

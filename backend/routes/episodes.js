@@ -8,5 +8,6 @@ router.get('/', episodeController.getAllEpisodes)
 router.get('/saisonId/:id', episodeController.getEpisodeBySaisonId)
 router.get('/serieId/:id', episodeController.getEpisodeBySerieId)
 router.put('/majNote/:id', episodeController.majNote)
+router.put('/majStill/:id', episodeController.majStill)
 
 module.exports = router

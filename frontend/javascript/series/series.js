@@ -5,8 +5,27 @@ const boutonAjouterSerie = document.querySelector(".bouton-ajouter-serie");
 const boutonFiltre = document.querySelector(".bouton-filtre");
 const resetFilter = document.querySelector(".reset-filter");
 const displayFilter = document.querySelector(".display-filter");
+const boutonFetch = document.querySelector(".bouton-fetch");
+const filtreAjoutArt = document.querySelector(".filtre-et-ajout");
+const APIDocId = "65f195f9101332610cab8fb6"
 let starRating = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 let qteSeries = 0;
+let zonesNotes = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
+
+
+for (let i = 0; i < zonesNotes.length; i++) {
+    let divisionNote = document.createElement("div");
+    divisionNote.setAttribute("class", "division-note");
+    let numeroNote = document.createElement("span");
+    numeroNote.setAttribute("class", "numero-note");
+    numeroNote.innerText = zonesNotes[i];
+    divisionNote.appendChild(numeroNote);
+    let zoneSeries = document.createElement("div");
+    zoneSeries.setAttribute("class", `zoneSeries${zonesNotes[i]}`);
+    zoneSeries.setAttribute("id", "zone-series");
+    divisionNote.appendChild(zoneSeries);
+    emplacementSeries.appendChild(divisionNote);
+}
 
 
 function restore() {
@@ -14,6 +33,11 @@ function restore() {
     if (restoreSeries) {
         restoreSeries.forEach(element => element.setAttribute("class", "lien-serie"))
     }
+}
+
+function restoreDivsNotes() {
+    let restoreDivs = document.querySelectorAll(".division-note");
+    restoreDivs.forEach((element) => element.style.display = "");
 }
 
 
@@ -42,7 +66,14 @@ fetch("http://localhost:3000/api/series")
             const caseSerie = document.createElement("a");
             caseSerie.href = `./serie.html?id=${data[i]._id}`;
             caseSerie.setAttribute("class", "lien-serie");
-            emplacementSeries.appendChild(caseSerie);
+            if (data[i].note) {
+                let scoreDeLaSerie = data[i].note;
+                let rightSpot = document.querySelector(`.zoneSeries${scoreDeLaSerie}`)
+                rightSpot.appendChild(caseSerie);
+            }
+            else {
+                emplacementSeries.appendChild(caseSerie);
+            }
 
             const imageSerie = document.createElement("img");
             imageSerie.src = data[i].imageUrl;
@@ -64,7 +95,7 @@ fetch("http://localhost:3000/api/series")
             texteSerie.appendChild(additionalInfo);
 
             const genreSerie = document.createElement("span");
-            genreSerie.innerText = data[i].genres.join(", ");
+            genreSerie.innerText = data[i].genres
             genreSerie.setAttribute("class", "genre-serie");
             additionalInfo.appendChild(genreSerie);
 
@@ -92,10 +123,31 @@ fetch("http://localhost:3000/api/series")
                 caseSerie.appendChild(noteDecimale);
             }
 
-            const classementSerie = document.createElement("span");
-            classementSerie.setAttribute("class", "classement");
-            classementSerie.innerHTML = `#${i + 1}`;
-            caseSerie.appendChild(classementSerie);
+            if (data[i].noteTMDB) {
+                const TMDBRatings = document.createElement("span");
+                TMDBRatings.setAttribute("class", "tmdbratings");
+                TMDBRatings.innerText = "TMDB: " + data[i].noteTMDB + `(${data[i].nombreVotesTMDB} votes)`;
+                additionalInfo.appendChild(TMDBRatings);
+            }
+
+            if (data[i].noteIMDB) {
+                const IMDBRatings = document.createElement("span");
+                IMDBRatings.setAttribute("class", "imdbratings");
+                IMDBRatings.innerText = "IMDB: " + data[i].noteIMDB + `(${data[i].nombreVotesIMDB} votes)`
+                additionalInfo.appendChild(IMDBRatings);
+            }
+
+            // const classementSerie = document.createElement("span");
+            // classementSerie.setAttribute("class", "classement");
+            // classementSerie.innerHTML = `#${i + 1}`;
+            // caseSerie.appendChild(classementSerie);
+
+            if (data[i].status) {
+                const statutDeLaSerie = document.createElement("span");
+                statutDeLaSerie.setAttribute("class", "statutdelaserie");
+                statutDeLaSerie.innerText = data[i].status;
+                caseSerie.appendChild(statutDeLaSerie);
+            }
 
             if (data[i].note) {
                 const noteSerieText = document.createElement("span");
@@ -118,11 +170,19 @@ fetch("http://localhost:3000/api/series")
         }
         calculNombre();
 
+        let zonesSeries = document.querySelectorAll("#zone-series");
+        for (let i = 0; i < zonesSeries.length; i++) {
+            if (zonesSeries[i].innerText === "") {
+                zonesSeries[i].closest(".division-note").style.display = "none";
+            }
+        }
+
     })
 
 
 boutonFiltre.addEventListener("click", () => {
     restore();
+    restoreDivsNotes();
     let titreInput = document.getElementById("titre").value;
     let noteInput = document.getElementById("note").value;
     let genreInput = document.getElementById("genre").value;
@@ -164,12 +224,22 @@ boutonFiltre.addEventListener("click", () => {
         }
     }
     calculNombre();
+
+    let zonesSeries = document.querySelectorAll("#zone-series");
+    for (let i = 0; i < zonesSeries.length; i++) {
+        if (zonesSeries[i].innerText === "") {
+            zonesSeries[i].closest(".division-note").style.display = "none";
+        }
+    }
 })
 
 
 boutonAjouterSerie.addEventListener("click", () => {
     let myForm = document.getElementById("form-ajout-serie");
+    let idTMDBToFetch = document.getElementById("fetchTMDB").value;
     formData = new FormData(myForm);
+    formData.append('tmdbid', `${idTMDBToFetch}`);
+
 
     let envoiSerie = {
         method: 'POST',
@@ -184,7 +254,7 @@ boutonAjouterSerie.addEventListener("click", () => {
 })
 
 resetFilter.addEventListener("click", () => {
-    location.reload();
+    // location.reload();
 })
 
 fetch('http://localhost:3000/api/episodes')
@@ -232,7 +302,7 @@ fetch('http://localhost:3000/api/episodes')
                     latestEpisode.appendChild(latestEpShowTitle);
 
                     let latestEpSeasonNumber = document.createElement("span");
-                    latestEpSeasonNumber.innerText = data.title + "  " + numeroEpisode;
+                    latestEpSeasonNumber.innerText = "S" + data.seasonNumber + " E" + numeroEpisode;
                     latestEpSeasonNumber.setAttribute("class", "latest-ep-season-title");
                     latestInfoContainer.appendChild(latestEpSeasonNumber)
 
@@ -243,4 +313,79 @@ fetch('http://localhost:3000/api/episodes')
                 })
 
         }
+    })
+
+boutonFetch.addEventListener("click", () => {
+    let idTMDBToFetch = document.getElementById("fetchTMDB").value;
+    let idIMDBToFetch = document.getElementById("fetchIMDB").value;
+
+    fetch(`http://localhost:3000/api/keys/${APIDocId}`)
+        .then((response) => { return response.json() })
+        .then((data) => {
+            let TMDBID = data.TMDB;
+            let IMDBID = data.IMDB;
+            fetch(`https://api.themoviedb.org/3/tv/${idTMDBToFetch}?api_key=${TMDBID}`)
+                .then((response) => { return response.json() })
+                .then((data) => {
+                    console.log(data)
+                    let titreSerieTV = document.getElementById("titreAjout");
+                    titreSerieTV.value = data.name;
+
+                    let genresSerie = document.getElementById("genreAjout");
+                    let genresRegroup = [];
+                    for (let i = 0; i < data.genres.length; i++) {
+                        genresRegroup.push(data.genres[i].name)
+                    }
+                    genresSerie.value = genresRegroup.join(", ")
+
+                    let posterSerie = document.getElementById("poster");
+                    posterSerie.value = `https://image.tmdb.org/t/p/original/${data.poster_path}`
+                    let fanartSerie = document.getElementById("fanart");
+                    fanartSerie.value = `https://image.tmdb.org/t/p/original/${data.backdrop_path}`
+                    let posterArt = document.querySelector(".poster")
+                    posterArt.src = `https://image.tmdb.org/t/p/original/${data.poster_path}`;
+
+                    let fanArt = document.querySelector(".fanart");
+                    fanArt.src = `https://image.tmdb.org/t/p/original/${data.backdrop_path}`;
+
+                    let plotSerie = document.getElementById("plot");
+                    plotSerie.value = data.overview;
+
+                    let firstAirDate = document.getElementById("first-air-date");
+                    firstAirDate.value = data.first_air_date
+
+                    let lastAirDate = document.getElementById("last-air-date");
+                    lastAirDate.value = data.last_air_date;
+
+                    let statusSerie = document.getElementById("status");
+                    statusSerie.value = data.status;
+
+                    let noteTMDB = document.getElementById("noteTMDB");
+                    noteTMDB.value = Math.round(data.vote_average * 10) / 10;
+
+                    let nombreVotesTMDB = document.getElementById("nombrevotesTMDB");
+                    nombreVotesTMDB.value = data.vote_count;
+
+                    fetch(`http://www.omdbapi.com/?apikey=${IMDBID}&i=${idIMDBToFetch}`)
+                        .then((response) => { return response.json() })
+                        .then((data) => {
+                            console.log(data)
+
+                            let awards = document.getElementById("awards");
+                            awards.value = data.Awards
+
+                            let noteIMDB = document.getElementById("noteIMDB");
+                            noteIMDB.value = data.imdbRating;
+
+                            let nombreVotesIMDB = document.getElementById("nombrevotesIMDB");
+                            nombreVotesIMDB.value = data.imdbVotes;
+                        })
+                })
+        })
+})
+
+fetch(`https://api.themoviedb.org/3/tv/60735/credits?api_key=5adc2874e6528a432f1e0fbb7422118e`)
+    .then((response) => { return response.json() })
+    .then((data) => {
+        console.log(data);
     })

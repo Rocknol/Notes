@@ -10,11 +10,10 @@ router.get('/:id', serieController.getOneSerie)
 router.get('/title/:title', serieController.getSerieByTitle)
 router.get('/genre/:genre', serieController.getSerieByGenre)
 router.get('/note/:note', serieController.getSerieByNote)
-router.put('/:id', serieController.majNbSaisons)
 router.put('/majNote/:id', serieController.majNoteSerie)
 router.put('/majGenre/:id', serieController.majGenre)
 router.put('/fanart/:id', multer, serieController.addFanart)
 router.put('/logo/:id', multer, serieController.addLogo)
-router.put('/majEpisodes/:id', serieController.majEpisodes)
+router.put('/majPoster/:id', serieController.majPoster)
 
 module.exports = router

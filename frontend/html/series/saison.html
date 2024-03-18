@@ -24,67 +24,123 @@
 
     </div>
 
+    <div id="nombre-episodes"></div>
+    <div id="boutons">
+        <div class="display-ajout"><i class="fa-solid fa-plus"></i></div>
+    </div>
+
     <main>
         <div class="saison-container">
-            <div class="saison-et-ajout">
-                <div class="fiche-saison">
-                    <img class="poster-saison">
-                    <div class="texte-saison">
-                        <span class="titre-serie"></span>
-                        <span class="titre-saison"></span>
-                        <span class="nombre-episodes"></span>
-                        <div class="note-saison"></div>
-                        <span class="decimale-saison"></span>
-
-                    </div>
+            <div class="fiche-saison">
+                <img class="poster-saison">
+                <div class="texte-saison">
+                    <span class="titre-serie"></span>
+                    <span class="titre-saison"></span>
+                    <span class="plot"></span>
+                    <span class="air-date"></span>
+                    <div class="note-saison"></div>
                 </div>
-
-                <div class="display-ajout"><i class="fa-solid fa-plus"></i></div>
-                <div class="form-et-bouton-episode">
-                    <form id="form-ajout-episode" name="form-ajout-episode">
-                        <div class="numero-episode">
-                            <label for="numero">Numéro de l'épisode</label>
-                            <input type="text" name="numero" id="numero">
-                        </div>
-                        <div class="titre-episode">
-                            <label for="titre">Titre de l'épisode:</label>
-                            <input type="text" name="title" id="titre">
-                        </div>
-                        <div class="note-episode">
-                            <label for="note">Note:</label>
-                            <select name="note" id="note">
-                                <option value=""></option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                                <option value="8">8</option>
-                                <option value="9">9</option>
-                                <option value="10">10</option>
-                            </select>
-
-                        </div>
-                        <div class="plot-form">
-                            <label for="plot">Plot:</label>
-                            <textarea rows="3" cols="30" input type="text" id="plot" name="plot"></textarea>
-                        </div>
-                        <div class="thumbnail-form">
-                            <label for="thumbnail">Thumbnail:</label>
-                            <input type="file" name="image" id="thumbnail">
-                        </div>
-                    </form>
-                    <div class="bouton-ajouter">
-                        <button type="submit" class="bouton-ajouter-episode">Ajouter cet épisode</button>
-                    </div>
+                <span class="decimale-saison"></span>
+            </div>
+            <div class="infos-episodes">
+                <div class="infos-episodes-container">
+                    <div class="close-button-infos"><i class="fa-solid fa-xmark"></i></div>
+                    <span class="infos-episodes-title">Episode Info</span>
+                    <span class="plot-episode"></span>
+                    <span class="air-date-episode"></span>
+                    <span class="runtime"></span>
+                    <span class="noteTMDB"></span>
+                    <span class="noteIMDB"></span>
+                    <span class="realisateur"></span>
                 </div>
             </div>
 
+
+            <div class="form-et-bouton-episode">
+                <div class="fetch">
+                    <input type="text" placeholder="IMDB ID" id="fetchIMDB">
+                    <button type="submit" class="bouton-fetch">Fetch</button>
+                </div>
+                <form id="form-ajout-episode" name="form-ajout-episode">
+                    <div class="numero-episode">
+                        <label for="numero">Numéro de l'épisode</label>
+                        <input type="text" name="numero" id="numero">
+                    </div>
+                    <div class="titre-episode">
+                        <label for="titre">Titre de l'épisode:</label>
+                        <input type="text" name="title" id="titre">
+                    </div>
+                    <div class="note-episode">
+                        <label for="note">Note:</label>
+                        <select name="note" id="note">
+                            <option value=""></option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                        </select>
+                    </div>
+                    <div class="plot-form">
+                        <label for="plot">Plot:</label>
+                        <textarea rows="5" cols="40" input type="text" id="plot" name="plot"></textarea>
+                    </div>
+                    <div class="thumbnail-form">
+                        <label for="thumbnail">Thumbnail:</label>
+                        <!-- <input type="file" name="image" id="thumbnail"> -->
+                        <input type="text" name="thumbnail" id="thumbnail">
+                    </div>
+                    <div class="air-date">
+                        <label for="airdate">Air date:</label>
+                        <input type="text" name="airdate" id="airdate">
+                    </div>
+                    <div class="runtime">
+                        <label for="runtime">Runtime:</label>
+                        <input type="text" name="runtime" id="runtime">
+                    </div>
+                    <div class="noteTMDB">
+                        <label for="noteTMDB">Note TMDB:</label>
+                        <input type="text" name="noteTMDB" id="noteTMDB">
+                    </div>
+                    <div class="nombrevotestmdb">
+                        <label for="nombrevotesTMDB">Nombre de votes TMDB:</label>
+                        <input type="text" name="nombrevotesTMDB" id="nombrevotesTMDB">
+                    </div>
+                    <div class="director">
+                        <label for="director">Réalisateur:</label>
+                        <input type="text" name="director" id="director">
+                    </div>
+                    <div class="noteIMDB">
+                        <label for="noteIMDB">Note IMDB:</label>
+                        <input type="text" name="noteIMDB" id="noteIMDB">
+                    </div>
+                    <div class="nombrevotesimdb">
+                        <label for="nombrevotesIMDB">Nombre de votes IMDB:</label>
+                        <input type="text" name="nombrevotesIMDB" id="nombrevotesIMDB">
+                    </div>
+                </form>
+                <div class="bouton-ajouter">
+                    <button type="submit" class="bouton-ajouter-episode">Ajouter cet épisode</button>
+                </div>
+            </div>
             <div id="episodes">
 
+            </div>
+        </div>
 
+        <div id="still-choices">
+            <div class="still-choices-container">
+                <div class="close-button-stills"><i class="fa-solid fa-xmark"></i></div>
+            </div>
+        </div>
+        <div id="season-poster-choices">
+            <div class="season-poster-container">
+                <div class="close-button-posters"><i class="fa-solid fa-xmark"></i></div>
             </div>
         </div>
 

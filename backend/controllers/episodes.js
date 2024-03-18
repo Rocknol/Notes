@@ -3,13 +3,21 @@ const fs = require('fs');
 
 exports.createEpisode = (req, res, next) => {
     let newEpisode = new Episode({
-        numero: "Episode " + req.body.numero,
+        numero: req.body.numero,
         title: req.body.title,
         saisonId: req.body.saisonId,
         serieId: req.body.serieId,
         note: req.body.note,
-        imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`,
-        plot: req.body.plot
+        // imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`,
+        imageUrl: req.body.thumbnail,
+        airDate: req.body.airdate,
+        runtime: req.body.runtime,
+        plot: req.body.plot,
+        noteTMDB: req.body.noteTMDB,
+        nombreVotesTMDB: req.body.nombrevotesTMDB,
+        director: req.body.director,
+        noteIMDB: req.body.noteIMDB,
+        nombreVotesIMDB: req.body.nombrevotesIMDB
     })
     newEpisode.save()
         .then(() => { res.status(201).json({ message: "épisode enregistré" }) })
@@ -41,4 +49,8 @@ exports.getEpisodeBySerieId = (req, res, next) => {
         .catch((error) => res.status(401).json(error))
 }
 
-
+exports.majStill = (req, res, next) => {
+    Episode.updateOne({ _id: req.params.id }, { $set: { imageUrl: req.body.newStillPath } })
+        .then((episode) => res.status(201).json(episode))
+        .catch((error) => res.status(401).json(error))
+}

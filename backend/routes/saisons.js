@@ -6,7 +6,7 @@ const saisonController = require('../controllers/saisons');
 router.post("/", multer, saisonController.createSaison)
 router.get('/serieId/:serieId', saisonController.getSaisonBySerieId)
 router.get('/:id', saisonController.getOneSaison)
-router.put('/:id', saisonController.majNbEpisodes)
 router.put('/majNote/:id', saisonController.majNoteSaison)
+router.put('/majPoster/:id', saisonController.majPoster)
 
 module.exports = router

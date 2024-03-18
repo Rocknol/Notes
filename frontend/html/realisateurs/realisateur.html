@@ -75,27 +75,23 @@
                     <textarea rows="5" cols="40" input type="text" name="plot" id="plot"></textarea>
                 </div>
                 <div class="note-film">
-                    <label for="note">Note:</label>
-                    <input type="range" name="note" id="noteFilm" min="0" max="10" step="1" list="markers" />
-                    <datalist id="markers">
-                        <option value="0"></option>
-                        <option value="1"></option>
-                        <option value="2"></option>
-                        <option value="3"></option>
-                        <option value="4"></option>
-                        <option value="5"></option>
-                        <option value="6"></option>
-                        <option value="7"></option>
-                        <option value="8"></option>
-                        <option value="9"></option>
-                        <option value="10"></option>
-                    </datalist>
-                    <p>
-                        <ouput id="value"></ouput>
-                    </p>
+                    <label for="noteFilm">Note:</label>
+                    <select name="note" id="noteFilm">
+                        <option value=""></option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
                 </div>
                 <div class="genre-film">
-                    <label for="genre">Genres:</label>
+                    <label for="genres">Genres:</label>
                     <!-- <select name="genre" id="genre">
                         <option value=""></option>
                         <option value="Drama">Drama</option>

@@ -87,14 +87,20 @@
             </div>
 
             <div class="form-et-bouton-serie">
+
+                <div class="fetch">
+                    <input type="text" placeholder="TMDB ID" id="fetchTMDB">
+                    <input type="text" placeholder="IMDB ID" id="fetchIMDB">
+                    <button type="submit" class="bouton-fetch">Fetch</button>
+                </div>
                 <form id="form-ajout-serie" name="ajout-serie">
                     <div class="titre-serie-ajout">
-                        <label for="titre">Titre de la série:</label>
+                        <label for="titreAjout">Titre de la série:</label>
                         <input type="text" name="title" id="titreAjout">
                     </div>
                     <div class="genre-serie-ajout">
-                        <label for="genre">Genre:</label>
-                        <select name="genre" id="genreAjout">
+                        <label for="genreAjout">Genres:</label>
+                        <!-- <select name="genre" id="genreAjout">
                             <option value=""></option>
                             <option value="Drama">Drama</option>
                             <option value="Aventure">Aventure</option>
@@ -108,17 +114,59 @@
                             <option value="Fantasy">Fantasy</option>
                             <option value="Documentaire">Documentaire</option>
                             <option value="Animation">Animation</option>
-                        </select>
+                        </select> -->
+                        <input type="text" name="genres" id="genreAjout">
                     </div>
                     <div class="poster-serie">
                         <label for="poster">Poster:</label>
-                        <input type="file" name="image" id="poster">
+                        <!-- <input type="file" name="image" id="poster"> -->
+                        <input type="text" name="poster" id="poster">
                     </div>
-                    <div class="lien-tvdb">
-                        <label for="lien">Lien TVDB:</label>
+                    <div class="fanart-serie">
+                        <label for="fanart">Fanart:</label>
+                        <input type="text" name="fanart" id="fanart">
+                    </div>
+                    <div class="plot">
+                        <label for="plot">Résumé:</label>
+                        <textarea rows="5" cols="40" input type="text" name="plot" id="plot"></textarea>
+                    </div>
+                    <!-- <div class="lien-tvdb">
+                        <label for="lienTVDB">Lien TVDB:</label>
                         <input type="text" name="lienTVDB" id="lienTVDB">
+                    </div> -->
+                    <div class="first-air-date">
+                        <label for="first-air-date">First air date:</label>
+                        <input type="text" name="firstairdate" id="first-air-date">
+                    </div>
+                    <div class="last-air-date">
+                        <label for="last-air-date">Last air date:</label>
+                        <input type="text" name="lastairdate" id="last-air-date">
+                    </div>
+                    <div class="status">
+                        <label for="status">Statut:</label>
+                        <input type="text" name="status" id="status">
+                    </div>
+                    <div class="voteTMDB">
+                        <label for="noteTMDB">Note TMDB:</label>
+                        <input type="text" name="noteTMDB" id="noteTMDB">
                     </div>
 
+                    <div class="nombrevoteTMDB">
+                        <label for="nombrevotesTMDB">Nombre de votes TMDB:</label>
+                        <input type="text" name="nombrevotesTMDB" id="nombrevotesTMDB">
+                    </div>
+                    <div class="awards">
+                        <label for="awards">Récompenses:</label>
+                        <input type="text" name="awards" id="awards">
+                    </div>
+                    <div class="voteIMDB">
+                        <label for="noteIMDB">Note IMDB:</label>
+                        <input type="text" name="noteIMDB" id="noteIMDB">
+                    </div>
+                    <div class="nombrevoteIMDB">
+                        <label for="nombrevotesIMDB">Nombre de votes IMDB:</label>
+                        <input type="text" name="nombrevotesIMDB" id="nombrevotesIMDB">
+                    </div>
                 </form>
                 <div class="bouton-ajouter">
                     <button type="submit" class="bouton-ajouter-serie">Ajouter cette série</button>
@@ -126,6 +174,14 @@
 
             </div>
 
+            <div class="art-container">
+                <div class="poster-art">
+                    <img class="poster">
+                </div>
+                <div class="fan-art">
+                    <img class="fanart">
+                </div>
+            </div>
         </div>
 
         <div id="series">

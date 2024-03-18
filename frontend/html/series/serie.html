@@ -50,15 +50,14 @@
                 <img class="poster-serie">
                 <div class="texte-serie">
                     <span class="titre-serie"></span>
-                    <div class="genre-plus">
-                        <span class="genre-serie"></span>
-                        <div class="add-genre"><i class="fa-solid fa-plus"></i></div>
-                    </div>
+                    <span class="genre-serie"></span>
+                    <span class="plot"></span>
+                    <span class="first-air-date"></span>
+                    <span class="last-air-date"></span>
+                    <span class="awards"></span>
                     <span class="nombre-saisons"></span>
                     <div class="note-serie"></div>
-                    <span class="decimale-serie"></span>
-                    <a class="lien-tvdb">TVDB</a>
-
+                    <a class="lien-tmdb">TMDB</a>
                 </div>
                 <div class="options-serie">
                     <div class="modifier-serie">
@@ -66,22 +65,41 @@
                     </div>
 
                 </div>
-
+                <span class="decimale-serie"></span>
             </div>
         </div>
 
         <div class="forms">
             <div class="form-et-bouton-saison">
+                <div class="tmdb-fetch">
+                    <button type="submit" class="bouton-fetch-tmdb">Fetch from TMDB</button>
+                </div>
                 <form id="form-ajout-saison" name="form-ajout-saison">
                     <div class="titre-saison">
                         <label for="titre">Titre de la saison:</label>
                         <input type="text" name="title" id="titre">
                     </div>
+                    <div class="season-number">
+                        <label for="seasonnumber">Numéro de la saison:</label>
+                        <input type="text" name="seasonnumber" id="seasonnumber">
+                    </div>
                     <div class="poster-saison">
                         <label for="poster">Poster:</label>
-                        <input type="file" name="image" id="poster">
+                        <!-- <input type="file" name="image" id="poster"> -->
+                        <input type="text" name="poster" id="poster">
                     </div>
-
+                    <div class="plot">
+                        <label for="plot">Plot:</label>
+                        <textarea rows="5" cols="40" input type="text" name="plot" id="plot"></textarea>
+                    </div>
+                    <div class="voteTMDB">
+                        <label for="noteTMDB">Note TMDB:</label>
+                        <input type="text" name="noteTMDB" id="noteTMDB">
+                    </div>
+                    <div class="air-date">
+                        <label for="airdate">Air date:</label>
+                        <input type="text" name="airdate" id="airdate">
+                    </div>
                 </form>
                 <div class="bouton-ajouter">
                     <button type="submit" class="bouton-ajouter-saison">Ajouter cette saison</button>
@@ -115,6 +133,11 @@
 
         </div>
 
+        <div id="serie-poster-choices">
+            <div class="serie-poster-container">
+                <div class="close-button-posters"><i class="fa-solid fa-xmark"></i></div>
+            </div>
+        </div>
 
     </main>
     <script src="../../javascript/series/serie.js"></script>

@@ -4,10 +4,22 @@ const fs = require('fs')
 exports.createSerie = (req, res, next) => {
     let newSerie = new Serie({
         title: req.body.title,
-        genres: req.body.genre,
-        imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`,
+        genres: req.body.genres,
+        // imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`,
+        imageUrl: req.body.poster,
+        fanartUrl: req.body.fanart,
+        plot: req.body.plot,
         nombreSaisons: 0,
-        lienTVDB: req.body.lienTVDB
+        lienTVDB: req.body.lienTVDB,
+        firstAirDate: req.body.firstairdate,
+        lastAirDate: req.body.lastairdate,
+        status: req.body.status,
+        noteTMDB: req.body.noteTMDB,
+        nombreVotesTMDB: req.body.nombrevotesTMDB,
+        TMDBId: req.body.tmdbid,
+        awards: req.body.awards,
+        noteIMDB: req.body.noteIMDB,
+        nombreVotesIMDB: req.body.nombrevotesIMDB
     })
     newSerie.save()
         .then(() => { res.status(201).json({ message: "série enregistrée" }) })
@@ -44,12 +56,6 @@ exports.getSerieByNote = (req, res, next) => {
         .catch((error) => res.status(401).json(error))
 }
 
-exports.majNbSaisons = (req, res, next) => {
-    Serie.updateOne({ _id: req.params.id }, { $inc: { nombreSaisons: 1 } })
-        .then((serie) => res.status(201).json(serie))
-        .catch((error) => res.status(401).json(error))
-}
-
 exports.majNoteSerie = (req, res, next) => {
     Serie.updateOne({ _id: req.params.id }, { $set: { note: req.body.note, decimale: req.body.decimale } })
         .then((serie) => res.status(201).json(serie))
@@ -74,8 +80,8 @@ exports.addLogo = (req, res, next) => {
         .catch((error) => res.status(401).json(error))
 }
 
-exports.majEpisodes = (req, res, next) => {
-    Serie.updateOne({ _id: req.params.id }, { $set: { nombreEpisodes: req.body.nombreEpisodes } })
+exports.majPoster = (req, res, next) => {
+    Serie.updateOne({ _id: req.params.id }, { $set: { imageUrl: req.body.newPosterPath } })
         .then((serie) => res.status(201).json(serie))
         .catch((error) => res.status(401).json(error))
 }

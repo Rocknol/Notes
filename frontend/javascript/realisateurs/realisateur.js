@@ -5,8 +5,6 @@ const filmsRealisateur = document.getElementById("films-realisateur");
 const nombreFilms = document.getElementById("nombre-films");
 const boutonAjoutFilm = document.querySelector(".bouton-ajouter-film");
 const displayAjout = document.querySelector(".display-ajout");
-const noteFilm = document.getElementById("noteFilm");
-const value = document.getElementById("value");
 const boutonFetchTMDB = document.querySelector(".bouton-fetch-tmdb");
 const APIDocId = "65f195f9101332610cab8fb6"
 let starRating = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -28,10 +26,6 @@ function calculNombre() {
 displayAjout.addEventListener("click", () => {
     let showForm = document.querySelector(".form-et-bouton-film");
     showForm.setAttribute("class", "form-et-bouton-film-show");
-})
-
-noteFilm.addEventListener("input", () => {
-    value.textContent = noteFilm.value;
 })
 
 fetch(`http://localhost:3000/api/realisateurs/${findId}`)
@@ -148,92 +142,98 @@ fetch(`http://localhost:3000/api/realisateurs/${findId}`)
             })
 
         boutonAjoutFilm.addEventListener("click", function () {
+            let noteFilm = document.getElementById("noteFilm")
+            if (!noteFilm.value) {
+                window.alert("Choisir une note")
+            }
+            else {
 
-            let myForm = document.getElementById("form-ajout-film");
-            formData = new FormData(myForm);
-            formData.append('realisateurId', `${findId}`)
-            formData.append('realisateur', `${data.name}`)
-            console.log(formData)
+                let myForm = document.getElementById("form-ajout-film");
+                formData = new FormData(myForm);
+                formData.append('realisateurId', `${findId}`)
+                formData.append('realisateur', `${data.name}`)
+                console.log(formData)
 
-            let envoiFilm = {
-                method: "POST",
-                body: formData,
+                let envoiFilm = {
+                    method: "POST",
+                    body: formData,
+                };
+
+                console.log(envoiFilm);
+                fetch(`http://localhost:3000/api/films`, envoiFilm)
+                    .then((data) => {
+                        console.log(data);
+                        const titreInput = document.querySelector("#titre");
+                        let title = titreInput.value;
+                        window.alert(`${title} a été ajouté.`)
+
+                        fetch(`http://localhost:3000/api/films/realisateurId/${findId}`)
+                            .then((response) => { return response.json() })
+                            .then((data) => {
+                                console.log(data);
+                                for (let i = 0; i < data.length; i++) {
+                                    sommeNotes += Number(data[i].note)
+                                }
+                                qteFilms = data.length
+                                moyenne = sommeNotes / qteFilms;
+                                console.log(sommeNotes);
+                                console.log(qteFilms);
+                                moyenneArrondie = Math.round(moyenne);
+                                moyenneArrondieDecimale = Math.round(moyenne * 10) / 10;
+
+                                let majNote = {
+                                    method: 'PUT',
+                                    headers: { 'Content-Type': 'application/json' },
+                                    body: JSON.stringify({ note: moyenneArrondie, decimale: moyenneArrondieDecimale, nombreFilms: qteFilms })
+                                }
+
+                                fetch(`http://localhost:3000/api/realisateurs/majNote/${findId}`, majNote)
+                                    .then((data) => {
+                                        location.reload();
+                                    })
+
+                            })
+
+                    });
             };
+        })
 
-            console.log(envoiFilm);
-            fetch(`http://localhost:3000/api/films`, envoiFilm)
+        boutonFetchTMDB.addEventListener("click", () => {
+            let idToFetch = document.getElementById("fetch").value;
+
+            fetch(`http://localhost:3000/api/keys/${APIDocId}`)
+                .then((response) => { return response.json() })
                 .then((data) => {
-                    console.log(data);
-                    const titreInput = document.querySelector("#titre");
-                    let title = titreInput.value;
-                    window.alert(`${title} a été ajouté.`)
-
-                    fetch(`http://localhost:3000/api/films/realisateurId/${findId}`)
+                    fetch(`https://api.themoviedb.org/3/movie/${idToFetch}?api_key=${data.TMDB}`)
                         .then((response) => { return response.json() })
                         .then((data) => {
                             console.log(data);
-                            for (let i = 0; i < data.length; i++) {
-                                sommeNotes += Number(data[i].note)
+                            let titreFilm = document.getElementById("titre");
+                            titreFilm.value = data.title;
+
+                            let plotFilm = document.getElementById("plot");
+                            plotFilm.value = data.overview;
+
+                            let genresFilm = document.getElementById("genres");
+                            let genresRegroup = [];
+                            for (let i = 0; i < data.genres.length; i++) {
+                                genresRegroup.push(data.genres[i].name);
                             }
-                            qteFilms = data.length
-                            moyenne = sommeNotes / qteFilms;
-                            console.log(sommeNotes);
-                            console.log(qteFilms);
-                            moyenneArrondie = Math.round(moyenne);
-                            moyenneArrondieDecimale = Math.round(moyenne * 10) / 10;
+                            genresFilm.value = genresRegroup.join(", ")
 
-                            let majNote = {
-                                method: 'PUT',
-                                headers: { 'Content-Type': 'application/json' },
-                                body: JSON.stringify({ note: moyenneArrondie, decimale: moyenneArrondieDecimale, nombreFilms: qteFilms })
-                            }
+                            let releaseDate = document.getElementById("release-date");
+                            releaseDate.value = data.release_date;
 
-                            fetch(`http://localhost:3000/api/realisateurs/majNote/${findId}`, majNote)
-                                .then((data) => {
-                                    location.reload();
-                                })
+                            let posterFilm = document.getElementById("poster");
+                            posterFilm.value = `https://image.tmdb.org/t/p/original/${data.poster_path}`;
 
+                            let fanartFilm = document.getElementById("fanart");
+                            fanartFilm.value = `https://image.tmdb.org/t/p/original/${data.backdrop_path}`
+
+                            let runtimeFilm = document.getElementById("runtime");
+                            runtimeFilm.value = data.runtime;
                         })
-
-                });
-        });
-    })
-
-boutonFetchTMDB.addEventListener("click", () => {
-    let idToFetch = document.getElementById("fetch").value;
-
-    fetch(`http://localhost:3000/api/keys/${APIDocId}`)
-        .then((response) => { return response.json() })
-        .then((data) => {
-            fetch(`http://api.themoviedb.org/3/movie/${idToFetch}?api_key=${data.TMDB}`)
-                .then((response) => { return response.json() })
-                .then((data) => {
-                    console.log(data);
-                    let titreFilm = document.getElementById("titre");
-                    titreFilm.value = data.title;
-
-                    let plotFilm = document.getElementById("plot");
-                    plotFilm.value = data.overview;
-
-                    let genresFilm = document.getElementById("genres");
-                    let genresRegroup = [];
-                    for (let i = 0; i < data.genres.length; i++) {
-                        genresRegroup.push(data.genres[i].name);
-                    }
-                    genresFilm.value = genresRegroup.join(", ")
-
-                    let releaseDate = document.getElementById("release-date");
-                    releaseDate.value = data.release_date;
-
-                    let posterFilm = document.getElementById("poster");
-                    posterFilm.value = `https://image.tmdb.org/t/p/original/${data.poster_path}`;
-
-                    let fanartFilm = document.getElementById("fanart");
-                    fanartFilm.value = `https://image.tmdb.org/t/p/original/${data.backdrop_path}`
-
-                    let runtimeFilm = document.getElementById("runtime");
-                    runtimeFilm.value = data.runtime;
                 })
         })
-})
 
+    })

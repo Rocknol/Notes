@@ -50,16 +50,16 @@ li a:hover {
 }
 
 .fiche-serie {
-    border-radius: 50px;
     height: 800px;
     background-color: rgb(54, 91, 133);
     box-shadow: 0px 0px 6px 6px;
+    position: relative;
+    overflow: auto;
 }
 
 .fiche-serie img {
     width: 100%;
     height: 60%;
-    border-radius: 50px 50px 0px 0px;
 }
 
 .texte-serie {
@@ -97,6 +97,13 @@ li a:hover {
     font-weight: bold;
     font-size: large;
     color: khaki;
+    background-color: black;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    width: 20px;
+    text-align: center;
+    padding: 3px;
 }
 
 .options-serie {
@@ -346,15 +353,6 @@ li a:hover {
     text-align: center;
 }
 
-.genre-plus {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-}
-
-.add-genre:hover {
-    cursor: pointer;
-}
 
 #boutons {
     position: fixed;
@@ -568,10 +566,60 @@ li a:hover {
     align-items: center;
 }
 
-.lien-tvdb {
+.lien-tmdb {
     width: fit-content;
     text-decoration: none;
     color: gold;
     background-color: black;
     padding: 5px;
+}
+
+.titre-saison {
+    font-weight: bold;
+    font-size: large;
+}
+
+.close-button-posters {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.fa-xmark {
+    color: red;
+    font-size: 2em;
+}
+
+#serie-poster-choices {
+    display: none;
+    overflow: auto;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 1000px;
+    height: 800px;
+    background-color: rgb(54, 91, 133);
+    border: 5px solid black;
+}
+
+.serie-poster-container {
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.poster {
+    width: 25%;
+    height: 50%;
+}
+
+.poster:hover {
+    filter: brightness(0.5);
 }
