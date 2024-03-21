@@ -5,7 +5,8 @@ const saisons = document.getElementById("saisons");
 const boutonAjoutSaison = document.querySelector(".bouton-ajouter-saison");
 const boutonAjoutFanart = document.querySelector(".bouton-ajouter-fanart");
 const displayAjout = document.querySelector(".display-ajout");
-const displayFanart = document.querySelector(".display-fanart");
+const fanartButton = document.querySelector(".fanart-button");
+const logoButton = document.querySelector(".logo-button");
 let starRating = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 const genres = ["Drama", "Aventure", "Romance", "Adulte", "Western", "Comedie", "Thriller", "Horreur", "Sci-Fi", "Fantasy", "Documentaire", "Animation"];
 const addGenre = document.querySelector(".add-genre");
@@ -16,22 +17,18 @@ let counter = 0;
 const arrowLeft = document.querySelector(".arrow-left");
 const arrowRight = document.querySelector(".arrow-right");
 const fanartNumber = document.querySelector(".fanart-number");
-const boutonAjoutLogo = document.querySelector(".bouton-ajouter-logo");
 const logoSerie = document.querySelector(".logo-serie");
 const boutonFetchTMDB = document.querySelector(".bouton-fetch-tmdb");
 const APIDocId = "65f195f9101332610cab8fb6"
+const actors = document.getElementById("actors");
 let TMDBId;
 let numberNextSeason = 0;
+let fanartImages = [];
 
 
 displayAjout.addEventListener("click", () => {
     let showForm = document.querySelector(".form-et-bouton-saison");
     showForm.setAttribute("class", "form-et-bouton-saison-show");
-})
-
-displayFanart.addEventListener("click", () => {
-    let showFormFanart = document.querySelector(".form-bouton-fanart");
-    showFormFanart.setAttribute("class", "form-bouton-fanart-show");
 })
 
 function cleanUp() {
@@ -165,6 +162,8 @@ fetch(`http://localhost:3000/api/keys/${APIDocId}`)
                     logoSerieId.style.fontSize = "x-large"
                 }
 
+                fanartImages = data.fanartUrl;
+
                 if (data.fanartUrl.length > 0) {
                     for (let i = 0; i < data.fanartUrl.length; i++) {
                         if (i === counter) {
@@ -248,14 +247,57 @@ fetch(`http://localhost:3000/api/keys/${APIDocId}`)
                 //     }
                 // })
 
+                fetch(`https://api.themoviedb.org/3/tv/${TMDBId}/credits?api_key=${TMDBAPI}`)
+                    .then((response) => { return response.json() })
+                    .then((data) => {
+                        console.log(data)
+                        for (let i = 0; i < data.cast.length; i++) {
+                            let actorBloc = document.createElement("div");
+                            actorBloc.setAttribute("class", "actor-bloc");
+                            actors.appendChild(actorBloc);
+
+                            let actorPhoto = document.createElement("img");
+                            actorPhoto.src = `https://image.tmdb.org/t/p/original/${data.cast[i].profile_path}`
+                            actorBloc.appendChild(actorPhoto);
+                            actorPhoto.addEventListener("click", () => {
+                                let actorPhotoChoices = document.getElementById("actor-photo-choices");
+                                actorPhotoChoices.style.display = "block";
+                                let actorPhotosContainer = document.querySelector(".actor-photos-container");
+                                let closeButtonPhotos = document.querySelector(".close-button-photos");
+
+                                fetch(`https://api.themoviedb.org/3/person/${data.cast[i].id}/images?api_key=${TMDBAPI}`)
+                                    .then((response) => { return response.json() })
+                                    .then((data) => {
+                                        console.log(data);
+                                        for (let i = 0; i < data.profiles.length; i++) {
+                                            let photo = document.createElement("img");
+                                            photo.setAttribute("class", "photo");
+                                            photo.src = `https://image.tmdb.org/t/p/original/${data.profiles[i].file_path}`;
+
+                                            actorPhotosContainer.appendChild(photo);
+                                        }
+                                        closeButtonPhotos.addEventListener("click", () => {
+                                            actorPhotoChoices.style.display = "none";
+                                            let photosToDelete = document.querySelectorAll(".photo");
+                                            photosToDelete.forEach(element => element.remove());
+                                        })
+                                    })
+                            })
+
+                            let actorCredit = document.createElement("span");
+                            actorCredit.setAttribute("class", "actor-credit");
+                            actorCredit.innerHTML = `${data.cast[i].name} as ${data.cast[i].character}`;
+                            actorBloc.appendChild(actorCredit);
+                        }
+                    })
 
                 boutonAjoutSaison.addEventListener("click", () => {
 
                     let myForm = document.getElementById("form-ajout-saison");
                     formData = new FormData(myForm);
-                    formData.append('serieId', `${findId}`)
-                    formData.append('serieTitle', `${data.title}`)
-                    formData.append('tmdbid', `${TMDBId}`)
+                    formData.append('serieId', `${findId} `)
+                    formData.append('serieTitle', `${data.title} `)
+                    formData.append('tmdbid', `${TMDBId} `)
 
                     let envoiSaison = {
                         method: 'POST',
@@ -270,33 +312,106 @@ fetch(`http://localhost:3000/api/keys/${APIDocId}`)
                         })
                 })
 
-                boutonAjoutFanart.addEventListener("click", () => {
-                    let myForm = document.getElementById("form-ajout-fanart");
-                    formData = new FormData(myForm);
+                logoButton.addEventListener("click", () => {
 
-                    let envoiFanart = {
-                        method: 'PUT',
-                        body: formData
-                    }
+                    let serieLogoChoices = document.getElementById("serie-logo-choices");
+                    serieLogoChoices.style.display = "block";
+                    let serieLogoContainer = document.querySelector(".serie-logo-container");
+                    let closeButtonLogos = document.querySelector(".close-button-logos");
+                    fetch(`https://api.themoviedb.org/3/tv/${TMDBId}/images?api_key=${TMDBAPI}`)
+                        .then((response) => { return response.json() })
+                        .then((data) => {
+                            console.log(data)
+                            for (let i = 0; i < data.logos.length; i++) {
+                                if (data.logos[i].iso_639_1 === 'en') {
+                                    let logo = document.createElement("img");
+                                    logo.src = `https://image.tmdb.org/t/p/original/${data.logos[i].file_path}`;
+                                    logo.setAttribute("class", "logo");
+                                    serieLogoContainer.appendChild(logo);
+                                    logo.addEventListener("click", () => {
+                                        let newLogoPath = `https://image.tmdb.org/t/p/original/${data.logos[i].file_path}`;
 
-                    fetch(`http://localhost:3000/api/series/fanart/${findId}`, envoiFanart)
-                        .then(() => {
-                            location.reload();
+                                        let logoChange =
+                                        {
+                                            method: 'PUT',
+                                            headers: { 'Content-Type': 'application/json' },
+                                            body: JSON.stringify({ newLogoPath })
+                                        }
+
+                                        fetch(`http://localhost:3000/api/series/majLogo/${findId}`, logoChange)
+                                            .then(() => {
+                                                location.reload()
+                                            })
+                                    })
+                                }
+                            }
+                            closeButtonLogos.addEventListener("click", () => {
+                                serieLogoChoices.style.display = "none";
+                                let logosToDelete = document.querySelectorAll(".logo");
+                                logosToDelete.forEach((element) => element.remove());
+                            })
                         })
                 })
 
-                boutonAjoutLogo.addEventListener("click", () => {
-                    let myForm = document.getElementById("form-ajout-logo");
-                    formData = new FormData(myForm);
+                fanartButton.addEventListener("click", () => {
+                    let serieFanartChoices = document.getElementById("serie-fanart-choices");
+                    serieFanartChoices.style.display = "block";
+                    let serieFanartContainer = document.querySelector(".serie-fanart-container");
+                    let closeButtonFanarts = document.querySelector(".close-button-fanarts");
+                    fetch(`https://api.themoviedb.org/3/tv/${TMDBId}/images?api_key=${TMDBAPI}`)
+                        .then((response) => { return response.json() })
+                        .then((data) => {
+                            console.log(data);
+                            for (let i = 0; i < data.backdrops.length; i++) {
+                                let fanartBox = document.createElement("div");
+                                fanartBox.setAttribute("class", "fanart-box");
+                                serieFanartContainer.appendChild(fanartBox);
+                                let fanart = document.createElement("img");
+                                fanart.src = `https://image.tmdb.org/t/p/original/${data.backdrops[i].file_path}`;
+                                fanart.setAttribute("class", "fanart");
+                                fanartBox.appendChild(fanart);
+                                let findFanart = fanartImages.find((element) => element === `https://image.tmdb.org/t/p/original/${data.backdrops[i].file_path}`)
+                                if (findFanart) {
+                                    let presenceMarker = document.createElement("div");
+                                    presenceMarker.setAttribute("class", "presence-marker");
+                                    presenceMarker.innerHTML += `<i class="fa-solid fa-circle-check"></i>`
+                                    fanartBox.appendChild(presenceMarker);
+                                    fanart.addEventListener("click", () => {
+                                        let fanartToRemove = `https://image.tmdb.org/t/p/original/${data.backdrops[i].file_path}`;
+                                        let removeFanart = {
+                                            method: 'PUT',
+                                            headers: { 'Content-Type': 'application/json' },
+                                            body: JSON.stringify({ fanartToRemove })
+                                        }
 
-                    let envoiLogo = {
-                        method: 'PUT',
-                        body: formData
-                    }
+                                        fetch(`http://localhost:3000/api/series/removeFanart/${findId}`, removeFanart)
+                                            .then(() => {
+                                                location.reload();
+                                            })
+                                    })
+                                }
 
-                    fetch(`http://localhost:3000/api/series/logo/${findId}`, envoiLogo)
-                        .then(() => {
-                            location.reload();
+                                else {
+                                    fanart.addEventListener("click", () => {
+                                        let fanartToAdd = `https://image.tmdb.org/t/p/original/${data.backdrops[i].file_path}`;
+                                        let addFanart = {
+                                            method: 'PUT',
+                                            headers: { 'Content-Type': 'application/json' },
+                                            body: JSON.stringify({ fanartToAdd })
+                                        }
+
+                                        fetch(`http://localhost:3000/api/series/addFanart/${findId}`, addFanart)
+                                            .then(() => {
+                                                location.reload()
+                                            })
+                                    })
+                                }
+                            }
+                            closeButtonFanarts.addEventListener("click", () => {
+                                serieFanartChoices.style.display = "none";
+                                let fanartsToDelete = document.querySelectorAll(".fanart-box");
+                                fanartsToDelete.forEach((element) => element.remove());
+                            })
                         })
                 })
 

@@ -12,8 +12,10 @@ router.get('/genre/:genre', serieController.getSerieByGenre)
 router.get('/note/:note', serieController.getSerieByNote)
 router.put('/majNote/:id', serieController.majNoteSerie)
 router.put('/majGenre/:id', serieController.majGenre)
-router.put('/fanart/:id', multer, serieController.addFanart)
-router.put('/logo/:id', multer, serieController.addLogo)
+router.put('/addFanart/:id', multer, serieController.addFanart)
+router.put('/removeFanart/:id', serieController.removeFanart)
+// router.put('/logo/:id', multer, serieController.addLogo)
 router.put('/majPoster/:id', serieController.majPoster)
+router.put('/majLogo/:id', serieController.majLogo)
 
 module.exports = router

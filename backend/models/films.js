@@ -12,7 +12,14 @@ const filmSchema = mongoose.Schema({
     imageUrl: { type: String, required: true },
     fanartUrl: [{ type: String }],
     logo: { type: String },
-    runtime: { type: String, required: true }
+    runtime: { type: String, required: true },
+    awards: { type: String },
+    noteTMDB: { type: String },
+    nombreVotesTMDB: { type: String },
+    metascore: { type: String },
+    noteIMDB: { type: String },
+    nombreVotesIMDB: { type: String }
+
 })
 
 module.exports = mongoose.model('Film', filmSchema);

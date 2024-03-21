@@ -5,6 +5,10 @@ console.log(findId);
 const boutonSupprimer = document.querySelector(".supprimer-film")
 const anneeFilm = document.querySelector(".annee-film");
 const genreFilm = document.querySelector(".genre-film");
+const awardsFilm = document.querySelector(".awards");
+const noteTMDBFilm = document.querySelector(".note-tmdb");
+const noteIMDBFilm = document.querySelector(".note-imdb");
+const metascore = document.querySelector(".metascore");
 const genres = ["Drama", "Aventure", "Romance", "Adulte", "Western", "Comedie", "Thriller", "Horreur", "Sci-Fi", "Fantasy", "Documentaire", "Animation"];
 const plot = document.querySelector(".plot");
 const addGenre = document.querySelector(".add-genre");
@@ -19,6 +23,8 @@ const arrowLeft = document.querySelector(".arrow-left");
 const arrowRight = document.querySelector(".arrow-right");
 const fanartNumber = document.querySelector(".fanart-number");
 const logoFilm = document.querySelector(".logo-film");
+
+
 
 function reset() {
     let resetFilms = document.querySelectorAll(".lien-film")
@@ -352,6 +358,12 @@ fetch(`http://localhost:3000/api/films/${findId}`)
         }))
 
         anneeFilm.innerText = data.releaseDate;
+
+        awardsFilm.innerText = data.awards;
+
+        noteTMDBFilm.innerText = "TMDB: " + data.noteTMDB + `(${data.nombreVotesTMDB} votes)`;
+        noteIMDBFilm.innerText = "IMDB: " + data.noteIMDB + `(${data.nombreVotesIMDB} votes)`;
+        metascore.innerText = "Metascore: " + data.metascore;
 
         plot.innerText = data.plot;
 

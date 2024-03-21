@@ -5,7 +5,7 @@ const filmsRealisateur = document.getElementById("films-realisateur");
 const nombreFilms = document.getElementById("nombre-films");
 const boutonAjoutFilm = document.querySelector(".bouton-ajouter-film");
 const displayAjout = document.querySelector(".display-ajout");
-const boutonFetchTMDB = document.querySelector(".bouton-fetch-tmdb");
+const boutonFetch = document.querySelector(".bouton-fetch");
 const APIDocId = "65f195f9101332610cab8fb6"
 let starRating = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 let qteFilms = 0;
@@ -198,13 +198,17 @@ fetch(`http://localhost:3000/api/realisateurs/${findId}`)
             };
         })
 
-        boutonFetchTMDB.addEventListener("click", () => {
-            let idToFetch = document.getElementById("fetch").value;
+        boutonFetch.addEventListener("click", () => {
+            let idTMDBToFetch = document.getElementById("fetchTMDB").value;
+            let idIMDBToFetch = document.getElementById("fetchIMDB").value;
 
             fetch(`http://localhost:3000/api/keys/${APIDocId}`)
                 .then((response) => { return response.json() })
                 .then((data) => {
-                    fetch(`https://api.themoviedb.org/3/movie/${idToFetch}?api_key=${data.TMDB}`)
+                    let TMDBID = data.TMDB;
+                    let IMDBID = data.IMDB;
+
+                    fetch(`https://api.themoviedb.org/3/movie/${idTMDBToFetch}?api_key=${TMDBID}`)
                         .then((response) => { return response.json() })
                         .then((data) => {
                             console.log(data);
@@ -226,12 +230,40 @@ fetch(`http://localhost:3000/api/realisateurs/${findId}`)
 
                             let posterFilm = document.getElementById("poster");
                             posterFilm.value = `https://image.tmdb.org/t/p/original/${data.poster_path}`;
+                            let posterArt = document.querySelector(".poster");
+                            posterArt.src = `https://image.tmdb.org/t/p/original/${data.poster_path}`;
 
                             let fanartFilm = document.getElementById("fanart");
                             fanartFilm.value = `https://image.tmdb.org/t/p/original/${data.backdrop_path}`
+                            let fanArt = document.querySelector(".fanart");
+                            fanArt.src = `https://image.tmdb.org/t/p/original/${data.backdrop_path}`;
 
                             let runtimeFilm = document.getElementById("runtime");
                             runtimeFilm.value = data.runtime;
+
+                            let noteTMDB = document.getElementById("note-tmdb");
+                            noteTMDB.value = Math.round(data.vote_average * 10) / 10;
+
+                            let nombreVotesTMDB = document.getElementById("nombre-votes-tmdb");
+                            nombreVotesTMDB.value = data.vote_count;
+
+                            fetch(`http://www.omdbapi.com/?apikey=${IMDBID}&i=${idIMDBToFetch}`)
+                                .then((response) => { return response.json() })
+                                .then((data) => {
+                                    console.log(data);
+
+                                    let awards = document.getElementById("awards");
+                                    awards.value = data.Awards;
+
+                                    let noteIMDB = document.getElementById("note-imdb");
+                                    noteIMDB.value = data.imdbRating;
+
+                                    let nombreVotesIMDB = document.getElementById("nombre-votes-imdb");
+                                    nombreVotesIMDB.value = data.imdbVotes;
+
+                                    let metascore = document.getElementById("metascore");
+                                    metascore.value = data.Metascore;
+                                })
                         })
                 })
         })

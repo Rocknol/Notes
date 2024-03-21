@@ -254,7 +254,7 @@ boutonAjouterSerie.addEventListener("click", () => {
 })
 
 resetFilter.addEventListener("click", () => {
-    // location.reload();
+    location.reload();
 })
 
 fetch('http://localhost:3000/api/episodes')
@@ -383,9 +383,3 @@ boutonFetch.addEventListener("click", () => {
                 })
         })
 })
-
-fetch(`https://api.themoviedb.org/3/tv/60735/credits?api_key=5adc2874e6528a432f1e0fbb7422118e`)
-    .then((response) => { return response.json() })
-    .then((data) => {
-        console.log(data);
-    })

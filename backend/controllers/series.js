@@ -69,19 +69,31 @@ exports.majGenre = (req, res, next) => {
 }
 
 exports.addFanart = (req, res, next) => {
-    Serie.updateOne({ _id: req.params.id }, { $push: { fanartUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}` } })
+    Serie.updateOne({ _id: req.params.id }, { $push: { fanartUrl: req.body.fanartToAdd } })
         .then((serie) => res.status(201).json(serie))
         .catch((error) => res.status(401).json(error))
 }
 
-exports.addLogo = (req, res, next) => {
-    Serie.updateOne({ _id: req.params.id }, { $set: { logo: `${req.protocol}://${req.get('host')}/images/${req.file.filename}` } })
+exports.removeFanart = (req, res, next) => {
+    Serie.updateOne({ _id: req.params.id }, { $pull: { fanartUrl: req.body.fanartToRemove } })
         .then((serie) => res.status(201).json(serie))
         .catch((error) => res.status(401).json(error))
 }
+
+// exports.addLogo = (req, res, next) => {
+//     Serie.updateOne({ _id: req.params.id }, { $set: { logo: `${req.protocol}://${req.get('host')}/images/${req.file.filename}` } })
+//         .then((serie) => res.status(201).json(serie))
+//         .catch((error) => res.status(401).json(error))
+// }
 
 exports.majPoster = (req, res, next) => {
     Serie.updateOne({ _id: req.params.id }, { $set: { imageUrl: req.body.newPosterPath } })
+        .then((serie) => res.status(201).json(serie))
+        .catch((error) => res.status(401).json(error))
+}
+
+exports.majLogo = (req, res, next) => {
+    Serie.updateOne({ _id: req.params.id }, { $set: { logo: req.body.newLogoPath } })
         .then((serie) => res.status(201).json(serie))
         .catch((error) => res.status(401).json(error))
 }

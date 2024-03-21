@@ -61,9 +61,10 @@
         </div>
 
         <div class="form-et-bouton-film">
-            <div class="tmdb-fetch">
-                <input type="text" id="fetch">
-                <button type="submit" class="bouton-fetch-tmdb">Fetch from TMDB</button>
+            <div class="fetch">
+                <input type="text" placeholder="TMDB ID" id="fetchTMDB">
+                <input type="text" placeholder="IMDB ID" id="fetchIMDB">
+                <button type="submit" class="bouton-fetch">Fetch</button>
             </div>
             <form id="form-ajout-film" name="form-ajout-film">
                 <div class="titre">
@@ -126,14 +127,40 @@
                     <label for="runtime">Runtime:</label>
                     <input type="text" name="runtime" id="runtime">
                 </div>
-
-
+                <div class="awards-film">
+                    <label for="awards">Awards:</label>
+                    <input type="text" name="awards" id="awards">
+                </div>
+                <div class="note-tmdb">
+                    <label for="note-tmdb">Note TMDB:</label>
+                    <input type="text" name="noteTMDB" id="note-tmdb">
+                </div>
+                <div class="nombre-votes-tmdb">
+                    <label for="nombre-votes-tmdb">Nombre de votes TMDB:</label>
+                    <input type="text" name="nombrevotesTMDB" id="nombre-votes-tmdb">
+                </div>
+                <div class="note-imdb">
+                    <label for="note-imdb">Note IMDB:</label>
+                    <input type="text" name="noteIMDB" id="note-imdb">
+                </div>
+                <div class="nombre-votes-imdb">
+                    <label for="nombre-votes-imdb">Nombre de votes IMDB:</label>
+                    <input type="text" name="nombrevotesIMDB" id="nombre-votes-imdb">
+                </div>
+                <div class="metascore">
+                    <label for="metascore">Metascore:</label>
+                    <input type="text" name="metascore" id="metascore">
+                </div>
             </form>
             <div class="bouton-ajouter">
                 <button type="submit" class="bouton-ajouter-film">Ajouter ce film</button>
             </div>
         </div>
 
+        <div class="art-container">
+            <div class="poster-art"><img class="poster"></div>
+            <div class="fan-art"><img class="fanart"></div>
+        </div>
 
         <div id="films-realisateur"></div>
 
