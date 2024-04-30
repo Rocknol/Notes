@@ -611,8 +611,8 @@ li a:hover {
 }
 
 .fa-circle-check {
-    color: blue;
-    font-size: 2em;
+    color: gold;
+    font-size: 3em;
 }
 
 #serie-choices {
@@ -649,7 +649,8 @@ li a:hover {
 
 .close-button {
     cursor: pointer;
-    width: fit-content;
+    width: 50px;
+    text-align: center;
     background-color: black;
     padding: 5px;
 }
@@ -737,6 +738,24 @@ li a:hover {
     left: 0px;
     top: 0px;
     z-index: 1;
+}
+
+.ticked-marker {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    z-index: 1;
+    display: none;
+}
+
+.ticked-marker-active {
+    display: block;
+}
+
+
+.fa-square-plus {
+    color: gold;
+    font-size: 3em;
 }
 
 /* #actor-photo-choices {
