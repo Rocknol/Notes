@@ -16,6 +16,7 @@ const serieSchema = mongoose.Schema({
     noteTMDB: { type: String },
     nombreVotesTMDB: { type: String },
     TMDBId: { type: String, required: true },
+    TVDBId: { type: String },
     awards: { type: String },
     noteIMDB: { type: String },
     nombreVotesIMDB: { type: String }

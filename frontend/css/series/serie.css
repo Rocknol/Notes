@@ -95,13 +95,12 @@ li a:hover {
 
 .decimale-serie {
     font-weight: bold;
-    font-size: large;
+    font-size: xx-large;
     color: khaki;
     background-color: black;
     position: absolute;
-    right: 0px;
+    left: 0px;
     top: 0px;
-    width: 20px;
     text-align: center;
     padding: 3px;
 }
@@ -454,7 +453,6 @@ li a:hover {
 #carousel {
     width: 1160px;
     height: 540px;
-    border: 4px solid rgb(214, 136, 41);
 }
 
 .container-carousel {
@@ -599,17 +597,17 @@ li a:hover {
     font-size: large;
 }
 
-.close-button-posters {
-    position: absolute;
-    top: 0px;
-    right: 0px;
-    cursor: pointer;
-    z-index: 1;
+.serie-number {
+    position: fixed;
+    font-size: 2em;
+    font-weight: bold;
+    bottom: 0px;
+    left: 0px;
 }
 
 .fa-xmark {
     color: red;
-    font-size: 2em;
+    font-size: 3em;
 }
 
 .fa-circle-check {
@@ -617,9 +615,9 @@ li a:hover {
     font-size: 2em;
 }
 
-#serie-poster-choices {
+#serie-choices {
     display: none;
-    overflow: auto;
+    flex-direction: column;
     position: fixed;
     top: 0;
     bottom: 0;
@@ -627,37 +625,36 @@ li a:hover {
     right: 0;
     margin: auto;
     width: 1000px;
-    height: 800px;
-    background-color: rgb(214, 136, 41);
-    border: 5px solid black;
+    height: 1000px;
 }
 
-.serie-poster-container {
+.serie-container {
     display: flex;
     flex-wrap: wrap;
     position: relative;
     width: 100%;
     height: 100%;
+    overflow: auto;
+    background-color: rgb(214, 136, 41);
 }
 
 .poster {
     width: 25%;
-    height: 50%;
+    height: 40%;
 }
 
 .poster:hover {
     filter: brightness(0.5);
 }
 
-.close-button-logos {
-    position: absolute;
-    top: 0px;
-    right: 0px;
+.close-button {
     cursor: pointer;
-    z-index: 1;
+    width: fit-content;
+    background-color: black;
+    padding: 5px;
 }
 
-#serie-logo-choices {
+/* #serie-logo-choices {
     display: none;
     overflow: auto;
     position: fixed;
@@ -678,18 +675,18 @@ li a:hover {
     position: relative;
     width: 100%;
     height: 100%;
-}
+} */
 
 .logo {
-    width: 50%;
-    height: 25%;
+    width: 25%;
+    height: 10%;
 }
 
 .logo:hover {
     filter: brightness(0.5);
 }
 
-.close-button-fanarts {
+/* .close-button-fanarts {
     position: absolute;
     top: 0px;
     right: 0px;
@@ -718,7 +715,7 @@ li a:hover {
     position: relative;
     width: 100%;
     height: 100%;
-}
+} */
 
 .fanart-box {
     width: 50%;
@@ -742,7 +739,7 @@ li a:hover {
     z-index: 1;
 }
 
-#actor-photo-choices {
+/* #actor-photo-choices {
     display: none;
     overflow: auto;
     position: fixed;
@@ -757,30 +754,30 @@ li a:hover {
     border: 5px solid black;
 }
 
-.actor-photos-container {
+.actor-photo-container {
     display: flex;
     flex-wrap: wrap;
     position: relative;
     width: 100%;
     height: 100%;
-}
+} */
 
 .photo {
     width: 25%;
-    height: 50%;
+    height: 40%;
 }
 
 .photo:hover {
     filter: brightness(0.5);
 }
 
-.close-button-photos {
+/* .close-button-photos {
     position: absolute;
     top: 0px;
     right: 0px;
     cursor: pointer;
     z-index: 1;
-}
+} */
 
 #actors {
     display: flex;
@@ -807,4 +804,23 @@ li a:hover {
 .actor-credit {
     font-weight: bold;
     font-size: small;
+}
+
+.fanart-source {
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    z-index: 1;
+    background-color: black;
+    color: gold;
+    font-weight: bold;
+    padding: 5px;
+}
+
+.resolution {
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    z-index: 1;
+    background-color: gold;
 }

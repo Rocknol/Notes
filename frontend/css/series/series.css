@@ -295,7 +295,7 @@ legend {
     flex-direction: column;
     gap: 50px;
     position: absolute;
-    top: 550px;
+    top: 600px;
     margin: 20px;
 }
 
@@ -477,7 +477,6 @@ input[type=text] {
     font-size: 50px;
     position: absolute;
     right: 0px;
-    z-index: 1;
     color: gold;
     background-color: black;
     padding: 20px;

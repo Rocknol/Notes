@@ -21,9 +21,15 @@ const logoSerie = document.querySelector(".logo-serie");
 const boutonFetchTMDB = document.querySelector(".bouton-fetch-tmdb");
 const APIDocId = "65f195f9101332610cab8fb6"
 const actors = document.getElementById("actors");
+const serieChoices = document.getElementById("serie-choices");
+const serieContainer = document.querySelector(".serie-container");
+const closeButton = document.querySelector(".close-button");
+const serieNumber = document.querySelector(".serie-number");
 let TMDBId;
+let TVDBId;
 let numberNextSeason = 0;
 let fanartImages = [];
+let allFanart = [];
 
 
 displayAjout.addEventListener("click", () => {
@@ -50,6 +56,7 @@ fetch(`http://localhost:3000/api/keys/${APIDocId}`)
     .then((response) => { return response.json() })
     .then((data) => {
         const TMDBAPI = data.TMDB;
+        const TVDBToken = data.TVDBToken;
 
         fetch(`http://localhost:3000/api/series/${findId}`)
             .then((response) => { return response.json() })
@@ -57,15 +64,13 @@ fetch(`http://localhost:3000/api/keys/${APIDocId}`)
                 const posterSerie = document.querySelector(".poster-serie");
                 posterSerie.src = data.imageUrl;
                 posterSerie.addEventListener("click", () => {
-                    let seriePosterChoices = document.getElementById("serie-poster-choices");
-                    seriePosterChoices.style.display = "block";
-                    let seriePosterContainer = document.querySelector(".serie-poster-container");
-                    let closeButtonPosters = document.querySelector(".close-button-posters");
+                    serieChoices.style.display = "flex";
 
                     fetch(`http://api.themoviedb.org/3/tv/${TMDBId}/images?api_key=${TMDBAPI}`)
                         .then((response) => { return response.json() })
                         .then((data) => {
                             console.log(data);
+                            serieNumber.innerText = data.posters.length + " poster(s)";
                             for (let i = 0; i < data.posters.length; i++) {
                                 let poster = document.createElement("img");
                                 poster.setAttribute("class", "poster");
@@ -84,12 +89,13 @@ fetch(`http://localhost:3000/api/keys/${APIDocId}`)
                                         })
                                 })
 
-                                seriePosterContainer.appendChild(poster);
+                                serieContainer.appendChild(poster);
                             }
-                            closeButtonPosters.addEventListener("click", () => {
-                                seriePosterChoices.style.display = "none";
+                            closeButton.addEventListener("click", () => {
+                                serieChoices.style.display = "none";
                                 let postersToDelete = document.querySelectorAll(".poster");
                                 postersToDelete.forEach(element => element.remove());
+                                serieNumber.innerText = "";
                             })
                         })
                 })
@@ -129,6 +135,10 @@ fetch(`http://localhost:3000/api/keys/${APIDocId}`)
                 if (data.TMDBId) {
                     TMDBId = data.TMDBId;
                     console.log(TMDBId);
+                }
+
+                if (data.TVDBId) {
+                    TVDBId = data.TVDBId;
                 }
 
                 if (data.note) {
@@ -260,26 +270,24 @@ fetch(`http://localhost:3000/api/keys/${APIDocId}`)
                             actorPhoto.src = `https://image.tmdb.org/t/p/original/${data.cast[i].profile_path}`
                             actorBloc.appendChild(actorPhoto);
                             actorPhoto.addEventListener("click", () => {
-                                let actorPhotoChoices = document.getElementById("actor-photo-choices");
-                                actorPhotoChoices.style.display = "block";
-                                let actorPhotosContainer = document.querySelector(".actor-photos-container");
-                                let closeButtonPhotos = document.querySelector(".close-button-photos");
+                                serieChoices.style.display = "flex";
 
                                 fetch(`https://api.themoviedb.org/3/person/${data.cast[i].id}/images?api_key=${TMDBAPI}`)
                                     .then((response) => { return response.json() })
                                     .then((data) => {
                                         console.log(data);
+                                        serieNumber.innerText = data.profiles.length + " photo(s)"
                                         for (let i = 0; i < data.profiles.length; i++) {
                                             let photo = document.createElement("img");
                                             photo.setAttribute("class", "photo");
                                             photo.src = `https://image.tmdb.org/t/p/original/${data.profiles[i].file_path}`;
-
-                                            actorPhotosContainer.appendChild(photo);
+                                            serieContainer.appendChild(photo);
                                         }
-                                        closeButtonPhotos.addEventListener("click", () => {
-                                            actorPhotoChoices.style.display = "none";
+                                        closeButton.addEventListener("click", () => {
+                                            serieChoices.style.display = "none";
                                             let photosToDelete = document.querySelectorAll(".photo");
                                             photosToDelete.forEach(element => element.remove());
+                                            serieNumber.innerText = "";
                                         })
                                     })
                             })
@@ -295,9 +303,9 @@ fetch(`http://localhost:3000/api/keys/${APIDocId}`)
 
                     let myForm = document.getElementById("form-ajout-saison");
                     formData = new FormData(myForm);
-                    formData.append('serieId', `${findId} `)
-                    formData.append('serieTitle', `${data.title} `)
-                    formData.append('tmdbid', `${TMDBId} `)
+                    formData.append('serieId', `${findId}`)
+                    formData.append('serieTitle', `${data.title}`)
+                    formData.append('tmdbid', `${TMDBId}`)
 
                     let envoiSaison = {
                         method: 'POST',
@@ -313,21 +321,19 @@ fetch(`http://localhost:3000/api/keys/${APIDocId}`)
                 })
 
                 logoButton.addEventListener("click", () => {
+                    serieChoices.style.display = "flex";
 
-                    let serieLogoChoices = document.getElementById("serie-logo-choices");
-                    serieLogoChoices.style.display = "block";
-                    let serieLogoContainer = document.querySelector(".serie-logo-container");
-                    let closeButtonLogos = document.querySelector(".close-button-logos");
                     fetch(`https://api.themoviedb.org/3/tv/${TMDBId}/images?api_key=${TMDBAPI}`)
                         .then((response) => { return response.json() })
                         .then((data) => {
                             console.log(data)
+                            serieNumber.innerText = data.logos.length + " logo(s)";
                             for (let i = 0; i < data.logos.length; i++) {
                                 if (data.logos[i].iso_639_1 === 'en') {
                                     let logo = document.createElement("img");
                                     logo.src = `https://image.tmdb.org/t/p/original/${data.logos[i].file_path}`;
                                     logo.setAttribute("class", "logo");
-                                    serieLogoContainer.appendChild(logo);
+                                    serieContainer.appendChild(logo);
                                     logo.addEventListener("click", () => {
                                         let newLogoPath = `https://image.tmdb.org/t/p/original/${data.logos[i].file_path}`;
 
@@ -345,72 +351,154 @@ fetch(`http://localhost:3000/api/keys/${APIDocId}`)
                                     })
                                 }
                             }
-                            closeButtonLogos.addEventListener("click", () => {
-                                serieLogoChoices.style.display = "none";
+                            closeButton.addEventListener("click", () => {
+                                serieChoices.style.display = "none";
                                 let logosToDelete = document.querySelectorAll(".logo");
                                 logosToDelete.forEach((element) => element.remove());
+                                serieNumber.innerText = "";
                             })
                         })
                 })
 
                 fanartButton.addEventListener("click", () => {
-                    let serieFanartChoices = document.getElementById("serie-fanart-choices");
-                    serieFanartChoices.style.display = "block";
-                    let serieFanartContainer = document.querySelector(".serie-fanart-container");
-                    let closeButtonFanarts = document.querySelector(".close-button-fanarts");
+                    serieChoices.style.display = "flex";
+
                     fetch(`https://api.themoviedb.org/3/tv/${TMDBId}/images?api_key=${TMDBAPI}`)
                         .then((response) => { return response.json() })
                         .then((data) => {
                             console.log(data);
-                            for (let i = 0; i < data.backdrops.length; i++) {
-                                let fanartBox = document.createElement("div");
-                                fanartBox.setAttribute("class", "fanart-box");
-                                serieFanartContainer.appendChild(fanartBox);
-                                let fanart = document.createElement("img");
-                                fanart.src = `https://image.tmdb.org/t/p/original/${data.backdrops[i].file_path}`;
-                                fanart.setAttribute("class", "fanart");
-                                fanartBox.appendChild(fanart);
-                                let findFanart = fanartImages.find((element) => element === `https://image.tmdb.org/t/p/original/${data.backdrops[i].file_path}`)
-                                if (findFanart) {
-                                    let presenceMarker = document.createElement("div");
-                                    presenceMarker.setAttribute("class", "presence-marker");
-                                    presenceMarker.innerHTML += `<i class="fa-solid fa-circle-check"></i>`
-                                    fanartBox.appendChild(presenceMarker);
-                                    fanart.addEventListener("click", () => {
-                                        let fanartToRemove = `https://image.tmdb.org/t/p/original/${data.backdrops[i].file_path}`;
-                                        let removeFanart = {
-                                            method: 'PUT',
-                                            headers: { 'Content-Type': 'application/json' },
-                                            body: JSON.stringify({ fanartToRemove })
+                            allFanart.push(data.backdrops);
+                            console.log(allFanart);
+                            fetch(`https://api4.thetvdb.com/v4/series/${TVDBId}/artworks`, {
+                                headers: {
+                                    'Authorization': `Bearer ${TVDBToken}`,
+                                    'Accept-Language': 'en',
+                                }
+                            })
+                                .then((response) => { return response.json() })
+                                .then((data) => {
+                                    console.log(data);
+                                    allFanart.push(data.data.artworks);
+                                    console.log(allFanart);
+
+                                    console.log(allFanart[0]);
+                                    for (let i = 0; i < allFanart[0].length; i++) {
+                                        let fanartBox = document.createElement("div");
+                                        fanartBox.setAttribute("class", "fanart-box");
+                                        serieContainer.appendChild(fanartBox);
+                                        let fanartSource = document.createElement("div");
+                                        fanartSource.innerText = "TMDB";
+                                        fanartSource.setAttribute("class", "fanart-source");
+                                        fanartBox.appendChild(fanartSource);
+                                        let fanart = document.createElement("img");
+                                        fanart.src = `https://image.tmdb.org/t/p/original/${allFanart[0][i].file_path}`;
+                                        fanart.setAttribute("class", "fanart");
+                                        fanartBox.appendChild(fanart);
+                                        let findFanart = fanartImages.find((element) => element === `https://image.tmdb.org/t/p/original/${allFanart[0][i].file_path}`)
+                                        if (findFanart) {
+                                            let presenceMarker = document.createElement("div");
+                                            presenceMarker.setAttribute("class", "presence-marker");
+                                            presenceMarker.innerHTML += `<i class="fa-solid fa-circle-check"></i>`;
+                                            fanartBox.appendChild(presenceMarker);
+                                            fanart.addEventListener("click", () => {
+                                                let fanartToRemove = `https://image.tmdb.org/t/p/original/${allFanart[0][i].file_path}`;
+                                                let removeFanart = {
+                                                    method: 'PUT',
+                                                    headers: { 'Content-Type': 'application/json' },
+                                                    body: JSON.stringify({ fanartToRemove })
+                                                }
+
+                                                fetch(`http://localhost:3000/api/series/removeFanart/${findId}`, removeFanart)
+                                                    .then(() => {
+                                                        location.reload();
+                                                    })
+                                            })
                                         }
 
-                                        fetch(`http://localhost:3000/api/series/removeFanart/${findId}`, removeFanart)
-                                            .then(() => {
-                                                location.reload();
-                                            })
-                                    })
-                                }
+                                        else {
+                                            fanart.addEventListener("click", () => {
+                                                let fanartToAdd = `https://image.tmdb.org/t/p/original/${allFanart[0][i].file_path}`;
+                                                let addFanart = {
+                                                    method: 'PUT',
+                                                    headers: { 'Content-Type': 'application/json' },
+                                                    body: JSON.stringify({ fanartToAdd })
+                                                }
 
-                                else {
-                                    fanart.addEventListener("click", () => {
-                                        let fanartToAdd = `https://image.tmdb.org/t/p/original/${data.backdrops[i].file_path}`;
-                                        let addFanart = {
-                                            method: 'PUT',
-                                            headers: { 'Content-Type': 'application/json' },
-                                            body: JSON.stringify({ fanartToAdd })
+                                                fetch(`http://localhost:3000/api/series/addFanart/${findId}`, addFanart)
+                                                    .then(() => {
+                                                        location.reload()
+                                                    })
+                                            })
                                         }
+                                        let resolution = document.createElement("div");
+                                        resolution.setAttribute("class", "resolution");
+                                        resolution.innerHTML = `${allFanart[0][i].height} / ${allFanart[0][i].width}`;
+                                        fanartBox.appendChild(resolution);
 
-                                        fetch(`http://localhost:3000/api/series/addFanart/${findId}`, addFanart)
-                                            .then(() => {
-                                                location.reload()
-                                            })
-                                    })
-                                }
-                            }
-                            closeButtonFanarts.addEventListener("click", () => {
-                                serieFanartChoices.style.display = "none";
+                                    }
+                                    for (let j = 0; j < allFanart[1].length; j++) {
+                                        if (`${allFanart[1][j].image}`.includes("fanart") || `${allFanart[1][j].image}`.includes("background")) {
+                                            let fanartBox = document.createElement("div");
+                                            fanartBox.setAttribute("class", "fanart-box");
+                                            serieContainer.appendChild(fanartBox);
+                                            let fanartSource = document.createElement("div");
+                                            fanartSource.innerText = "TVDB";
+                                            fanartSource.setAttribute("class", "fanart-source");
+                                            fanartBox.appendChild(fanartSource);
+                                            let fanart = document.createElement("img");
+                                            fanart.src = `${allFanart[1][j].image}`;
+                                            fanart.setAttribute("class", "fanart");
+                                            fanartBox.appendChild(fanart);
+                                            let findFanart = fanartImages.find((element) => element === `${allFanart[1][j].image}`);
+                                            if (findFanart) {
+                                                let presenceMarker = document.createElement("div");
+                                                presenceMarker.setAttribute("class", "presence-marker");
+                                                presenceMarker.innerHTML += `<i class="fa-solid fa-circle-check"></i>`;
+                                                fanartBox.appendChild(presenceMarker);
+                                                fanart.addEventListener("click", () => {
+                                                    let fanartToRemove = `${allFanart[1][j].image}`;
+                                                    let removeFanart = {
+                                                        method: 'PUT',
+                                                        headers: { 'Content-Type': 'application/json' },
+                                                        body: JSON.stringify({ fanartToRemove })
+                                                    }
+
+                                                    fetch(`http://localhost:3000/api/series/removeFanart/${findId}`, removeFanart)
+                                                        .then(() => {
+                                                            location.reload();
+                                                        })
+                                                })
+                                            }
+
+                                            else {
+                                                fanart.addEventListener("click", () => {
+                                                    let fanartToAdd = `${allFanart[1][j].image}`;
+                                                    let addFanart = {
+                                                        method: 'PUT',
+                                                        headers: { 'Content-Type': 'application/json' },
+                                                        body: JSON.stringify({ fanartToAdd })
+                                                    }
+
+                                                    fetch(`http://localhost:3000/api/series/addFanart/${findId}`, addFanart)
+                                                        .then(() => {
+                                                            location.reload()
+                                                        })
+                                                })
+                                            }
+                                            let resolution = document.createElement("div");
+                                            resolution.setAttribute("class", "resolution");
+                                            resolution.innerHTML = `${allFanart[1][j].height} / ${allFanart[1][j].width}`;
+                                            fanartBox.appendChild(resolution);
+                                        }
+                                    }
+                                    serieNumber.innerText = (allFanart[0].length + allFanart[1].length) + " fanart(s)";
+                                })
+
+                            closeButton.addEventListener("click", () => {
+                                serieChoices.style.display = "none";
                                 let fanartsToDelete = document.querySelectorAll(".fanart-box");
                                 fanartsToDelete.forEach((element) => element.remove());
+                                serieNumber.innerText = "";
                             })
                         })
                 })

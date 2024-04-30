@@ -150,7 +150,7 @@ boutonFiltre.addEventListener("click", () => {
     restore();
     restoreDivsNotes();
 
-    let titreInput = document.getElementById("album").value;
+    let titreInput = document.getElementById("titrealbum").value;
     let artisteInput = document.getElementById("artiste").value;
     let noteInput = document.getElementById("note").value;
     let genreInput = document.getElementById("genre").value;

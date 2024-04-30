@@ -17,6 +17,7 @@ exports.createSerie = (req, res, next) => {
         noteTMDB: req.body.noteTMDB,
         nombreVotesTMDB: req.body.nombrevotesTMDB,
         TMDBId: req.body.tmdbid,
+        TVDBId: req.body.tvdbid,
         awards: req.body.awards,
         noteIMDB: req.body.noteIMDB,
         nombreVotesIMDB: req.body.nombrevotesIMDB

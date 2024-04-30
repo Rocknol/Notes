@@ -149,9 +149,11 @@ fetch(`http://localhost:3000/api/realisateurs/${findId}`)
             else {
 
                 let myForm = document.getElementById("form-ajout-film");
+                let idTMDBToFetch = document.getElementById("fetchTMDB").value;
                 formData = new FormData(myForm);
                 formData.append('realisateurId', `${findId}`)
                 formData.append('realisateur', `${data.name}`)
+                formData.append('tmdbid', `${idTMDBToFetch}`)
                 console.log(formData)
 
                 let envoiFilm = {
@@ -205,10 +207,10 @@ fetch(`http://localhost:3000/api/realisateurs/${findId}`)
             fetch(`http://localhost:3000/api/keys/${APIDocId}`)
                 .then((response) => { return response.json() })
                 .then((data) => {
-                    let TMDBID = data.TMDB;
-                    let IMDBID = data.IMDB;
+                    let TMDBAPI = data.TMDB;
+                    let IMDBAPI = data.IMDB;
 
-                    fetch(`https://api.themoviedb.org/3/movie/${idTMDBToFetch}?api_key=${TMDBID}`)
+                    fetch(`https://api.themoviedb.org/3/movie/${idTMDBToFetch}?api_key=${TMDBAPI}`)
                         .then((response) => { return response.json() })
                         .then((data) => {
                             console.log(data);
@@ -247,22 +249,30 @@ fetch(`http://localhost:3000/api/realisateurs/${findId}`)
                             let nombreVotesTMDB = document.getElementById("nombre-votes-tmdb");
                             nombreVotesTMDB.value = data.vote_count;
 
-                            fetch(`http://www.omdbapi.com/?apikey=${IMDBID}&i=${idIMDBToFetch}`)
+                            fetch(`http://www.omdbapi.com/?apikey=${IMDBAPI}&i=${idIMDBToFetch}`)
                                 .then((response) => { return response.json() })
                                 .then((data) => {
                                     console.log(data);
 
-                                    let awards = document.getElementById("awards");
-                                    awards.value = data.Awards;
+                                    if (data.Awards) {
+                                        let awards = document.getElementById("awards");
+                                        awards.value = data.Awards;
+                                    }
 
-                                    let noteIMDB = document.getElementById("note-imdb");
-                                    noteIMDB.value = data.imdbRating;
+                                    if (data.imdbRating) {
+                                        let noteIMDB = document.getElementById("note-imdb");
+                                        noteIMDB.value = data.imdbRating;
+                                    }
 
-                                    let nombreVotesIMDB = document.getElementById("nombre-votes-imdb");
-                                    nombreVotesIMDB.value = data.imdbVotes;
+                                    if (data.imdbVotes) {
+                                        let nombreVotesIMDB = document.getElementById("nombre-votes-imdb");
+                                        nombreVotesIMDB.value = data.imdbVotes;
+                                    }
 
-                                    let metascore = document.getElementById("metascore");
-                                    metascore.value = data.Metascore;
+                                    if (data.Metascore) {
+                                        let metascore = document.getElementById("metascore");
+                                        metascore.value = data.Metascore;
+                                    }
                                 })
                         })
                 })

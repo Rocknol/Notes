@@ -19,7 +19,8 @@ exports.createFilm = (req, res, next) => {
         nombreVotesTMDB: req.body.nombrevotesTMDB,
         noteIMDB: req.body.noteIMDB,
         nombreVotesIMDB: req.body.nombrevotesIMDB,
-        metascore: req.body.metascore
+        metascore: req.body.metascore,
+        TMDBId: req.body.tmdbid
 
     })
     newFilm.save()
@@ -126,6 +127,30 @@ exports.addFanart = (req, res, next) => {
 
 exports.addLogo = (req, res, next) => {
     Film.updateOne({ _id: req.params.id }, { $set: { logo: `${req.protocol}://${req.get('host')}/images/${req.file.filename}` } })
+        .then((film) => res.status(201).json(film))
+        .catch((error) => res.status(401).json(error))
+}
+
+exports.majPoster = (req, res, next) => {
+    Film.updateOne({ _id: req.params.id }, { $set: { imageUrl: req.body.newPosterPath } })
+        .then((film) => res.status(201).json(film))
+        .catch((error) => res.status(401).json(error))
+}
+
+exports.addFanart = (req, res, next) => {
+    Film.updateOne({ _id: req.params.id }, { $push: { fanartUrl: req.body.fanartToAdd } })
+        .then((film) => res.status(201).json(film))
+        .catch((error) => res.status(401).json(error))
+}
+
+exports.removeFanart = (req, res, next) => {
+    Film.updateOne({ _id: req.params.id }, { $pull: { fanartUrl: req.body.fanartToRemove } })
+        .then((film) => res.status(201).json(film))
+        .catch((error) => res.status(401).json(error))
+}
+
+exports.majLogo = (req, res, next) => {
+    Film.updateOne({ _id: req.params.id }, { $set: { logo: req.body.newLogoPath } })
         .then((film) => res.status(201).json(film))
         .catch((error) => res.status(401).json(error))
 }

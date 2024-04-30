@@ -7,6 +7,7 @@ const nombreRealisateurs = document.getElementById("nombre-realisateurs");
 const boutonFiltre = document.querySelector(".bouton-filtre");
 const fetchTMDB = document.querySelector(".bouton-fetch-tmdb");
 const APIDocId = "65f195f9101332610cab8fb6"
+let zonesNotes = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
 let tableauNationalites = [];
 let starRating = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 let note;
@@ -46,6 +47,20 @@ displayFilter.addEventListener("click", () => {
 resetFilter.addEventListener("click", () => {
     location.reload();
 })
+
+for (let i = 0; i < zonesNotes.length; i++) {
+    let divisionNote = document.createElement("div");
+    divisionNote.setAttribute("class", "division-note");
+    let numeroNote = document.createElement("span");
+    numeroNote.setAttribute("class", "numero-note");
+    numeroNote.innerText = zonesNotes[i];
+    divisionNote.appendChild(numeroNote);
+    let zoneFilms = document.createElement("div");
+    zoneFilms.setAttribute("class", `zoneFilm${zonesNotes[i]}`);
+    zoneFilms.setAttribute("id", "zone-films");
+    divisionNote.appendChild(zoneFilms);
+    emplacementRealisateurs.appendChild(divisionNote);
+}
 
 fetchTMDB.addEventListener("click", () => {
     let idToFetch = document.getElementById("fetch").value;
@@ -104,10 +119,20 @@ fetch("http://localhost:3000/api/realisateurs")
     .then((response) => { return response.json() })
     .then((data) => {
         for (let i = 0; i < data.length; i++) {
+            console.log(data);
             const caseRealisateur = document.createElement("a");
             caseRealisateur.href = `./realisateur.html?id=${data[i]._id}`;
             caseRealisateur.setAttribute("class", "lien-realisateur");
-            emplacementRealisateurs.appendChild(caseRealisateur);
+            if (data[i].note) {
+                let scoreDuReal = data[i].note;
+                console.log(scoreDuReal);
+                let rightSpot = document.querySelector(`.zoneFilm${scoreDuReal}`);
+                console.log(rightSpot);
+                rightSpot.appendChild(caseRealisateur);
+            }
+            else {
+                emplacementRealisateurs.appendChild(caseRealisateur);
+            }
 
             const imageRealisateur = document.createElement("img");
             imageRealisateur.src = data[i].imageUrl;
@@ -181,6 +206,13 @@ fetch("http://localhost:3000/api/realisateurs")
         }
 
         calculNombre();
+
+        let zonesFilm = document.querySelectorAll("#zone-films");
+        for (let i = 0; i < zonesFilm.length; i++) {
+            if (zonesFilm[i].innerText === "") {
+                zonesFilm[i].closest(".division-note").style.display = "none";
+            }
+        }
 
         boutonFiltre.addEventListener("click", () => {
             restore();

@@ -131,7 +131,7 @@ li a:hover {
     width: 50%;
     position: absolute;
     left: 600px;
-    top: 500px;
+    bottom: 300px;
 }
 
 #nombre-films {

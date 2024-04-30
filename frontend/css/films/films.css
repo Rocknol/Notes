@@ -141,7 +141,7 @@ h1 {
         opacity: 0;
     }
 
-    25% {
+    50% {
         opacity: 0;
     }
 
@@ -367,20 +367,6 @@ legend {
     width: fit-content;
 }
 
-.division-note:hover .numero-note {
-    display: flex;
-    align-items: center;
-    font-size: 50px;
-    position: absolute;
-    z-index: 1;
-    color: gold;
-    background-color: black;
-    padding: 20px;
-    width: 40px;
-    justify-content: center;
-    font-weight: bold;
-}
-
 #zone-films {
     display: flex;
     flex-wrap: wrap;
@@ -391,5 +377,16 @@ legend {
 }
 
 .numero-note {
-    display: none;
+    display: flex;
+    align-items: center;
+    font-size: 50px;
+    position: absolute;
+    right: 0px;
+    z-index: 1;
+    color: gold;
+    background-color: black;
+    padding: 20px;
+    width: 40px;
+    justify-content: center;
+    font-weight: bold;
 }

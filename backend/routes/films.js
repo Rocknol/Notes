@@ -20,5 +20,9 @@ router.put('/majfilmsaga/:id', filmController.majSagaFilm)
 router.put('/:id', filmController.majGenre)
 router.put('/fanart/:id', multer, filmController.addFanart)
 router.put('/logo/:id', multer, filmController.addLogo)
+router.put('/majPoster/:id', filmController.majPoster)
+router.put('/addFanart/:id', filmController.addFanart)
+router.put('/removeFanart/:id', filmController.removeFanart)
+router.put('/majLogo/:id', filmController.majLogo)
 
 module.exports = router

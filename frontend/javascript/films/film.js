@@ -14,16 +14,22 @@ const plot = document.querySelector(".plot");
 const addGenre = document.querySelector(".add-genre");
 const genrePlus = document.querySelector(".genre-plus");
 const filmsRelies = document.querySelector(".films-relies");
-const displayFanart = document.querySelector(".display-fanart");
-const boutonAjoutFanart = document.querySelector(".bouton-ajouter-fanart");
-const boutonAjoutLogo = document.querySelector(".bouton-ajouter-logo");
 const containerCarousel = document.querySelector(".container-carousel");
 let counter = 0;
 const arrowLeft = document.querySelector(".arrow-left");
 const arrowRight = document.querySelector(".arrow-right");
 const fanartNumber = document.querySelector(".fanart-number");
 const logoFilm = document.querySelector(".logo-film");
-
+const APIDocId = "65f195f9101332610cab8fb6"
+const posterFilm = document.querySelector(".poster-film");
+const fanartButton = document.querySelector(".fanart-button");
+const logoButton = document.querySelector(".logo-button");
+const actors = document.getElementById("actors");
+const filmChoices = document.getElementById("film-choices");
+const filmArea = document.querySelector(".film-area");
+const filmNumber = document.querySelector(".film-number");
+const closeButton = document.querySelector(".close-button");
+let fanartImages = [];
 
 
 function reset() {
@@ -54,11 +60,6 @@ let qteFilmsSaga = 0;
 
 let realisateurId;
 
-displayFanart.addEventListener("click", () => {
-    let showFormFanart = document.querySelector(".form-bouton-fanart");
-    showFormFanart.setAttribute("class", "form-bouton-fanart-show");
-})
-
 fetch(`http://localhost:3000/api/films/${findId}`)
     .then((response) => { return response.json() })
     .then((data) => {
@@ -77,6 +78,7 @@ fetch(`http://localhost:3000/api/films/${findId}`)
 
         const noteFilm = document.querySelector(".note-film");
 
+        fanartImages = data.fanartUrl;
 
 
         if (data.logo) {
@@ -359,13 +361,213 @@ fetch(`http://localhost:3000/api/films/${findId}`)
 
         anneeFilm.innerText = data.releaseDate;
 
-        awardsFilm.innerText = data.awards;
+        if (data.awards) {
+            awardsFilm.innerText = data.awards;
+        }
 
-        noteTMDBFilm.innerText = "TMDB: " + data.noteTMDB + `(${data.nombreVotesTMDB} votes)`;
-        noteIMDBFilm.innerText = "IMDB: " + data.noteIMDB + `(${data.nombreVotesIMDB} votes)`;
-        metascore.innerText = "Metascore: " + data.metascore;
+        if (data.noteTMDB) {
+            noteTMDBFilm.innerText = "TMDB: " + data.noteTMDB + `(${data.nombreVotesTMDB} votes)`;
+        }
+        if (data.noteIMDB) {
+            noteIMDBFilm.innerText = "IMDB: " + data.noteIMDB + `(${data.nombreVotesIMDB} votes)`;
+        }
+        if (data.metascore) {
+            metascore.innerText = "Metascore: " + data.metascore;
+        }
 
         plot.innerText = data.plot;
+
+        let TMDBID = data.TMDBId;
+
+        fetch(`http://localhost:3000/api/keys/${APIDocId}`)
+            .then((response) => { return response.json() })
+            .then((data) => {
+                let TMDBAPI = data.TMDB;
+
+                posterFilm.addEventListener("click", () => {
+                    filmChoices.style.display = "block";
+
+                    fetch(`https://api.themoviedb.org/3/movie/${TMDBID}/images?api_key=${TMDBAPI}`)
+                        .then((response) => { return response.json() })
+                        .then((data) => {
+                            console.log(data);
+                            filmNumber.innerText = data.posters.length + " poster(s)";
+                            for (let i = 0; i < data.posters.length; i++) {
+                                let poster = document.createElement("img");
+                                poster.setAttribute("class", "poster");
+                                poster.src = `https://image.tmdb.org/t/p/original/${data.posters[i].file_path}`;
+                                poster.addEventListener("click", () => {
+                                    let newPosterPath = `https://image.tmdb.org/t/p/original/${data.posters[i].file_path}`;
+
+                                    let posterChange = {
+                                        method: 'PUT',
+                                        headers: { 'Content-Type': 'application/json' },
+                                        body: JSON.stringify({ newPosterPath })
+                                    }
+
+                                    fetch(`http://localhost:3000/api/films/majPoster/${findId}`, posterChange)
+                                        .then(() => {
+                                            location.reload();
+                                        })
+                                })
+                                filmArea.appendChild(poster);
+                            }
+                            closeButton.addEventListener("click", () => {
+                                filmChoices.style.display = "none";
+                                let postersToDelete = document.querySelectorAll(".poster");
+                                postersToDelete.forEach((element) => element.remove());
+                                filmNumber.innerText = "";
+                            })
+                        })
+                })
+
+                fanartButton.addEventListener("click", () => {
+                    filmChoices.style.display = "block";
+
+                    fetch(`http://api.themoviedb.org/3/movie/${TMDBID}/images?api_key=${TMDBAPI}`)
+                        .then((response) => { return response.json() })
+                        .then((data) => {
+                            console.log(data);
+                            filmNumber.innerText = data.backdrops.length + " backdrop(s)";
+                            for (let i = 0; i < data.backdrops.length; i++) {
+                                let fanartBox = document.createElement("div");
+                                fanartBox.setAttribute("class", "fanart-box");
+                                filmArea.appendChild(fanartBox);
+                                let fanart = document.createElement("img");
+                                fanart.src = `https://image.tmdb.org/t/p/original/${data.backdrops[i].file_path}`;
+                                fanart.setAttribute("class", "fanart");
+                                fanartBox.appendChild(fanart);
+                                let findFanart = fanartImages.find((element) => element === `https://image.tmdb.org/t/p/original/${data.backdrops[i].file_path}`);
+                                if (findFanart) {
+                                    let presenceMarker = document.createElement("div");
+                                    presenceMarker.setAttribute("class", "presence-marker");
+                                    presenceMarker.innerHTML += `<i class="fa-solid fa-circle-check"></i>`
+                                    fanartBox.appendChild(presenceMarker);
+                                    fanart.addEventListener("click", () => {
+                                        let fanartToRemove = `https://image.tmdb.org/t/p/original/${data.backdrops[i].file_path}`;
+                                        let removeFanart = {
+                                            method: 'PUT',
+                                            headers: { 'Content-Type': 'application/json' },
+                                            body: JSON.stringify({ fanartToRemove })
+                                        }
+
+                                        fetch(`http://localhost:3000/api/films/removeFanart/${findId}`, removeFanart)
+                                            .then(() => {
+                                                location.reload();
+                                            })
+
+                                    })
+                                }
+                                else {
+                                    fanart.addEventListener("click", () => {
+                                        let fanartToAdd = `https://image.tmdb.org/t/p/original/${data.backdrops[i].file_path}`;
+                                        let addFanart = {
+                                            method: 'PUT',
+                                            headers: { 'Content-Type': 'application/json' },
+                                            body: JSON.stringify({ fanartToAdd })
+                                        }
+
+                                        fetch(`http://localhost:3000/api/films/addFanart/${findId}`, addFanart)
+                                            .then(() => {
+                                                location.reload();
+                                            })
+                                    })
+                                }
+                                let resolution = document.createElement("div");
+                                resolution.setAttribute("class", "resolution");
+                                resolution.innerHTML = `${data.backdrops[i].height} / ${data.backdrops[i].width}`;
+                                fanartBox.appendChild(resolution);
+                            }
+                            closeButton.addEventListener("click", () => {
+                                filmChoices.style.display = "none";
+                                let fanartsToDelete = document.querySelectorAll(".fanart-box");
+                                fanartsToDelete.forEach((element) => element.remove());
+                                filmNumber.innerText = "";
+                            })
+                        })
+                })
+
+                logoButton.addEventListener("click", () => {
+                    filmChoices.style.display = "block";
+
+                    fetch(`http://api.themoviedb.org/3/movie/${TMDBID}/images?api_key=${TMDBAPI}`)
+                        .then((response) => { return response.json() })
+                        .then((data) => {
+                            console.log(data);
+                            filmNumber.innerText = data.logos.length + " logo(s)"
+                            for (let i = 0; i < data.logos.length; i++) {
+                                if (data.logos[i].iso_639_1 === "en") {
+                                    let logo = document.createElement("img");
+                                    logo.src = `https://image.tmdb.org/t/p/original/${data.logos[i].file_path}`;
+                                    logo.setAttribute("class", "logo");
+                                    filmArea.appendChild(logo);
+                                    logo.addEventListener("click", () => {
+                                        let newLogoPath = `https://image.tmdb.org/t/p/original/${data.logos[i].file_path}`;
+                                        let logoChange = {
+                                            method: 'PUT',
+                                            headers: { 'Content-Type': 'application/json' },
+                                            body: JSON.stringify({ newLogoPath })
+                                        }
+
+                                        fetch(`http://localhost:3000/api/films/majLogo/${findId}`, logoChange)
+                                            .then(() => {
+                                                location.reload();
+                                            })
+                                    })
+                                }
+                            }
+                            closeButton.addEventListener("click", () => {
+                                filmChoices.style.display = "none";
+                                let logosToDelete = document.querySelectorAll(".logo");
+                                logosToDelete.forEach((element) => element.remove());
+                                filmNumber.innerText = "";
+                            })
+                        })
+                })
+
+                fetch(`https://api.themoviedb.org/3/movie/${TMDBID}/credits?api_key=${TMDBAPI}`)
+                    .then((response) => { return response.json() })
+                    .then((data) => {
+                        console.log(data);
+                        for (let i = 0; i < data.cast.length; i++) {
+                            let actorBloc = document.createElement("div");
+                            actorBloc.setAttribute("class", "actor-bloc");
+                            actors.appendChild(actorBloc);
+
+                            let actorPhoto = document.createElement("img");
+                            actorPhoto.src = `http://image.tmdb.org/t/p/original/${data.cast[i].profile_path}`;
+                            actorBloc.appendChild(actorPhoto);
+                            actorPhoto.addEventListener("click", () => {
+
+                                filmChoices.style.display = "block";
+
+                                fetch(`http://api.themoviedb.org/3/person/${data.cast[i].id}/images?api_key=${TMDBAPI}`)
+                                    .then((response) => { return response.json() })
+                                    .then((data) => {
+                                        console.log(data);
+                                        filmNumber.innerText = data.profiles.length + " photo(s)"
+                                        for (let i = 0; i < data.profiles.length; i++) {
+                                            let photo = document.createElement("img");
+                                            photo.setAttribute("class", "photo");
+                                            photo.src = `http://image.tmdb.org/t/p/original/${data.profiles[i].file_path}`
+                                            filmArea.appendChild(photo);
+                                        }
+                                        closeButton.addEventListener("click", () => {
+                                            filmChoices.style.display = "none";
+                                            let photosToDelete = document.querySelectorAll(".photo");
+                                            photosToDelete.forEach((element) => element.remove());
+                                            filmNumber.innerText = "";
+                                        })
+                                    })
+                            })
+                            let actorCredit = document.createElement("span");
+                            actorCredit.setAttribute("class", "actor-credit");
+                            actorCredit.innerHTML = `${data.cast[i].name} as ${data.cast[i].character}`;
+                            actorBloc.appendChild(actorCredit);
+                        }
+                    })
+            })
+
 
         anneeFilm.addEventListener("click", () => {
             reset();
@@ -727,36 +929,6 @@ fetch(`http://localhost:3000/api/films/${findId}`)
         //             })
         //     })
         // })
-
-        boutonAjoutFanart.addEventListener("click", () => {
-            let myForm = document.getElementById("form-ajout-fanart");
-            formData = new FormData(myForm);
-
-            let envoiFanart = {
-                method: 'PUT',
-                body: formData
-            }
-
-            fetch(`http://localhost:3000/api/films/fanart/${findId}`, envoiFanart)
-                .then(() => {
-                    location.reload();
-                })
-        })
-
-        boutonAjoutLogo.addEventListener("click", () => {
-            let myForm = document.getElementById("form-ajout-logo");
-            formData = new FormData(myForm);
-
-            let envoiLogo = {
-                method: 'PUT',
-                body: formData
-            }
-
-            fetch(`http://localhost:3000/api/films/logo/${findId}`, envoiLogo)
-                .then(() => {
-                    location.reload();
-                })
-        })
 
     })
 
