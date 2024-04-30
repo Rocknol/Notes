@@ -758,6 +758,11 @@ li a:hover {
     font-size: 3em;
 }
 
+.fa-square-minus {
+    color: gold;
+    font-size: 3em;
+}
+
 /* #actor-photo-choices {
     display: none;
     overflow: auto;
@@ -842,4 +847,23 @@ li a:hover {
     bottom: 0px;
     z-index: 1;
     background-color: gold;
+}
+
+.update-fanarts {
+    cursor: pointer;
+    background-color: black;
+    color: white;
+    width: fit-content;
+    padding: 5px;
+    font-size: larger;
+}
+
+.refresh {
+    cursor: pointer;
+    background-color: black;
+    color: white;
+    width: fit-content;
+    padding: 5px;
+    font-size: larger;
+    display: none;
 }

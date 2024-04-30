@@ -25,11 +25,14 @@ const serieChoices = document.getElementById("serie-choices");
 const serieContainer = document.querySelector(".serie-container");
 const closeButton = document.querySelector(".close-button");
 const serieNumber = document.querySelector(".serie-number");
+const updateFanarts = document.querySelector(".update-fanarts");
 let TMDBId;
 let TVDBId;
 let numberNextSeason = 0;
 let fanartImages = [];
 let allFanart = [];
+let fanartsToAdd = [];
+let fanartsToRemove = [];
 
 
 displayAjout.addEventListener("click", () => {
@@ -394,26 +397,46 @@ fetch(`http://localhost:3000/api/keys/${APIDocId}`)
                                         fanart.src = `https://image.tmdb.org/t/p/original/${allFanart[0][i].file_path}`;
                                         fanart.setAttribute("class", "fanart");
                                         fanartBox.appendChild(fanart);
+                                        let tickedMarker = document.createElement("div");
+                                        tickedMarker.setAttribute("class", "ticked-marker");
                                         let findFanart = fanartImages.find((element) => element === `https://image.tmdb.org/t/p/original/${allFanart[0][i].file_path}`)
                                         if (findFanart) {
                                             let presenceMarker = document.createElement("div");
                                             presenceMarker.setAttribute("class", "presence-marker");
                                             presenceMarker.innerHTML += `<i class="fa-solid fa-circle-check"></i>`;
                                             fanartBox.appendChild(presenceMarker);
-                                        }
-                                        let tickedMarker = document.createElement("div");
-                                        tickedMarker.setAttribute("class", "ticked-marker");
-                                        tickedMarker.innerHTML += `<i class="fa-regular fa-square-plus"></i>`;
-                                        fanartBox.appendChild(tickedMarker);
-                                        fanart.addEventListener("click", () => {
-                                            if (tickedMarker.style.display === "none" || !tickedMarker.style.display) {
-                                                tickedMarker.style.display = "block";
-                                            }
+                                            tickedMarker.innerHTML += `<i class="fa-solid fa-square-minus"></i>`;
+                                            fanart.addEventListener("click", () => {
+                                                if (tickedMarker.style.display === "none" || !tickedMarker.style.display) {
+                                                    fanartsToRemove.push(`https://image.tmdb.org/t/p/original/${allFanart[0][i].file_path}`);
+                                                    tickedMarker.style.display = "block";
+                                                }
 
-                                            else {
-                                                tickedMarker.style.display = "none"
-                                            }
-                                        })
+                                                else {
+                                                    let index = fanartsToRemove.indexOf(`https://image.tmdb.org/t/p/original/${allFanart[0][i].file_path}`)
+                                                    fanartsToRemove.splice(index, 1);
+                                                    tickedMarker.style.display = "none"
+                                                }
+                                                console.log(fanartsToRemove);
+                                            })
+                                        }
+                                        else {
+                                            tickedMarker.innerHTML += `<i class="fa-solid fa-square-plus"></i>`;
+                                            fanart.addEventListener("click", () => {
+                                                if (tickedMarker.style.display === "none" || !tickedMarker.style.display) {
+                                                    fanartsToAdd.push(`https://image.tmdb.org/t/p/original/${allFanart[0][i].file_path}`);
+                                                    tickedMarker.style.display = "block";
+                                                }
+
+                                                else {
+                                                    let index = fanartsToAdd.indexOf(`https://image.tmdb.org/t/p/original/${allFanart[0][i].file_path}`)
+                                                    fanartsToAdd.splice(index, 1);
+                                                    tickedMarker.style.display = "none"
+                                                }
+                                                console.log(fanartsToAdd);
+                                            })
+                                        }
+                                        fanartBox.appendChild(tickedMarker);
 
                                         //     fanart.addEventListener("click", () => {
                                         //         let fanartToRemove = `https://image.tmdb.org/t/p/original/${allFanart[0][i].file_path}`;
@@ -449,8 +472,8 @@ fetch(`http://localhost:3000/api/keys/${APIDocId}`)
                                         resolution.setAttribute("class", "resolution");
                                         resolution.innerHTML = `${allFanart[0][i].height} / ${allFanart[0][i].width}`;
                                         fanartBox.appendChild(resolution);
-
                                     }
+
                                     for (let j = 0; j < allFanart[1].length; j++) {
                                         if (`${allFanart[1][j].image}`.includes("fanart") || `${allFanart[1][j].image}`.includes("background")) {
                                             let fanartBox = document.createElement("div");
@@ -464,14 +487,28 @@ fetch(`http://localhost:3000/api/keys/${APIDocId}`)
                                             fanart.src = `${allFanart[1][j].image}`;
                                             fanart.setAttribute("class", "fanart");
                                             fanartBox.appendChild(fanart);
+                                            let tickedMarker = document.createElement("div");
+                                            tickedMarker.setAttribute("class", "ticked-marker");
                                             let findFanart = fanartImages.find((element) => element === `${allFanart[1][j].image}`);
                                             if (findFanart) {
                                                 let presenceMarker = document.createElement("div");
                                                 presenceMarker.setAttribute("class", "presence-marker");
                                                 presenceMarker.innerHTML += `<i class="fa-solid fa-circle-check"></i>`;
                                                 fanartBox.appendChild(presenceMarker);
-                                                // fanart.addEventListener("click", () => {
-                                                //     let fanartToRemove = `${allFanart[1][j].image}`;
+                                                tickedMarker.innerHTML += `<i class="fa-solid fa-square-minus"></i>`;
+                                                fanart.addEventListener("click", () => {
+                                                    if (tickedMarker.style.display === "none" || !tickedMarker.style.display) {
+                                                        fanartsToRemove.push(`${allFanart[1][j].image}`);
+                                                        tickedMarker.style.display = "block";
+                                                    }
+
+                                                    else {
+                                                        let index = fanartsToRemove.indexOf(`${allFanart[1][j].image}`);
+                                                        fanartsToRemove.splice(index, 1);
+                                                        tickedMarker.style.display = "none"
+                                                    }
+                                                    console.log(fanartsToRemove);
+                                                })
                                                 //     let removeFanart = {
                                                 //         method: 'PUT',
                                                 //         headers: { 'Content-Type': 'application/json' },
@@ -499,26 +536,81 @@ fetch(`http://localhost:3000/api/keys/${APIDocId}`)
                                             //                 location.reload()
                                             //             })
                                             //     })
+                                            else {
+                                                tickedMarker.innerHTML += `<i class="fa-solid fa-square-plus"></i>`;
+                                                fanart.addEventListener("click", () => {
+                                                    if (tickedMarker.style.display === "none" || !tickedMarker.style.display) {
+                                                        fanartsToAdd.push(`${allFanart[1][j].image}`);
+                                                        tickedMarker.style.display = "block";
+                                                    }
+
+                                                    else {
+                                                        let index = fanartsToAdd.indexOf(`${allFanart[1][j].image}`);
+                                                        fanartsToAdd.splice(index, 1);
+                                                        tickedMarker.style.display = "none"
+                                                    }
+                                                    console.log(fanartsToAdd);
+                                                })
+                                            }
+                                            fanartBox.appendChild(tickedMarker);
                                             let resolution = document.createElement("div");
                                             resolution.setAttribute("class", "resolution");
                                             resolution.innerHTML = `${allFanart[1][j].height} / ${allFanart[1][j].width}`;
                                             fanartBox.appendChild(resolution);
-                                            let tickedMarker = document.createElement("div");
-                                            tickedMarker.setAttribute("class", "ticked-marker");
-                                            tickedMarker.innerHTML += `<i class="fa-regular fa-square-plus"></i>`;
-                                            fanartBox.appendChild(tickedMarker);
-                                            fanart.addEventListener("click", () => {
-                                                if (tickedMarker.style.display === "none" || !tickedMarker.style.display) {
-                                                    tickedMarker.style.display = "block";
-                                                }
 
-                                                else {
-                                                    tickedMarker.style.display = "none"
-                                                }
-                                            })
                                         }
 
                                     }
+                                    updateFanarts.innerText = "Update Fanarts";
+                                    updateFanarts.addEventListener("click", () => {
+                                        console.log(fanartsToRemove);
+                                        if (fanartsToRemove.length > 0) {
+                                            for (let i = 0; i < fanartsToRemove.length; i++) {
+                                                let fanartToRemove = `${fanartsToRemove[i]}`;
+                                                let removeFanart = {
+                                                    method: 'PUT',
+                                                    headers: { 'Content-Type': 'application/json' },
+                                                    body: JSON.stringify({ fanartToRemove })
+                                                }
+                                                console.log(removeFanart);
+                                                fetch(`http://localhost:3000/api/series/removeFanart/${findId}`, removeFanart)
+                                                // .then(() => {
+                                                //     // location.reload()
+                                                // })
+
+                                            }
+                                        }
+
+                                        if (fanartsToAdd.length > 0) {
+                                            for (let i = 0; i < fanartsToAdd.length; i++) {
+                                                let fanartToAdd = `${fanartsToAdd[i]}`;
+                                                let addFanart = {
+                                                    method: 'PUT',
+                                                    headers: { 'Content-Type': 'application/json' },
+                                                    body: JSON.stringify({ fanartToAdd })
+                                                }
+                                                console.log(addFanart);
+                                                fetch(`http://localhost:3000/api/series/addFanart/${findId}`, addFanart)
+                                            }
+                                        }
+
+                                        setTimeout(location.reload.bind(location), 2000);
+                                        // else if (fanartsToRemove.length > 0) {
+                                        //     for (let i = 0; i < fanartsToRemove.length; i++) {
+                                        //         let fanartToRemove = `${fanartsToRemove[i]}`;
+                                        //         let removeFanart = {
+                                        //             method: 'PUT',
+                                        //             headers: { 'Content-Type': 'application/json' },
+                                        //             body: JSON.stringify({ fanartToRemove })
+                                        //         }
+                                        //         fetch(`http://localhost:3000/api/series/addFanart/${findId}`, removeFanart)
+                                        //             .then(() => {
+                                        //                 // location.reload()
+                                        //             })
+                                        //     }
+                                        // }
+                                        // location.reload();
+                                    })
 
                                     serieNumber.innerText = (allFanart[0].length + allFanart[1].length) + " fanart(s)";
                                 })
