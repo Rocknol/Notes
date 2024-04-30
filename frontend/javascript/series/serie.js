@@ -564,35 +564,35 @@ fetch(`http://localhost:3000/api/keys/${APIDocId}`)
                                     updateFanarts.innerText = "Update Fanarts";
                                     updateFanarts.addEventListener("click", () => {
                                         console.log(fanartsToRemove);
-                                        if (fanartsToRemove.length > 0) {
-                                            for (let i = 0; i < fanartsToRemove.length; i++) {
-                                                let fanartToRemove = `${fanartsToRemove[i]}`;
-                                                let removeFanart = {
-                                                    method: 'PUT',
-                                                    headers: { 'Content-Type': 'application/json' },
-                                                    body: JSON.stringify({ fanartToRemove })
-                                                }
-                                                console.log(removeFanart);
-                                                fetch(`http://localhost:3000/api/series/removeFanart/${findId}`, removeFanart)
-                                                // .then(() => {
-                                                //     // location.reload()
-                                                // })
-
+                                        // if (fanartsToRemove.length > 0) {
+                                        for (let i = 0; i < fanartsToRemove.length; i++) {
+                                            let fanartToRemove = `${fanartsToRemove[i]}`;
+                                            let removeFanart = {
+                                                method: 'PUT',
+                                                headers: { 'Content-Type': 'application/json' },
+                                                body: JSON.stringify({ fanartToRemove })
                                             }
-                                        }
+                                            console.log(removeFanart);
+                                            fetch(`http://localhost:3000/api/series/removeFanart/${findId}`, removeFanart)
+                                            // .then(() => {
+                                            //     // location.reload()
+                                            // })
 
-                                        if (fanartsToAdd.length > 0) {
-                                            for (let i = 0; i < fanartsToAdd.length; i++) {
-                                                let fanartToAdd = `${fanartsToAdd[i]}`;
-                                                let addFanart = {
-                                                    method: 'PUT',
-                                                    headers: { 'Content-Type': 'application/json' },
-                                                    body: JSON.stringify({ fanartToAdd })
-                                                }
-                                                console.log(addFanart);
-                                                fetch(`http://localhost:3000/api/series/addFanart/${findId}`, addFanart)
-                                            }
                                         }
+                                        // }
+
+                                        // if (fanartsToAdd.length > 0) {
+                                        for (let i = 0; i < fanartsToAdd.length; i++) {
+                                            let fanartToAdd = `${fanartsToAdd[i]}`;
+                                            let addFanart = {
+                                                method: 'PUT',
+                                                headers: { 'Content-Type': 'application/json' },
+                                                body: JSON.stringify({ fanartToAdd })
+                                            }
+                                            console.log(addFanart);
+                                            fetch(`http://localhost:3000/api/series/addFanart/${findId}`, addFanart)
+                                        }
+                                        // }
 
                                         setTimeout(location.reload.bind(location), 2000);
                                         // else if (fanartsToRemove.length > 0) {

@@ -618,6 +618,7 @@ li a:hover {
 #serie-choices {
     display: none;
     flex-direction: column;
+    align-items: center;
     position: fixed;
     top: 0;
     bottom: 0;
@@ -649,10 +650,12 @@ li a:hover {
 
 .close-button {
     cursor: pointer;
-    width: 50px;
+    width: fit-content;
     text-align: center;
     background-color: black;
     padding: 5px;
+    color: white;
+    font-size: xx-large;
 }
 
 /* #serie-logo-choices {
@@ -855,15 +858,5 @@ li a:hover {
     color: white;
     width: fit-content;
     padding: 5px;
-    font-size: larger;
-}
-
-.refresh {
-    cursor: pointer;
-    background-color: black;
-    color: white;
-    width: fit-content;
-    padding: 5px;
-    font-size: larger;
-    display: none;
+    font-size: xx-large;
 }
