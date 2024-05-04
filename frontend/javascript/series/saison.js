@@ -73,7 +73,10 @@ boutonFetch.addEventListener("click", () => {
                     episodePlot.value = data.overview;
 
                     let thumbnailEpisode = document.getElementById("thumbnail");
-                    thumbnailEpisode.value = `https://image.tmdb.org/t/p/original/${data.still_path}`
+                    thumbnailEpisode.value = `https://image.tmdb.org/t/p/original/${data.still_path}`;
+                    if (thumbnailEpisode.value.includes("null")) {
+                        thumbnailEpisode.value = "https://i.imgur.com/AkSBIco.jpeg"
+                    }
                     let airDate = document.getElementById("airdate");
                     airDate.value = data.air_date;
 
@@ -209,6 +212,7 @@ fetch(`http://localhost:3000/api/keys/${APIDocId}`)
                     if (!note.value) {
                         window.alert("Choisir une note")
                     }
+
                     else {
                         let myForm = document.getElementById("form-ajout-episode");
                         formData = new FormData(myForm);
