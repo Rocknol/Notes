@@ -166,8 +166,8 @@ li a:hover {
     flex-direction: column;
     text-decoration: none;
     color: white;
-    height: 400px;
-    width: 500px;
+    height: 300px;
+    width: 300px;
     text-align: center;
     position: relative;
 }
@@ -183,7 +183,7 @@ li a:hover {
 }
 
 .thumbnail {
-    height: 70%;
+    height: 80%;
     width: 100%;
 }
 
@@ -231,9 +231,9 @@ li a:hover {
     display: flex;
     flex-direction: column;
     gap: 5px;
-    font-size: medium;
+    font-size: small;
     font-weight: bold;
-    height: 30%;
+    height: 20%;
     background-color: rgb(214, 136, 41);
 }
 

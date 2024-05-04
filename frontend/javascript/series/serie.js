@@ -593,7 +593,7 @@ fetch(`http://localhost:3000/api/keys/${APIDocId}`)
                                             fetch(`http://localhost:3000/api/series/addFanart/${findId}`, addFanart)
                                         }
                                         // }
-
+                                        C
                                         setTimeout(location.reload.bind(location), 2000);
                                         // else if (fanartsToRemove.length > 0) {
                                         //     for (let i = 0; i < fanartsToRemove.length; i++) {
