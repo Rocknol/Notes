@@ -378,8 +378,8 @@ input[type="range"] {
     left: 0;
     right: 0;
     margin: auto;
-    width: 1000px;
-    height: 1000px;
+    width: 800px;
+    height: 1200px;
     background-color: rgb(214, 136, 41);
     overflow: auto;
     border: 10px solid black;
