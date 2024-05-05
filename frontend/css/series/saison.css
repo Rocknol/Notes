@@ -159,6 +159,7 @@ li a:hover {
     gap: 40px;
     overflow: auto;
     width: 65%;
+    margin-bottom: 20px;
 }
 
 .bloc-episode {
