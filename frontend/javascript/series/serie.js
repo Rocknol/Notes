@@ -24,7 +24,7 @@ const actors = document.getElementById("actors");
 const serieChoices = document.getElementById("serie-choices");
 const serieContainer = document.querySelector(".serie-container");
 const closeButton = document.querySelector(".close-button");
-const serieNumber = document.querySelector(".serie-number");
+const fanartsApercu = document.querySelector(".fanarts-apercu");
 const updateFanarts = document.querySelector(".update-fanarts");
 let TMDBId;
 let TVDBId;
@@ -73,7 +73,6 @@ fetch(`http://localhost:3000/api/keys/${APIDocId}`)
                         .then((response) => { return response.json() })
                         .then((data) => {
                             console.log(data);
-                            serieNumber.innerText = data.posters.length + " poster(s)";
                             for (let i = 0; i < data.posters.length; i++) {
                                 let poster = document.createElement("img");
                                 poster.setAttribute("class", "poster");
@@ -98,7 +97,6 @@ fetch(`http://localhost:3000/api/keys/${APIDocId}`)
                                 serieChoices.style.display = "none";
                                 let postersToDelete = document.querySelectorAll(".poster");
                                 postersToDelete.forEach(element => element.remove());
-                                serieNumber.innerText = "";
                             })
                         })
                 })
@@ -279,7 +277,6 @@ fetch(`http://localhost:3000/api/keys/${APIDocId}`)
                                     .then((response) => { return response.json() })
                                     .then((data) => {
                                         console.log(data);
-                                        serieNumber.innerText = data.profiles.length + " photo(s)"
                                         for (let i = 0; i < data.profiles.length; i++) {
                                             let photo = document.createElement("img");
                                             photo.setAttribute("class", "photo");
@@ -290,7 +287,6 @@ fetch(`http://localhost:3000/api/keys/${APIDocId}`)
                                             serieChoices.style.display = "none";
                                             let photosToDelete = document.querySelectorAll(".photo");
                                             photosToDelete.forEach(element => element.remove());
-                                            serieNumber.innerText = "";
                                         })
                                     })
                             })
@@ -330,7 +326,6 @@ fetch(`http://localhost:3000/api/keys/${APIDocId}`)
                         .then((response) => { return response.json() })
                         .then((data) => {
                             console.log(data)
-                            serieNumber.innerText = data.logos.length + " logo(s)";
                             for (let i = 0; i < data.logos.length; i++) {
                                 if (data.logos[i].iso_639_1 === 'en') {
                                     let logo = document.createElement("img");
@@ -358,13 +353,23 @@ fetch(`http://localhost:3000/api/keys/${APIDocId}`)
                                 serieChoices.style.display = "none";
                                 let logosToDelete = document.querySelectorAll(".logo");
                                 logosToDelete.forEach((element) => element.remove());
-                                serieNumber.innerText = "";
                             })
                         })
                 })
 
                 fanartButton.addEventListener("click", () => {
                     serieChoices.style.display = "flex";
+                    fanartsApercu.style.display = "flex";
+                    for (let i = 0; i < fanartImages.length; i++) {
+                        let fanartMini = document.createElement("img");
+                        fanartMini.src = fanartImages[i];
+                        fanartMini.setAttribute("class", "fanart-mini");
+                        fanartsApercu.appendChild(fanartMini);
+                    }
+                    let fanartMinisArray = [];
+                    let fanartMinis = document.querySelectorAll(".fanart-mini");
+                    fanartMinis.forEach(element => fanartMinisArray.push(element));
+                    console.log(fanartMinisArray);
 
                     fetch(`https://api.themoviedb.org/3/tv/${TMDBId}/images?api_key=${TMDBAPI}`)
                         .then((response) => { return response.json() })
@@ -406,15 +411,18 @@ fetch(`http://localhost:3000/api/keys/${APIDocId}`)
                                             presenceMarker.innerHTML += `<i class="fa-solid fa-circle-check"></i>`;
                                             fanartBox.appendChild(presenceMarker);
                                             tickedMarker.innerHTML += `<i class="fa-solid fa-square-minus"></i>`;
+                                            let fanartMiniToRemove = fanartMinisArray.find(element => element.src === `https://image.tmdb.org/t/p/original/${allFanart[0][i].file_path}`)
                                             fanart.addEventListener("click", () => {
                                                 if (tickedMarker.style.display === "none" || !tickedMarker.style.display) {
                                                     fanartsToRemove.push(`https://image.tmdb.org/t/p/original/${allFanart[0][i].file_path}`);
+                                                    fanartMiniToRemove.style.display = "none";
                                                     tickedMarker.style.display = "block";
                                                 }
 
                                                 else {
                                                     let index = fanartsToRemove.indexOf(`https://image.tmdb.org/t/p/original/${allFanart[0][i].file_path}`)
                                                     fanartsToRemove.splice(index, 1);
+                                                    fanartMiniToRemove.style.display = "block";
                                                     tickedMarker.style.display = "none"
                                                 }
                                                 console.log(fanartsToRemove);
@@ -425,13 +433,22 @@ fetch(`http://localhost:3000/api/keys/${APIDocId}`)
                                             fanart.addEventListener("click", () => {
                                                 if (tickedMarker.style.display === "none" || !tickedMarker.style.display) {
                                                     fanartsToAdd.push(`https://image.tmdb.org/t/p/original/${allFanart[0][i].file_path}`);
+                                                    let fanartMini = document.createElement("img");
+                                                    fanartMini.src = `https://image.tmdb.org/t/p/original/${allFanart[0][i].file_path}`;
+                                                    fanartMini.setAttribute("class", "fanart-mini");
+                                                    fanartsApercu.appendChild(fanartMini);
+                                                    fanartMinisArray.push(fanartMini);
                                                     tickedMarker.style.display = "block";
                                                 }
 
                                                 else {
                                                     let index = fanartsToAdd.indexOf(`https://image.tmdb.org/t/p/original/${allFanart[0][i].file_path}`)
                                                     fanartsToAdd.splice(index, 1);
-                                                    tickedMarker.style.display = "none"
+                                                    let fanartMiniToRemove = fanartMinisArray.find(element => element.src === `https://image.tmdb.org/t/p/original/${allFanart[0][i].file_path}`);
+                                                    let indexMini = fanartMinisArray.indexOf(fanartMiniToRemove);
+                                                    fanartMinisArray.splice(indexMini, 1);
+                                                    fanartMiniToRemove.remove();
+                                                    tickedMarker.style.display = "none";
                                                 }
                                                 console.log(fanartsToAdd);
                                             })
@@ -496,16 +513,19 @@ fetch(`http://localhost:3000/api/keys/${APIDocId}`)
                                                 presenceMarker.innerHTML += `<i class="fa-solid fa-circle-check"></i>`;
                                                 fanartBox.appendChild(presenceMarker);
                                                 tickedMarker.innerHTML += `<i class="fa-solid fa-square-minus"></i>`;
+                                                let fanartMiniToRemove = fanartMinisArray.find(element => element.src === `${allFanart[1][j].image}`);
                                                 fanart.addEventListener("click", () => {
                                                     if (tickedMarker.style.display === "none" || !tickedMarker.style.display) {
                                                         fanartsToRemove.push(`${allFanart[1][j].image}`);
+                                                        fanartMiniToRemove.style.display = "none";
                                                         tickedMarker.style.display = "block";
                                                     }
 
                                                     else {
                                                         let index = fanartsToRemove.indexOf(`${allFanart[1][j].image}`);
                                                         fanartsToRemove.splice(index, 1);
-                                                        tickedMarker.style.display = "none"
+                                                        fanartMiniToRemove.style.display = "block";
+                                                        tickedMarker.style.display = "none";
                                                     }
                                                     console.log(fanartsToRemove);
                                                 })
@@ -541,12 +561,21 @@ fetch(`http://localhost:3000/api/keys/${APIDocId}`)
                                                 fanart.addEventListener("click", () => {
                                                     if (tickedMarker.style.display === "none" || !tickedMarker.style.display) {
                                                         fanartsToAdd.push(`${allFanart[1][j].image}`);
+                                                        let fanartMini = document.createElement("img");
+                                                        fanartMini.src = `${allFanart[1][j].image}`;
+                                                        fanartMini.setAttribute("class", "fanart-mini");
+                                                        fanartsApercu.appendChild(fanartMini);
+                                                        fanartMinisArray.push(fanartMini);
                                                         tickedMarker.style.display = "block";
                                                     }
 
                                                     else {
                                                         let index = fanartsToAdd.indexOf(`${allFanart[1][j].image}`);
                                                         fanartsToAdd.splice(index, 1);
+                                                        let fanartMiniToRemove = fanartMinisArray.find(element => element.src === `${allFanart[1][j].image}`);
+                                                        let indexMini = fanartMinisArray.indexOf(fanartMiniToRemove);
+                                                        fanartMinisArray.splice(indexMini, 1);
+                                                        fanartMiniToRemove.remove();
                                                         tickedMarker.style.display = "none"
                                                     }
                                                     console.log(fanartsToAdd);
@@ -593,7 +622,6 @@ fetch(`http://localhost:3000/api/keys/${APIDocId}`)
                                             fetch(`http://localhost:3000/api/series/addFanart/${findId}`, addFanart)
                                         }
                                         // }
-                                        C
                                         setTimeout(location.reload.bind(location), 2000);
                                         // else if (fanartsToRemove.length > 0) {
                                         //     for (let i = 0; i < fanartsToRemove.length; i++) {
@@ -612,14 +640,12 @@ fetch(`http://localhost:3000/api/keys/${APIDocId}`)
                                         // location.reload();
                                     })
 
-                                    serieNumber.innerText = (allFanart[0].length + allFanart[1].length) + " fanart(s)";
                                 })
 
                             closeButton.addEventListener("click", () => {
                                 serieChoices.style.display = "none";
                                 let fanartsToDelete = document.querySelectorAll(".fanart-box");
                                 fanartsToDelete.forEach((element) => element.remove());
-                                serieNumber.innerText = "";
                             })
                         })
                 })

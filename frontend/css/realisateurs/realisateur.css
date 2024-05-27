@@ -1,6 +1,12 @@
 body {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    background-color: rgb(84, 102, 122);
+    background-color: var(--primary-color);
+}
+
+:root {
+    --primary-color: rgb(122, 128, 127);
+    --secondary-color: rgb(41, 109, 148);
+    --tertiary-color: rgb(98, 81, 145);
 }
 
 ul {
@@ -14,7 +20,7 @@ ul {
 li {
     font-size: large;
     font-weight: bold;
-    background-color: rgb(214, 136, 41);
+    background-color: var(--secondary-color);
     border: 1px solid;
     display: flex;
     width: 160px;
@@ -31,7 +37,7 @@ li a {
 }
 
 li a:hover {
-    background-color: rgb(34, 190, 239);
+    background-color: var(--tertiary-color);
 }
 
 .navbar {
@@ -43,7 +49,7 @@ li a:hover {
     border-radius: 50px;
     height: 600px;
     width: 300px;
-    background-color: rgb(214, 136, 41);
+    background-color: var(--secondary-color);
     box-shadow: 0px 0px 6px 6px;
     display: flex;
     flex-direction: column;
@@ -73,7 +79,7 @@ li a:hover {
 
 .modifier-realisateur {
     display: flex;
-    background-color: rgb(34, 190, 239);
+    background-color: var(--tertiary-color);
     width: 60%;
     border-radius: 20px;
 }
@@ -93,7 +99,7 @@ li a:hover {
     height: 350px;
     width: 200px;
     border-radius: 0px 0px 10px 10px;
-    background-color: rgb(214, 136, 41);
+    background-color: var(--secondary-color);
     box-shadow: 0px 0px 3px 3px;
     position: relative;
 }
@@ -141,7 +147,7 @@ li a:hover {
     font-weight: bold;
     color: white;
     border: 1px solid black;
-    background-color: rgb(214, 136, 41);
+    background-color: var(--secondary-color);
     width: 160px;
     height: 80px;
     display: flex;
@@ -164,7 +170,7 @@ li a:hover {
 .bouton-ajouter-film {
     height: 50px;
     width: 200px;
-    background-color: rgb(214, 136, 41);
+    background-color: var(--secondary-color);
     border-radius: 30px;
     color: white;
     border: none;
@@ -186,7 +192,7 @@ li a:hover {
     position: fixed;
     right: 0px;
     top: 250px;
-    border: 3px dashed rgb(214, 136, 41);
+    border: 3px dashed var(--secondary-color);
     gap: 5px;
 }
 
@@ -214,7 +220,7 @@ li a:hover {
 
 .maj-realisateur {
     display: flex;
-    background-color: rgb(214, 136, 41);
+    background-color: var(--secondary-color);
     width: 60%;
     border-radius: 20px;
     padding: 5px;
@@ -267,7 +273,7 @@ input[type="range"] {
     font-weight: bold;
     color: white;
     border: 1px solid black;
-    background-color: rgb(214, 136, 41);
+    background-color: var(--secondary-color);
     width: 160px;
     height: 80px;
     display: flex;
@@ -356,7 +362,7 @@ input[type="range"] {
     flex-direction: column;
     align-items: center;
     gap: 10px;
-    background-color: rgb(214, 136, 41);
+    background-color: var(--secondary-color);
     color: white;
 }
 
