@@ -33,6 +33,8 @@ let fanartImages = [];
 let allFanart = [];
 let fanartsToAdd = [];
 let fanartsToRemove = [];
+let pauseCarousel = true;
+let pauseToggle = document.querySelector(".pause-toggle");
 
 
 displayAjout.addEventListener("click", () => {
@@ -53,6 +55,17 @@ function calculNombre() {
 
     nombreSaisonsHeader.innerText = qteSaisons + " saison(s)";
 }
+
+pauseToggle.addEventListener("click", () => {
+    pauseCarousel = !pauseCarousel;
+    console.log(pauseCarousel);
+    if (pauseCarousel) {
+        pauseToggle.innerHTML = `<i class="fa-solid fa-pause"></i>`
+    }
+    else {
+        pauseToggle.innerHTML = `<i class="fa-solid fa-play"></i>`
+    }
+})
 
 
 fetch(`http://localhost:3000/api/keys/${APIDocId}`)
@@ -192,21 +205,24 @@ fetch(`http://localhost:3000/api/keys/${APIDocId}`)
                         setInterval(counterUpdate, 3000);
 
                         function counterUpdate() {
-                            if (counter === data.fanartUrl.length - 1) {
-                                counter = 0
-                            }
-                            else {
-                                counter = counter + 1;
-                            }
+                            if (pauseCarousel) {
 
-                            for (let i = 0; i < data.fanartUrl.length; i++) {
-                                if (i === counter) {
-                                    cleanUp();
-                                    let containerCarouselImage = document.createElement("img");
-                                    containerCarouselImage.setAttribute("class", "container-carousel-image");
-                                    containerCarouselImage.src = data.fanartUrl[i];
-                                    containerCarousel.appendChild(containerCarouselImage);
-                                    fanartNumber.innerText = `${i + 1} / ${data.fanartUrl.length}`;
+                                if (counter === data.fanartUrl.length - 1) {
+                                    counter = 0
+                                }
+                                else {
+                                    counter = counter + 1;
+                                }
+
+                                for (let i = 0; i < data.fanartUrl.length; i++) {
+                                    if (i === counter) {
+                                        cleanUp();
+                                        let containerCarouselImage = document.createElement("img");
+                                        containerCarouselImage.setAttribute("class", "container-carousel-image");
+                                        containerCarouselImage.src = data.fanartUrl[i];
+                                        containerCarousel.appendChild(containerCarouselImage);
+                                        fanartNumber.innerText = `${i + 1} / ${data.fanartUrl.length}`;
+                                    }
                                 }
                             }
                         }
