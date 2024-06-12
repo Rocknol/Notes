@@ -460,6 +460,9 @@ li a:hover {
     width: 1160px;
     height: 540px;
     box-shadow: 0px 0px 12px 12px black;
+    position: fixed;
+    left: 800px;
+    top: 50px;
 }
 
 .container-carousel {
@@ -564,9 +567,11 @@ li a:hover {
 
 #logo-serie {
     display: flex;
-    justify-content: center;
-    width: 800px;
-    height: 200px;
+    width: 400px;
+    height: 100px;
+    position: absolute;
+    left: 0px;
+    z-index: 1;
 }
 
 .logo-serie {
@@ -591,15 +596,6 @@ li a:hover {
 .bouton-ajouter-logo:hover {
     width: 250px;
     border-radius: 30px;
-}
-
-.art-container {
-    display: flex;
-    flex-direction: column;
-    position: fixed;
-    left: 800px;
-    gap: 30px;
-    align-items: center;
 }
 
 .lien-tmdb {
