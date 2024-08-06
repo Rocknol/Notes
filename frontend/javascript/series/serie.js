@@ -109,30 +109,32 @@ fetch(`http://localhost:3000/api/keys/${APIDocId}`)
                         .then((data) => {
                             console.log(data);
                             for (let i = 0; i < data.posters.length; i++) {
-                                let posterBox = document.createElement("div");
-                                posterBox.setAttribute("class", "poster-box");
-                                let poster = document.createElement("img");
-                                poster.setAttribute("class", "poster");
-                                poster.src = `https://image.tmdb.org/t/p/original/${data.posters[i].file_path}`
-                                let updatePoster = document.createElement("div");
-                                updatePoster.setAttribute("class", "change-poster");
-                                updatePoster.innerHTML += `<i class="fa-solid fa-image"></i>`
-                                updatePoster.addEventListener("click", () => {
-                                    let newPosterPath = `https://image.tmdb.org/t/p/original/${data.posters[i].file_path}`;
+                                if (data.posters[i].iso_639_1 === "en") {
+                                    let posterBox = document.createElement("div");
+                                    posterBox.setAttribute("class", "poster-box");
+                                    let poster = document.createElement("img");
+                                    poster.setAttribute("class", "poster");
+                                    poster.src = `https://image.tmdb.org/t/p/original/${data.posters[i].file_path}`
+                                    let updatePoster = document.createElement("div");
+                                    updatePoster.setAttribute("class", "change-poster");
+                                    updatePoster.innerHTML += `<i class="fa-solid fa-image"></i>`
+                                    updatePoster.addEventListener("click", () => {
+                                        let newPosterPath = `https://image.tmdb.org/t/p/original/${data.posters[i].file_path}`;
 
-                                    let posterChange = {
-                                        method: 'PUT',
-                                        headers: { 'Content-Type': 'application/json' },
-                                        body: JSON.stringify({ newPosterPath })
-                                    }
-                                    fetch(`http://localhost:3000/api/series/majPoster/${findId}`, posterChange)
-                                        .then(() => {
-                                            location.reload();
-                                        })
-                                })
-                                posterBox.appendChild(poster);
-                                posterBox.appendChild(updatePoster);
-                                serieContainer.appendChild(posterBox);
+                                        let posterChange = {
+                                            method: 'PUT',
+                                            headers: { 'Content-Type': 'application/json' },
+                                            body: JSON.stringify({ newPosterPath })
+                                        }
+                                        fetch(`http://localhost:3000/api/series/majPoster/${findId}`, posterChange)
+                                            .then(() => {
+                                                location.reload();
+                                            })
+                                    })
+                                    posterBox.appendChild(poster);
+                                    posterBox.appendChild(updatePoster);
+                                    serieContainer.appendChild(posterBox);
+                                }
                             }
                             closeButtonContainer.addEventListener("click", () => {
                                 serieContainer.style.display = "none";
