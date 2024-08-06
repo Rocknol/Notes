@@ -383,18 +383,3 @@ boutonFetch.addEventListener("click", () => {
                 })
         })
 })
-
-const apiKey = "a3ea791f-71da-40ee-8eb9-cde8affa062c"
-const apiToken = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZ2UiOiIiLCJhcGlrZXkiOiJhM2VhNzkxZi03MWRhLTQwZWUtOGViOS1jZGU4YWZmYTA2MmMiLCJjb21tdW5pdHlfc3VwcG9ydGVkIjpmYWxzZSwiZXhwIjoxNzEzOTkwNDkzLCJnZW5kZXIiOiIiLCJoaXRzX3Blcl9kYXkiOjEwMDAwMDAwMCwiaGl0c19wZXJfbW9udGgiOjEwMDAwMDAwMCwiaWQiOiIyNDYwMDI5IiwiaXNfbW9kIjpmYWxzZSwiaXNfc3lzdGVtX2tleSI6ZmFsc2UsImlzX3RydXN0ZWQiOmZhbHNlLCJwaW4iOiJGRDk0MkQyRiIsInJvbGVzIjpbXSwidGVuYW50IjoidHZkYiIsInV1aWQiOiIifQ.Hib-y31FaMosEPJPyDon1sw5ml0Z4YIb4o1jTqQ7JNl5gliDYEbkZ-q_8gfUPjic2vbCdMqPW-cpcPD6qsCbK0lCFVBZJvfZqKb2jPo2DFXbb_6U1nn6x9ZVNfa_eQ4CmI_xHJNqR1vH-ueGgc9EtAHSckz5-Scs0w_5yPDCSJoC0erUicxsYVRzTyT7L76eqzym3yXu08_LzNLs88fYMY6_fi7RfrmWWfwOPkQGxvOeawTZWi9enuMpQiV3z5KJIn-Y6glTf5se6SWB09vtYjmpphGgLT10h4UOsg6t4p4Q909UrWn7-Kl9Xf0jZKRz21kCxtJ_VuTnn5rF5Z_vB232YA5KKs1COJp7zzkDOZx9icZ3X2gsWL3DXDGsaFJ4mnz1wBUGWvD5fikefjVp5WF9Xvv1H7IrvJbVnuLb9_4OuKkgIWjMMKiuFCHl3lS0EInRffmDvqWJg3c_K7C46jQHlAKT2rrYfFUyUu3b72Xsznczol37oWxa40ZrJFkVrYi35pEO8-zStLSul3nKspTlfYZFklvNhse-Ih4_LgVFK8L-Z4w7QjY8t2pXJNf1xnmkPLh_rlCZJ5ko9PM2hAefOSHaGtCe7B4FHCn58ZZx6nIrRUP_WFu21gTCq9FctyZ-ealrIXhUtuj4FRTrK2kBakAMgzyErye7sjMn56w"
-const searchTerm = "Breaking Bad"
-
-fetch(`https://api4.thetvdb.com/v4/series/269613/artworks`, {
-    headers: {
-        'Authorization': `Bearer ${apiToken}`,
-        'Accept-Language': 'en',
-    }
-})
-    .then((response) => { return response.json() })
-    .then((data) => {
-        console.log(data);
-    })

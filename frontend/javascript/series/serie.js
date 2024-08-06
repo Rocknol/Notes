@@ -27,6 +27,7 @@ const closeButtonForm = document.querySelector(".close-button-form");
 const closeButtonContainer = document.querySelector(".close-button-container");
 const fanartsApercu = document.querySelector(".fanarts-apercu");
 const updateFanarts = document.querySelector(".update-fanarts");
+const changePoster = document.querySelector(".change-poster");
 let TMDBId;
 let TVDBId;
 let numberNextSeason = 0;
@@ -98,8 +99,9 @@ fetch(`http://localhost:3000/api/keys/${APIDocId}`)
             .then((data) => {
                 const posterSerie = document.querySelector(".poster-serie");
                 posterSerie.src = data.imageUrl;
-                posterSerie.addEventListener("click", () => {
+                changePoster.addEventListener("click", () => {
                     serieContainer.style.display = "flex";
+                    updateFanarts.style.display = "none";
                     scrollToTop();
 
                     fetch(`http://api.themoviedb.org/3/tv/${TMDBId}/images?api_key=${TMDBAPI}`)
@@ -396,6 +398,7 @@ fetch(`http://localhost:3000/api/keys/${APIDocId}`)
                 fanartButton.addEventListener("click", () => {
                     serieContainer.style.display = "flex";
                     fanartsApercu.style.display = "flex";
+                    scrollToTop();
                     for (let i = 0; i < fanartImages.length; i++) {
                         let fanartMini = document.createElement("img");
                         fanartMini.src = fanartImages[i];
@@ -657,7 +660,7 @@ fetch(`http://localhost:3000/api/keys/${APIDocId}`)
                                             fetch(`http://localhost:3000/api/series/addFanart/${findId}`, addFanart)
                                         }
                                         // }
-                                        setTimeout(location.reload.bind(location), 2000);
+                                        setTimeout(location.reload.bind(location), 1000);
                                         // else if (fanartsToRemove.length > 0) {
                                         //     for (let i = 0; i < fanartsToRemove.length; i++) {
                                         //         let fanartToRemove = `${fanartsToRemove[i]}`;
@@ -679,6 +682,7 @@ fetch(`http://localhost:3000/api/keys/${APIDocId}`)
 
                             closeButtonContainer.addEventListener("click", () => {
                                 serieContainer.style.display = "none";
+                                fanartsApercu.style.display = "none";
                                 let fanartsToDelete = document.querySelectorAll(".fanart-box");
                                 fanartsToDelete.forEach((element) => element.remove());
                             })

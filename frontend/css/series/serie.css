@@ -925,3 +925,12 @@ li a:hover {
     padding: 5px;
     cursor: pointer;
 }
+
+.change-poster {
+    display: flex;
+    position: absolute;
+    right: 0%;
+    top: 0%;
+    color: white;
+    cursor: pointer;
+}
