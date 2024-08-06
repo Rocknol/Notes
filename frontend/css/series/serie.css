@@ -663,12 +663,15 @@ li a:hover {
     width: 1000px;
     height: 1000px;
     z-index: 1;
+    justify-content: center;
 }
 
 .poster-box {
     width: 25%;
     height: 40%;
     position: relative;
+    display: flex;
+    margin: 20px;
 }
 
 .poster {
@@ -680,20 +683,8 @@ li a:hover {
     filter: brightness(0.5);
 }
 
-.close-button-form {
-    cursor: pointer;
-    width: fit-content;
-    text-align: center;
-    background-color: black;
-    padding: 5px;
-    color: white;
-    font-size: xx-large;
-    position: absolute;
-    z-index: 1;
-    top: 0%;
-}
 
-.close-button-container {
+.close-button {
     cursor: pointer;
     width: fit-content;
     text-align: center;
@@ -704,6 +695,7 @@ li a:hover {
     position: absolute;
     z-index: 1;
     top: 0%;
+    left: 0%;
 }
 
 /* #serie-logo-choices {
