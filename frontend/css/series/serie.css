@@ -459,10 +459,8 @@ li a:hover {
 #carousel {
     width: 1160px;
     height: 540px;
-    box-shadow: 0px 0px 12px 12px black;
     position: fixed;
     left: 800px;
-    top: 50px;
 }
 
 .container-carousel {
@@ -479,6 +477,7 @@ li a:hover {
     height: 100%;
     opacity: 1;
     animation: fadeInFanart 1s;
+    border-radius: 50px;
 }
 
 @keyframes fadeInFanart {
