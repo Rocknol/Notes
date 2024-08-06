@@ -21,9 +21,10 @@ const logoSerie = document.querySelector(".logo-serie");
 const boutonFetchTMDB = document.querySelector(".bouton-fetch-tmdb");
 const APIDocId = "65f195f9101332610cab8fb6"
 const actors = document.getElementById("actors");
-const serieChoices = document.getElementById("serie-choices");
 const serieContainer = document.querySelector(".serie-container");
-const closeButton = document.querySelector(".close-button");
+const scrollTop = document.querySelector(".scroll-top");
+const closeButtonForm = document.querySelector(".close-button-form");
+const closeButtonContainer = document.querySelector(".close-button-container");
 const fanartsApercu = document.querySelector(".fanarts-apercu");
 const updateFanarts = document.querySelector(".update-fanarts");
 let TMDBId;
@@ -40,6 +41,10 @@ let pauseToggle = document.querySelector(".pause-toggle");
 displayAjout.addEventListener("click", () => {
     let showForm = document.querySelector(".form-et-bouton-saison");
     showForm.setAttribute("class", "form-et-bouton-saison-show");
+    closeButtonForm.addEventListener("click", () => {
+        let hideForm = document.querySelector(".form-et-bouton-saison-show");
+        hideForm.setAttribute("class", "form-et-bouton-saison");
+    })
 })
 
 function cleanUp() {
@@ -54,6 +59,20 @@ function calculNombre() {
     qteSaisons = calcul.length;
 
     nombreSaisonsHeader.innerText = qteSaisons + " saison(s)";
+}
+
+function scrollToTop() {
+    serieContainer.addEventListener("scroll", () => {
+        if (serieContainer.scrollTop > 500) {
+            scrollTop.style.display = "block";
+            scrollTop.addEventListener("click", () => {
+                serieContainer.scrollTop = 0;
+            })
+        }
+        if (serieContainer.scrollTop < 500) {
+            scrollTop.style.display = "none";
+        }
+    })
 }
 
 pauseToggle.addEventListener("click", () => {
@@ -80,7 +99,8 @@ fetch(`http://localhost:3000/api/keys/${APIDocId}`)
                 const posterSerie = document.querySelector(".poster-serie");
                 posterSerie.src = data.imageUrl;
                 posterSerie.addEventListener("click", () => {
-                    serieChoices.style.display = "flex";
+                    serieContainer.style.display = "flex";
+                    scrollToTop();
 
                     fetch(`http://api.themoviedb.org/3/tv/${TMDBId}/images?api_key=${TMDBAPI}`)
                         .then((response) => { return response.json() })
@@ -106,8 +126,8 @@ fetch(`http://localhost:3000/api/keys/${APIDocId}`)
 
                                 serieContainer.appendChild(poster);
                             }
-                            closeButton.addEventListener("click", () => {
-                                serieChoices.style.display = "none";
+                            closeButtonContainer.addEventListener("click", () => {
+                                serieContainer.style.display = "none";
                                 let postersToDelete = document.querySelectorAll(".poster");
                                 postersToDelete.forEach(element => element.remove());
                             })
@@ -287,7 +307,7 @@ fetch(`http://localhost:3000/api/keys/${APIDocId}`)
                             actorPhoto.src = `https://image.tmdb.org/t/p/original/${data.cast[i].profile_path}`
                             actorBloc.appendChild(actorPhoto);
                             actorPhoto.addEventListener("click", () => {
-                                serieChoices.style.display = "flex";
+                                serieContainer.style.display = "flex";
 
                                 fetch(`https://api.themoviedb.org/3/person/${data.cast[i].id}/images?api_key=${TMDBAPI}`)
                                     .then((response) => { return response.json() })
@@ -299,8 +319,8 @@ fetch(`http://localhost:3000/api/keys/${APIDocId}`)
                                             photo.src = `https://image.tmdb.org/t/p/original/${data.profiles[i].file_path}`;
                                             serieContainer.appendChild(photo);
                                         }
-                                        closeButton.addEventListener("click", () => {
-                                            serieChoices.style.display = "none";
+                                        closeButtonContainer.addEventListener("click", () => {
+                                            serieContainer.style.display = "none";
                                             let photosToDelete = document.querySelectorAll(".photo");
                                             photosToDelete.forEach(element => element.remove());
                                         })
@@ -336,7 +356,7 @@ fetch(`http://localhost:3000/api/keys/${APIDocId}`)
                 })
 
                 logoButton.addEventListener("click", () => {
-                    serieChoices.style.display = "flex";
+                    serieContainer.style.display = "flex";
 
                     fetch(`https://api.themoviedb.org/3/tv/${TMDBId}/images?api_key=${TMDBAPI}`)
                         .then((response) => { return response.json() })
@@ -365,8 +385,8 @@ fetch(`http://localhost:3000/api/keys/${APIDocId}`)
                                     })
                                 }
                             }
-                            closeButton.addEventListener("click", () => {
-                                serieChoices.style.display = "none";
+                            closeButtonContainer.addEventListener("click", () => {
+                                serieContainer.style.display = "none";
                                 let logosToDelete = document.querySelectorAll(".logo");
                                 logosToDelete.forEach((element) => element.remove());
                             })
@@ -374,7 +394,7 @@ fetch(`http://localhost:3000/api/keys/${APIDocId}`)
                 })
 
                 fanartButton.addEventListener("click", () => {
-                    serieChoices.style.display = "flex";
+                    serieContainer.style.display = "flex";
                     fanartsApercu.style.display = "flex";
                     for (let i = 0; i < fanartImages.length; i++) {
                         let fanartMini = document.createElement("img");
@@ -606,7 +626,6 @@ fetch(`http://localhost:3000/api/keys/${APIDocId}`)
                                         }
 
                                     }
-                                    updateFanarts.innerText = "Update Fanarts";
                                     updateFanarts.addEventListener("click", () => {
                                         console.log(fanartsToRemove);
                                         // if (fanartsToRemove.length > 0) {
@@ -658,8 +677,8 @@ fetch(`http://localhost:3000/api/keys/${APIDocId}`)
 
                                 })
 
-                            closeButton.addEventListener("click", () => {
-                                serieChoices.style.display = "none";
+                            closeButtonContainer.addEventListener("click", () => {
+                                serieContainer.style.display = "none";
                                 let fanartsToDelete = document.querySelectorAll(".fanart-box");
                                 fanartsToDelete.forEach((element) => element.remove());
                             })

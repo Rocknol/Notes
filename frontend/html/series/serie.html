@@ -69,43 +69,42 @@
             </div>
         </div>
 
-        <div class="forms">
-            <div class="form-et-bouton-saison">
-                <div class="tmdb-fetch">
-                    <button type="submit" class="bouton-fetch-tmdb">Fetch from TMDB</button>
-                </div>
-                <form id="form-ajout-saison" name="form-ajout-saison">
-                    <div class="titre-saison-form">
-                        <label for="titre">Titre de la saison:</label>
-                        <input type="text" name="title" id="titre">
-                    </div>
-                    <div class="season-number">
-                        <label for="seasonnumber">Numéro de la saison:</label>
-                        <input type="text" name="seasonnumber" id="seasonnumber">
-                    </div>
-                    <div class="poster-saison">
-                        <label for="poster">Poster:</label>
-                        <!-- <input type="file" name="image" id="poster"> -->
-                        <input type="text" name="poster" id="poster">
-                    </div>
-                    <div class="plot">
-                        <label for="plot">Plot:</label>
-                        <textarea rows="5" cols="40" input type="text" name="plot" id="plot"></textarea>
-                    </div>
-                    <div class="voteTMDB">
-                        <label for="noteTMDB">Note TMDB:</label>
-                        <input type="text" name="noteTMDB" id="noteTMDB">
-                    </div>
-                    <div class="air-date">
-                        <label for="airdate">Air date:</label>
-                        <input type="text" name="airdate" id="airdate">
-                    </div>
-                </form>
-                <div class="bouton-ajouter">
-                    <button type="submit" class="bouton-ajouter-saison">Ajouter cette saison</button>
-                </div>
+        <div class="form-et-bouton-saison">
+            <label class="main-label">Ajout de saison</label>
+            <div class="tmdb-fetch">
+                <button type="submit" class="bouton-fetch-tmdb">Fetch from TMDB</button>
             </div>
-
+            <form id="form-ajout-saison" name="form-ajout-saison">
+                <div class="titre-saison-form">
+                    <label for="titre">Titre de la saison:</label>
+                    <input type="text" name="title" id="titre">
+                </div>
+                <div class="season-number">
+                    <label for="seasonnumber">Numéro de la saison:</label>
+                    <input type="text" name="seasonnumber" id="seasonnumber">
+                </div>
+                <div class="poster-saison">
+                    <label for="poster">Poster:</label>
+                    <!-- <input type="file" name="image" id="poster"> -->
+                    <input type="text" name="poster" id="poster">
+                </div>
+                <div class="plot">
+                    <label for="plot">Plot:</label>
+                    <textarea rows="5" cols="40" input type="text" name="plot" id="plot"></textarea>
+                </div>
+                <div class="voteTMDB">
+                    <label for="noteTMDB">Note TMDB:</label>
+                    <input type="text" name="noteTMDB" id="noteTMDB">
+                </div>
+                <div class="air-date">
+                    <label for="airdate">Air date:</label>
+                    <input type="text" name="airdate" id="airdate">
+                </div>
+            </form>
+            <div class="bouton-ajouter">
+                <button type="submit" class="bouton-ajouter-saison">Ajouter cette saison</button>
+            </div>
+            <div class="close-button-form">Close</div>
         </div>
 
         </div>
@@ -116,13 +115,16 @@
 
         <div id="actors"></div>
 
-        <div id="serie-choices">
-            <!-- <div class="close-button"><i class="fa-solid fa-xmark"></i></div> -->
-            <div class="close-button">Close</div>
-            <div class="serie-container">
-            </div>
-            <div class="update-fanarts"></div>
+        <!-- <div id="change-window">
+
+        </div> -->
+
+        <div class="serie-container">
+            <div class="close-button-container">Close</div>
+            <div class="update-fanarts">Update</div>
         </div>
+
+        <div class="scroll-top"><i class="fa-solid fa-arrow-up"></i></div>
 
         <div class="fanarts-apercu"></div>
 
