@@ -109,10 +109,15 @@ fetch(`http://localhost:3000/api/keys/${APIDocId}`)
                         .then((data) => {
                             console.log(data);
                             for (let i = 0; i < data.posters.length; i++) {
+                                let posterBox = document.createElement("div");
+                                posterBox.setAttribute("class", "poster-box");
                                 let poster = document.createElement("img");
                                 poster.setAttribute("class", "poster");
                                 poster.src = `https://image.tmdb.org/t/p/original/${data.posters[i].file_path}`
-                                poster.addEventListener("click", () => {
+                                let updatePoster = document.createElement("div");
+                                updatePoster.setAttribute("class", "change-poster");
+                                updatePoster.innerHTML += `<i class="fa-solid fa-image"></i>`
+                                updatePoster.addEventListener("click", () => {
                                     let newPosterPath = `https://image.tmdb.org/t/p/original/${data.posters[i].file_path}`;
 
                                     let posterChange = {
@@ -125,8 +130,9 @@ fetch(`http://localhost:3000/api/keys/${APIDocId}`)
                                             location.reload();
                                         })
                                 })
-
-                                serieContainer.appendChild(poster);
+                                posterBox.appendChild(poster);
+                                posterBox.appendChild(updatePoster);
+                                serieContainer.appendChild(posterBox);
                             }
                             closeButtonContainer.addEventListener("click", () => {
                                 serieContainer.style.display = "none";
