@@ -160,18 +160,11 @@ li a:hover {
     cursor: pointer;
 }
 
-
 .form-et-bouton-saison {
-    opacity: 0;
     display: none;
-}
-
-.form-et-bouton-saison-show {
-    display: flex;
     flex-direction: column;
     gap: 20px;
     color: white;
-    opacity: 1;
     animation: fadeIn 1s;
     background-color: var(--secondary-color);
     justify-content: center;
@@ -660,15 +653,14 @@ li a:hover {
     left: 0;
     right: 0;
     margin: auto;
-    width: 1000px;
+    width: 1600px;
     height: 1000px;
     z-index: 1;
     justify-content: center;
 }
 
 .poster-box {
-    width: 25%;
-    height: 40%;
+    width: 15%;
     position: relative;
     display: flex;
     margin: 20px;
@@ -722,8 +714,9 @@ li a:hover {
 } */
 
 .logo {
-    width: 25%;
+    width: 15%;
     height: 10%;
+    margin: 60px;
 }
 
 .logo:hover {

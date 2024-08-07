@@ -41,10 +41,9 @@ let pauseToggle = document.querySelector(".pause-toggle");
 
 displayAjout.addEventListener("click", () => {
     let showForm = document.querySelector(".form-et-bouton-saison");
-    showForm.setAttribute("class", "form-et-bouton-saison-show");
+    showForm.style.display = "flex";
     closeButtonForm.addEventListener("click", () => {
-        let hideForm = document.querySelector(".form-et-bouton-saison-show");
-        hideForm.setAttribute("class", "form-et-bouton-saison");
+        showForm.style.display = "none";
     })
 })
 
@@ -138,7 +137,7 @@ fetch(`http://localhost:3000/api/keys/${APIDocId}`)
                             }
                             closeButtonContainer.addEventListener("click", () => {
                                 serieContainer.style.display = "none";
-                                let postersToDelete = document.querySelectorAll(".poster");
+                                let postersToDelete = document.querySelectorAll(".poster-box");
                                 postersToDelete.forEach(element => element.remove());
                             })
                         })
@@ -693,6 +692,8 @@ fetch(`http://localhost:3000/api/keys/${APIDocId}`)
                                 fanartsApercu.style.display = "none";
                                 let fanartsToDelete = document.querySelectorAll(".fanart-box");
                                 fanartsToDelete.forEach((element) => element.remove());
+                                let fanartsMiniToDelete = document.querySelectorAll(".fanart-mini");
+                                fanartsMiniToDelete.forEach((element) => element.remove());
                             })
                         })
                 })
