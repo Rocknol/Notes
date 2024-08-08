@@ -409,7 +409,7 @@ li a:hover {
 
 .fa-image:hover {
     color: gold;
-    animation: gold-color 2s;
+    animation: gold-color 1s;
 }
 
 .fa-panorama {
@@ -625,7 +625,7 @@ li a:hover {
 
 .fa-circle-check {
     color: gold;
-    font-size: 3em;
+    font-size: 2em;
 }
 
 #change-window {
@@ -657,6 +657,7 @@ li a:hover {
     height: 1000px;
     z-index: 1;
     justify-content: center;
+    padding-top: 30px;
 }
 
 .poster-box {
@@ -755,9 +756,9 @@ li a:hover {
 } */
 
 .fanart-box {
-    width: 50%;
-    height: 25%;
+    width: 20%;
     position: relative;
+    margin: 30px;
 }
 
 .fanart {
@@ -769,34 +770,22 @@ li a:hover {
     filter: brightness(0.5);
 }
 
-.presence-marker {
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    z-index: 1;
-}
-
 .ticked-marker {
     position: absolute;
     right: 0px;
     top: 0px;
     z-index: 1;
-    display: none;
+    cursor: pointer;
 }
-
-.ticked-marker-active {
-    display: block;
-}
-
 
 .fa-square-plus {
     color: gold;
-    font-size: 3em;
+    font-size: 2em;
 }
 
 .fa-square-minus {
     color: gold;
-    font-size: 3em;
+    font-size: 2em;
 }
 
 /* #actor-photo-choices {
@@ -894,6 +883,7 @@ li a:hover {
     font-size: xx-large;
     position: absolute;
     right: 0%;
+    top: 0%;
     z-index: 1;
 }
 
@@ -924,4 +914,9 @@ li a:hover {
     top: 0%;
     color: white;
     cursor: pointer;
+}
+
+.titre-serie {
+    font-size: larger;
+    font-weight: bold;
 }
