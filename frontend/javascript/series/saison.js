@@ -33,6 +33,7 @@ let TMDBId;
 let numeroSaison = 0;
 let numberNextEpisode = 0;
 const nombreDeEpisodes = document.getElementById("nombre-episodes");
+const numeroDeLepisode = document.getElementById("numero");
 
 function calculNombre() {
     let calcul = document.querySelectorAll(".bloc-episode");
@@ -57,7 +58,8 @@ boutonFetch.addEventListener("click", () => {
         .then((data) => {
             let TMDBAPI = data.TMDB;
             let IMDBAPI = data.IMDB;
-            fetch(`https://api.themoviedb.org/3/tv/${TMDBId}/season/${numeroSaison}/episode/${numberNextEpisode}?api_key=${TMDBAPI}`)
+            let numberToUse = numeroDeLepisode.value;
+            fetch(`https://api.themoviedb.org/3/tv/${TMDBId}/season/${numeroSaison}/episode/${numberToUse}?api_key=${TMDBAPI}`)
                 .then((response) => { return response.json() })
                 .then((data) => {
                     console.log(numeroSaison);

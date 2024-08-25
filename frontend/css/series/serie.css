@@ -602,9 +602,9 @@ li a:hover {
 
 .fanarts-apercu {
     position: fixed;
-    bottom: 0px;
-    left: 0px;
-    width: 500px;
+    top: 150px;
+    right: 10px;
+    width: 450px;
     height: 300px;
     background-color: var(--secondary-color);
     display: flex;
@@ -614,8 +614,9 @@ li a:hover {
 }
 
 .fanart-mini {
-    width: 25%;
-    height: 25%;
+    width: 20%;
+    height: 20%;
+    margin: 10px;
 }
 
 .fa-xmark {
@@ -661,7 +662,8 @@ li a:hover {
 }
 
 .poster-box {
-    width: 15%;
+    height: 40%;
+    width: 20%;
     position: relative;
     display: flex;
     margin: 20px;
@@ -757,6 +759,7 @@ li a:hover {
 
 .fanart-box {
     width: 20%;
+    height: 20%;
     position: relative;
     margin: 30px;
 }
